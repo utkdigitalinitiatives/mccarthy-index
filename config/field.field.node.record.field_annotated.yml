@@ -1,0 +1,21 @@
+uuid: 70f34ab0-b5a5-41ae-ae29-f004d0a125c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_annotated
+    - node.type.record
+id: node.record.field_annotated
+field_name: field_annotated
+entity_type: node
+bundle: record
+label: Annotated
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

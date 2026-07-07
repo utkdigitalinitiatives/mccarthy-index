@@ -1,0 +1,23 @@
+uuid: 6926fc2c-0aab-405a-ba4b-fe7ef57b3e35
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_copies
+    - node.type.record
+id: node.record.field_copies
+field_name: field_copies
+entity_type: node
+bundle: record
+label: Copies
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,29 @@
+uuid: d60a1c9c-b5fe-46bd-8dc7-8a127685703c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_provenance
+    - node.type.record
+    - taxonomy.vocabulary.provenance
+id: node.record.field_provenance
+field_name: field_provenance
+entity_type: node
+bundle: record
+label: Provenance
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      provenance: provenance
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

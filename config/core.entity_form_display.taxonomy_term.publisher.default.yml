@@ -1,0 +1,36 @@
+uuid: aaf29577-b3ce-421e-9970-0d1a23844412
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.publisher
+  module:
+    - path
+id: taxonomy_term.publisher.default
+targetEntityType: taxonomy_term
+bundle: publisher
+mode: default
+content:
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  description: true

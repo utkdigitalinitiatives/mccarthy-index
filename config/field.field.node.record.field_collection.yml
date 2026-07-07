@@ -1,0 +1,19 @@
+uuid: 0bcf4cef-7da0-49ca-b724-d77cad843aa4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_collection
+    - node.type.record
+id: node.record.field_collection
+field_name: field_collection
+entity_type: node
+bundle: record
+label: Collection
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

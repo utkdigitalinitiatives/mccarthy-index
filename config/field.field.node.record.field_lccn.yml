@@ -1,0 +1,19 @@
+uuid: 7bf9a571-85e7-45d7-a2a6-1a8f8d22f63b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_lccn
+    - node.type.record
+id: node.record.field_lccn
+field_name: field_lccn
+entity_type: node
+bundle: record
+label: LCCN
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

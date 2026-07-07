@@ -1,0 +1,19 @@
+uuid: ecd2dd85-ef4a-4718-86d6-e63ac817f582
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_oclc
+    - node.type.record
+id: node.record.field_oclc
+field_name: field_oclc
+entity_type: node
+bundle: record
+label: OCLC
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

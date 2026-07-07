@@ -1,0 +1,19 @@
+uuid: 30963228-a528-4f26-ba0b-f6b1be89e404
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_publication_details
+    - node.type.record
+id: node.record.field_publication_details
+field_name: field_publication_details
+entity_type: node
+bundle: record
+label: 'Publication Details'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

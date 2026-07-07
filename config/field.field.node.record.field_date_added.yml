@@ -1,0 +1,21 @@
+uuid: 22623adf-c5d5-4b82-ab5b-ed66ed577387
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_added
+    - node.type.record
+  module:
+    - datetime
+id: node.record.field_date_added
+field_name: field_date_added
+entity_type: node
+bundle: record
+label: 'Date Added'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

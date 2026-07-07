@@ -1,0 +1,29 @@
+uuid: ec3744c1-5f11-4314-842f-02a4dcb889a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_final_destination
+    - node.type.record
+    - taxonomy.vocabulary.final_destination
+id: node.record.field_final_destination
+field_name: field_final_destination
+entity_type: node
+bundle: record
+label: 'Final Destination'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      final_destination: final_destination
+    sort:
+      field: name
+      direction: asc
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

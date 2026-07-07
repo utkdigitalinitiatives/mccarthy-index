@@ -1,0 +1,19 @@
+uuid: c06744c7-602e-4b48-b8d8-2cbf96975858
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_creators
+    - node.type.record
+id: node.record.field_creators
+field_name: field_creators
+entity_type: node
+bundle: record
+label: Creators
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

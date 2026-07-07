@@ -2,6 +2,11 @@ uuid: fdac78f7-97d8-454f-b9de-4af7901f0b8f
 langcode: en
 status: true
 dependencies:
+  config:
+    - node.type.record
+    - taxonomy.vocabulary.final_destination
+    - taxonomy.vocabulary.provenance
+    - taxonomy.vocabulary.publisher
   module:
     - block
     - config
@@ -86,13 +91,31 @@ permissions:
   - 'configure any layout'
   - 'create and edit custom blocks'
   - 'create media'
+  - 'create record content'
+  - 'create terms in final_destination'
+  - 'create terms in provenance'
+  - 'create terms in publisher'
   - 'create url aliases'
   - 'delete all revisions'
   - 'delete all taxonomy revisions'
   - 'delete any file'
   - 'delete any media'
+  - 'delete any record content'
   - 'delete media'
   - 'delete own files'
+  - 'delete own record content'
+  - 'delete record revisions'
+  - 'delete term revisions in final_destination'
+  - 'delete term revisions in provenance'
+  - 'delete term revisions in publisher'
+  - 'delete terms in final_destination'
+  - 'delete terms in provenance'
+  - 'delete terms in publisher'
+  - 'edit any record content'
+  - 'edit own record content'
+  - 'edit terms in final_destination'
+  - 'edit terms in provenance'
+  - 'edit terms in publisher'
   - 'export configuration'
   - 'import configuration'
   - 'link to any page'
@@ -100,6 +123,10 @@ permissions:
   - 'rebuild node access permissions'
   - 'revert all revisions'
   - 'revert all taxonomy revisions'
+  - 'revert record revisions'
+  - 'revert term revisions in final_destination'
+  - 'revert term revisions in provenance'
+  - 'revert term revisions in publisher'
   - 'search content'
   - 'select account cancellation method'
   - 'synchronize configuration'
@@ -111,6 +138,10 @@ permissions:
   - 'view all taxonomy revisions'
   - 'view own unpublished content'
   - 'view own unpublished media'
+  - 'view record revisions'
+  - 'view term revisions in final_destination'
+  - 'view term revisions in provenance'
+  - 'view term revisions in publisher'
   - 'view the administration theme'
   - 'view user email addresses'
   - 'view vocabulary labels'
