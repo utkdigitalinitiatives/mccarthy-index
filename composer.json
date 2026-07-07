@@ -20,6 +20,13 @@
         "drupal/core-project-message": "^11.4",
         "drupal/core-recipe-unpack": "^11.4",
         "drupal/core-recommended": "^11.4",
+        "drupal/feeds": "^3.2",
+        "drupal/feeds_ex": "^1.0@beta",
+        "drupal/gin": "^5.0",
+        "drupal/gin_login": "^2.1",
+        "drupal/gin_toolbar": "^3.0",
+        "drupal/pathauto": "^1.15",
+        "drupal/twig_tweak": "^3.4",
         "drush/drush": "^13.7"
     },
     "conflict": {
