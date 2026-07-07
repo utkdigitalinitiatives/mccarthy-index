@@ -19,6 +19,7 @@ module:
   file: 0
   filter: 0
   gin_login: 0
+  gin_toolbar: 0
   image: 0
   inline_form_errors: 0
   layout_builder: 0
@@ -44,6 +45,7 @@ module:
   token: 0
   toolbar: 0
   user: 0
+  views_ui: 0
   pathauto: 1
   views: 10
   minimal: 1000
