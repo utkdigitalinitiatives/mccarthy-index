@@ -1,0 +1,116 @@
+uuid: fdac78f7-97d8-454f-b9de-4af7901f0b8f
+langcode: en
+status: true
+dependencies:
+  module:
+    - block
+    - config
+    - contextual
+    - feeds
+    - field_ui
+    - file
+    - filter
+    - image
+    - layout_builder
+    - media
+    - node
+    - path
+    - pathauto
+    - responsive_image
+    - search
+    - system
+    - taxonomy
+    - toolbar
+    - views_ui
+id: admin
+label: Admin
+weight: 2
+is_admin: false
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access feed overview'
+  - 'access files overview'
+  - 'access media overview'
+  - 'access site in maintenance mode'
+  - 'access site reports'
+  - 'access taxonomy overview'
+  - 'access toolbar'
+  - 'access user profiles'
+  - 'administer account settings'
+  - 'administer actions'
+  - 'administer blocks'
+  - 'administer content types'
+  - 'administer display modes'
+  - 'administer feeds'
+  - 'administer feeds_feed display'
+  - 'administer feeds_feed fields'
+  - 'administer feeds_feed form display'
+  - 'administer filters'
+  - 'administer image styles'
+  - 'administer media'
+  - 'administer media display'
+  - 'administer media fields'
+  - 'administer media form display'
+  - 'administer media types'
+  - 'administer menu'
+  - 'administer modules'
+  - 'administer node display'
+  - 'administer node fields'
+  - 'administer node form display'
+  - 'administer node published status'
+  - 'administer nodes'
+  - 'administer pathauto'
+  - 'administer permissions'
+  - 'administer responsive images'
+  - 'administer search'
+  - 'administer site configuration'
+  - 'administer software updates'
+  - 'administer taxonomy'
+  - 'administer taxonomy_term display'
+  - 'administer taxonomy_term fields'
+  - 'administer taxonomy_term form display'
+  - 'administer themes'
+  - 'administer url aliases'
+  - 'administer user display'
+  - 'administer user fields'
+  - 'administer user form display'
+  - 'administer users'
+  - 'administer views'
+  - 'bulk delete aliases'
+  - 'bulk update aliases'
+  - 'bypass node access'
+  - 'cancel account'
+  - 'change own username'
+  - 'configure any layout'
+  - 'create and edit custom blocks'
+  - 'create media'
+  - 'create url aliases'
+  - 'delete all revisions'
+  - 'delete all taxonomy revisions'
+  - 'delete any file'
+  - 'delete any media'
+  - 'delete media'
+  - 'delete own files'
+  - 'export configuration'
+  - 'import configuration'
+  - 'link to any page'
+  - 'notify of path changes'
+  - 'rebuild node access permissions'
+  - 'revert all revisions'
+  - 'revert all taxonomy revisions'
+  - 'search content'
+  - 'select account cancellation method'
+  - 'synchronize configuration'
+  - 'update any media'
+  - 'update media'
+  - 'use advanced search'
+  - 'view all media revisions'
+  - 'view all revisions'
+  - 'view all taxonomy revisions'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view the administration theme'
+  - 'view user email addresses'
+  - 'view vocabulary labels'
