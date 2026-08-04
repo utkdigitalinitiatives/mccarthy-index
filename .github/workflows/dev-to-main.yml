@@ -1,0 +1,38 @@
+# Enforces that only the dev branch can be merged into main.
+#
+# The pipeline assumes topic -> dev -> main: a change reaches production only
+# after it has been built into an image and validated on the dev VM. A topic
+# branch merged straight into main would deploy code no image was ever built
+# from. Runs on all PRs but only fails those targeting main from a non-dev head.
+
+name: dev-to-main
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize, edited]
+
+permissions:
+  contents: read
+
+jobs:
+  enforce:
+    # Defensive guard: `edited` fires on base-branch changes too, so re-check
+    # that the PR still targets main before enforcing.
+    if: ${{ github.event.pull_request.base.ref == 'main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: dev-to-main
+        env:
+          BASE: ${{ github.event.pull_request.base.ref }}
+          HEAD: ${{ github.event.pull_request.head.ref }}
+        run: |
+          echo "Base (target) branch: $BASE"
+          echo "Head (source) branch: $HEAD"
+
+          if [ "$HEAD" != "dev" ]; then
+            echo "::error::PRs into main must come from dev only."
+            exit 1
+          fi
+
+          echo "OK: dev -> main PR."

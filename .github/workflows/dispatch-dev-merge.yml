@@ -1,0 +1,109 @@
+# Sends a repository_dispatch event to mccarthy-infra when code is pushed to the
+# dev branch (normally a topic -> dev PR merge). That triggers the Packer image
+# build, refreshes the devtest database and blob storage from production, and
+# deploys the ephemeral dev VM.
+#
+# The infra side validates this payload in build-on-dispatch.yml: drupal_repo is
+# required unless the caller sets bootstrap_build, which only the manual
+# first-image dispatch ever does.
+
+name: Dispatch Dev Merge to Infra
+
+on:
+  push:
+    branches: [dev]
+    # A docs or workflow edit should not spend ~20 minutes rebuilding an image
+    # and recycling the dev VM.
+    paths-ignore:
+      - '**.md'
+      - 'LICENSE.txt'
+      - '.editorconfig'
+      - '.gitattributes'
+      - '.github/**'
+
+permissions:
+  contents: read
+  issues: write # the failure alert below opens an issue
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v3.2.0
+        with:
+          app-id: ${{ vars.DISPATCH_APP_ID }}
+          private-key: ${{ secrets.DISPATCH_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: mccarthy-infra
+
+      - name: Dispatch to mccarthy-infra
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          OWNER: ${{ github.repository_owner }}
+          CLONE_URL: ${{ github.event.repository.clone_url }}
+          SHA: ${{ github.sha }}
+        run: |
+          # Use -f (string), never -F. -F applies magic type conversion, and a
+          # JSON boolean in client_payload does not compare the way it looks in a
+          # GitHub `if:` -- mccarthy-infra has already been bitten by that on the
+          # bootstrap_build flag.
+          for attempt in 1 2 3 4 5; do
+            if gh api --method POST \
+              "/repos/$OWNER/mccarthy-infra/dispatches" \
+              -f "event_type=drupal-dev-merge" \
+              -f "client_payload[drupal_repo]=$CLONE_URL" \
+              -f "client_payload[drupal_ref]=dev" \
+              -f "client_payload[drupal_sha]=$SHA"; then
+              echo "Dispatch accepted on attempt $attempt."
+              exit 0
+            fi
+
+            echo "::warning::Dispatch attempt $attempt failed."
+            sleep $((attempt * 10))
+          done
+
+          # A dispatch POST once failed server-side in lib-main and no pipeline
+          # ran -- noticed only when someone happened to open the Actions tab. So
+          # this fails loudly rather than exiting 0.
+          echo "::error::Dispatch to mccarthy-infra failed after 5 attempts."
+          exit 1
+
+      - name: Open an issue if the dispatch never landed
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
+          CLONE_URL: ${{ github.event.repository.clone_url }}
+          SHA: ${{ github.sha }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          TITLE="Dispatch to mccarthy-infra failed"
+
+          {
+            echo "The \`dev\` push for commit \`$SHA\` did not reach mccarthy-infra."
+            echo "No image was built and the dev VM was not redeployed."
+            echo ""
+            echo "Run: $RUN_URL"
+            echo ""
+            echo "Re-dispatch by hand once the cause is understood:"
+            echo ""
+            echo '```bash'
+            echo "gh api --method POST /repos/$OWNER/mccarthy-infra/dispatches \\"
+            echo "  -f event_type=drupal-dev-merge \\"
+            echo "  -f 'client_payload[drupal_repo]=$CLONE_URL' \\"
+            echo "  -f client_payload[drupal_ref]=dev \\"
+            echo "  -f 'client_payload[drupal_sha]=$SHA'"
+            echo '```'
+          } > "$RUNNER_TEMP/dispatch-failure.md"
+
+          # Deduplicate on title so a bad afternoon does not open five issues.
+          EXISTING=$(gh issue list --state open --search "in:title \"$TITLE\"" \
+            --json number --jq '.[0].number // empty')
+
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body-file "$RUNNER_TEMP/dispatch-failure.md"
+          else
+            gh issue create --title "$TITLE" --body-file "$RUNNER_TEMP/dispatch-failure.md"
+          fi
