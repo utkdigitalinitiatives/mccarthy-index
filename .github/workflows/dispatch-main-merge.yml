@@ -1,0 +1,87 @@
+# Sends a repository_dispatch event to mccarthy-infra when code is pushed to the
+# main branch (normally a dev -> main PR merge). That deploys production and then
+# destroys the ephemeral dev VM.
+#
+# Deliberately has no paths-ignore, unlike the dev dispatch. This event also
+# tears the dev VM down, so skipping it on a docs-only merge would leave the VM
+# running and billing until the next real merge.
+
+name: Dispatch Main Merge to Infra
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  issues: write # the failure alert below opens an issue
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v3.2.0
+        with:
+          app-id: ${{ vars.DISPATCH_APP_ID }}
+          private-key: ${{ secrets.DISPATCH_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: mccarthy-infra
+
+      - name: Dispatch to mccarthy-infra
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          OWNER: ${{ github.repository_owner }}
+          SHA: ${{ github.sha }}
+        run: |
+          # -f, never -F. See the note in dispatch-dev-merge.yml.
+          for attempt in 1 2 3 4 5; do
+            if gh api --method POST \
+              "/repos/$OWNER/mccarthy-infra/dispatches" \
+              -f "event_type=drupal-main-merge" \
+              -f "client_payload[drupal_sha]=$SHA"; then
+              echo "Dispatch accepted on attempt $attempt."
+              exit 0
+            fi
+
+            echo "::warning::Dispatch attempt $attempt failed."
+            sleep $((attempt * 10))
+          done
+
+          echo "::error::Dispatch to mccarthy-infra failed after 5 attempts."
+          exit 1
+
+      - name: Open an issue if the dispatch never landed
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER: ${{ github.repository_owner }}
+          SHA: ${{ github.sha }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          TITLE="Production deploy dispatch to mccarthy-infra failed"
+
+          {
+            echo "The \`main\` push for commit \`$SHA\` did not reach mccarthy-infra."
+            echo "**Production was not deployed and the dev VM was not destroyed.**"
+            echo ""
+            echo "Run: $RUN_URL"
+            echo ""
+            echo "Re-dispatch by hand once the cause is understood:"
+            echo ""
+            echo '```bash'
+            echo "gh api --method POST /repos/$OWNER/mccarthy-infra/dispatches \\"
+            echo "  -f event_type=drupal-main-merge \\"
+            echo "  -f 'client_payload[drupal_sha]=$SHA'"
+            echo '```'
+          } > "$RUNNER_TEMP/dispatch-failure.md"
+
+          EXISTING=$(gh issue list --state open --search "in:title \"$TITLE\"" \
+            --json number --jq '.[0].number // empty')
+
+          if [ -n "$EXISTING" ]; then
+            gh issue comment "$EXISTING" --body-file "$RUNNER_TEMP/dispatch-failure.md"
+          else
+            gh issue create --title "$TITLE" --body-file "$RUNNER_TEMP/dispatch-failure.md"
+          fi
