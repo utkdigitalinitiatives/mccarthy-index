@@ -1,0 +1,13 @@
+_core:
+  default_config_hash: 07HbV9fUeQxLaRVCIifXnzz4xXf-Hm15iPlRdssd1rY
+az_blob_account_name: ''
+az_blob_protocol: https
+az_blob_container_name: ''
+az_blob_cdn_host_name: ''
+az_blob_gov_endpoint: false
+az_blob_local_ip: ''
+az_blob_local_port: ''
+az_blob_local_emulator: 0
+az_blob_account_key_name: ''
+az_blob_initial_image_styles: {  }
+az_blob_queue_image_styles: {  }

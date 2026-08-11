@@ -1,6 +1,7 @@
 _core:
   default_config_hash: 4GIX5Esnc_umpXUBj4IIocRX7Mt5fPhm4AgXfE3E56E
 module:
+  az_blob_fs: 0
   big_pipe: 0
   block: 0
   breakpoint: 0
@@ -22,6 +23,7 @@ module:
   gin_toolbar: 0
   image: 0
   inline_form_errors: 0
+  key: 0
   layout_builder: 0
   layout_discovery: 0
   link: 0
