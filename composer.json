@@ -16,6 +16,7 @@
     ],
     "require": {
         "composer/installers": "^2.3",
+        "drupal/az_blob_fs": "^3.0",
         "drupal/core-composer-scaffold": "^11.4",
         "drupal/core-project-message": "^11.4",
         "drupal/core-recipe-unpack": "^11.4",
@@ -25,6 +26,7 @@
         "drupal/gin": "^5.0",
         "drupal/gin_login": "^2.1",
         "drupal/gin_toolbar": "^3.0",
+        "drupal/key": ">=1.15",
         "drupal/pathauto": "^1.15",
         "drupal/twig_tweak": "^3.4",
         "drush/drush": "^13.7"
@@ -45,6 +47,9 @@
             "php-http/discovery": true,
             "php-tuf/composer-integration": true,
             "symfony/runtime": true
+        },
+        "platform": {
+            "php": "8.3"
         },
         "sort-packages": true
     },
