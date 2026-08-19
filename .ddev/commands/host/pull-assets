@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+## Description: Sync devtest media into web/sites/default/files using your own Azure identity
+## Usage: pull-assets
+## Example: "ddev pull-assets"
+
+set -euo pipefail
+
+# Unlike lib-main's equivalent, this command needs NO shared secret. lib-main
+# hands every developer a container SAS URL in a gitignored .env.assets and syncs
+# with azcopy. Here each developer holds `Storage Blob Data Reader` scoped to the
+# `drupal-media` container alone, so `--auth-mode login` authenticates as the
+# person running it. Nothing to distribute, and revoking one person actually
+# revokes them.
+#
+# Do not "improve" this by switching to an account key or a SAS. The narrow
+# per-person grant is the design, and a key would defeat it.
+
+ACCOUNT="${MCCARTHY_MEDIA_ACCOUNT:-mccdevtesth6srb8na}"
+CONTAINER="${MCCARTHY_MEDIA_CONTAINER:-drupal-media}"
+DEST="${DDEV_APPROOT:-$PWD}/web/sites/default/files"
+
+if ! command -v az >/dev/null 2>&1; then
+  echo "ERROR: the Azure CLI (az) is not installed or not on PATH."
+  echo "       https://learn.microsoft.com/cli/azure/install-azure-cli"
+  exit 1
+fi
+
+if ! az account show >/dev/null 2>&1; then
+  echo "ERROR: not signed in to Azure. Run 'az login' first."
+  exit 1
+fi
+
+mkdir -p "$DEST"
+
+echo "Syncing ${ACCOUNT}/${CONTAINER} -> web/sites/default/files ..."
+
+# download-batch is a no-op for blobs already present with the same name, so
+# re-running is cheap. It does NOT delete local files that are gone from the
+# container -- that is deliberate, so a developer's local test uploads survive.
+if ! az storage blob download-batch \
+  --account-name "$ACCOUNT" \
+  --source "$CONTAINER" \
+  --destination "$DEST" \
+  --auth-mode login \
+  --no-progress \
+  --output none; then
+  echo
+  echo "ERROR: the sync failed. The two common causes:"
+  echo
+  echo "  AuthorizationPermissionMismatch"
+  echo "      You have not been granted 'Storage Blob Data Reader' on the"
+  echo "      '${CONTAINER}' container. Send your AAD object ID to the infra"
+  echo "      operator -- 'az ad signed-in-user show --query id -o tsv'."
+  echo
+  echo "  ResourceNotFound / account not found"
+  echo "      MCCARTHY_MEDIA_ACCOUNT is pointing somewhere that does not exist."
+  echo "      The devtest account is 'mccdevtesth6srb8na'."
+  exit 1
+fi
+
+COUNT=$(find "$DEST" -type f 2>/dev/null | wc -l | tr -d ' ')
+echo "Done. ${COUNT} file(s) now in web/sites/default/files."
+
+# The container is legitimately empty until the site has its first file field,
+# so say that rather than letting a silent zero read as a failure.
+if [ "$COUNT" = "0" ]; then
+  echo
+  echo "NOTE: zero files is expected right now -- the site has no file fields yet,"
+  echo "      so '${CONTAINER}' is empty. This is not an error."
+fi

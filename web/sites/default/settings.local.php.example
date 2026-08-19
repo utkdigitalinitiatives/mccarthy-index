@@ -1,0 +1,66 @@
+<?php
+
+/**
+ * @file
+ * Local development overrides. Copy to settings.local.php to use.
+ *
+ *   cp web/sites/default/settings.local.php.example \
+ *      web/sites/default/settings.local.php
+ *
+ * settings.local.php is gitignored. Everything set here is a RUNTIME override:
+ * it never reaches the active config store, so `drush config:export` cannot
+ * carry any of it back into the repository. That is the whole reason these
+ * belong here rather than in a `drush config:set`.
+ *
+ * lib-main keeps the equivalent file out of its repository entirely and points
+ * developers at SharePoint for the values. It is committed here because it holds
+ * no secrets -- only scheme names -- and a setup step nobody can read is a setup
+ * step that drifts.
+ */
+
+/**
+ * Send files to the local filesystem instead of Azure Blob Storage.
+ *
+ * Production stores files in Azure Blob Storage through az_blob_fs, and file
+ * URIs read `azblob://...`. That module is enabled in committed config, so the
+ * `azblob` stream wrapper is registered locally too -- but with no account name
+ * and no key, because developers hold container-scoped RBAC and never the
+ * storage account key.
+ *
+ * `ddev refresh-local` rewrites EXISTING file URIs in the database. These
+ * overrides handle the other half: where NEW uploads go.
+ */
+$config['system.file']['default_scheme'] = 'public';
+
+/**
+ * Per-field overrides.
+ *
+ * The site has no file fields yet, so this list is empty on purpose. The day one
+ * is added with `uri_scheme: azblob`, `ddev refresh-local` will print it in the
+ * upload diagnostic and you add a line for it here. Copy the shape:
+ *
+ * @code
+ * $config['field.storage.media.field_media_image']['settings']['uri_scheme'] = 'public';
+ * $config['field.storage.media.field_media_document']['settings']['uri_scheme'] = 'public';
+ * $config['field.storage.user.user_picture']['settings']['uri_scheme'] = 'public';
+ * @endcode
+ *
+ * Text-editor image uploads use a different key:
+ *
+ * @code
+ * $config['editor.editor.basic_html']['image_upload']['scheme'] = 'public';
+ * $config['editor.editor.full_html']['image_upload']['scheme'] = 'public';
+ * @endcode
+ */
+
+/**
+ * Private files.
+ *
+ * Production mounts an Azure Files share over /var/www/drupal/private. DDEV
+ * mounts nothing, so `private://` is unset locally. Point it somewhere OUTSIDE
+ * the docroot if you need it; the path is relative to the project root.
+ *
+ * @code
+ * $settings['file_private_path'] = '../private';
+ * @endcode
+ */
