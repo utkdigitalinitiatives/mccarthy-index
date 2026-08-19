@@ -1,0 +1,33 @@
+# Composer-managed dependencies. Everything here is reinstalled by
+# `ddev composer install`; none of it belongs in the repository.
+/vendor/
+/web/core/
+/web/libraries/
+/web/modules/contrib/
+/web/profiles/contrib/
+/web/themes/contrib/
+/drush/Commands/contrib/
+/recipes/*/
+!/recipes/README.txt
+
+# User-generated content and local-only settings.
+/web/sites/*/files
+/web/sites/*/private
+/web/sites/*/settings.local.php
+/web/sites/simpletest
+
+# Database dumps. A production dump carries `users.pass` hashes and staff email
+# addresses, and this repository is PUBLIC -- one `git add .` would publish them
+# permanently. Keep dumps out by default, not by remembering.
+*.sql
+*.sql.gz
+*.dump
+
+# Media pulled down by `ddev pull-assets` staging, if a dev uses a scratch dir.
+/media-sync/
+
+# Local environment overrides for the ddev commands.
+/.ddev/.env*
+!/.ddev/.env*.example
+
+.DS_Store

@@ -897,10 +897,12 @@ $settings["migrate_node_migrate_type_classic"] = false;
  *
  * Keep this code block at the end of this file to take full effect.
  */
-#
-# if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
-#   include $app_root . '/' . $site_path . '/settings.local.php';
-# }
+# Enabled for local development. settings.local.php is gitignored; copy
+# settings.local.php.example to create it. It holds the overrides that send file
+# uploads to public:// on a laptop, where az_blob_fs has no credentials.
+if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
+  include $app_root . '/' . $site_path . '/settings.local.php';
+}
 
 // Automatically generated include for settings managed by ddev.
 $ddev_settings = __DIR__ . '/settings.ddev.php';
