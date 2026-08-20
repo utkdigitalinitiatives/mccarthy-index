@@ -30,8 +30,8 @@ set -euo pipefail
 #
 # Modelled on lib-main's command of the same name, with three deliberate changes:
 # media syncs over per-person RBAC instead of a shared SAS URL; the upload
-# diagnostic enumerates config instead of hardcoding a list that rots; and the
-# overrides it tells you to apply are committed here as
+# diagnostic enumerates config instead of a hardcoded list; and the template for
+# the overrides it tells you to apply is committed here as
 # web/sites/default/settings.local.php.example rather than kept out of the repo.
 
 DUMP=""
