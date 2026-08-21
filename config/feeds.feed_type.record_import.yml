@@ -1,0 +1,305 @@
+uuid: b41e22b5-e59d-41d2-b912-a2a288d5574f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.record.field_annotated
+    - field.field.node.record.field_collection
+    - field.field.node.record.field_copies
+    - field.field.node.record.field_creators
+    - field.field.node.record.field_date_added
+    - field.field.node.record.field_final_destination
+    - field.field.node.record.field_isbn10
+    - field.field.node.record.field_isbn13
+    - field.field.node.record.field_lcc
+    - field.field.node.record.field_lccn
+    - field.field.node.record.field_length
+    - field.field.node.record.field_notes
+    - field.field.node.record.field_oclc
+    - field.field.node.record.field_provenance
+    - field.field.node.record.field_publication_description
+    - field.field.node.record.field_publish_date
+    - field.field.node.record.field_publisher
+    - field.field.node.record.field_record_number
+    - node.type.record
+  module:
+    - feeds_tamper
+    - node
+third_party_settings:
+  feeds_tamper:
+    tampers:
+      90eeb213-dc23-49ba-a09a-c413e6be48c9:
+        true_value: 'yes'
+        false_value: 'no'
+        match_case: false
+        no_match_value: false
+        uuid: 90eeb213-dc23-49ba-a09a-c413e6be48c9
+        plugin: convert_boolean
+        source: annotated
+        weight: 0
+        label: 'Convert to Boolean'
+label: 'Record Import'
+id: record_import
+description: ''
+help: ''
+import_period: -1
+import_period_per_feed: false
+fetcher: upload
+fetcher_configuration:
+  allowed_extensions: 'txt csv tsv xml opml'
+  directory: 'public://feeds'
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  values:
+    type: record
+  langcode: en
+  insert_new: 1
+  update_existing: 2
+  update_non_existent: _keep
+  skip_hash_check: false
+  skip_validation: false
+  skip_validation_types: {  }
+  authorize: true
+  revision: false
+  expire: -1
+  owner_feed_author: false
+  owner_id: 1
+custom_sources:
+  title:
+    value: title
+    label: title
+    machine_name: title
+    type: csv
+  record_number:
+    value: 'record number'
+    label: 'record number'
+    machine_name: record_number
+    type: csv
+  creators:
+    value: creators
+    label: creators
+    machine_name: creators
+    type: csv
+  collection:
+    value: collection
+    label: collection
+    machine_name: collection
+    type: csv
+  ean_isbn13:
+    value: ean_isbn13
+    label: ean_isbn13
+    machine_name: ean_isbn13
+    type: csv
+  upc_isbn10:
+    value: upc_isbn10
+    label: upc_isbn10
+    machine_name: upc_isbn10
+    type: csv
+  publication_description:
+    value: 'Publication Description'
+    label: 'Publication Description'
+    machine_name: publication_description
+    type: csv
+  publisher:
+    value: publisher
+    label: publisher
+    machine_name: publisher
+    type: csv
+  publish_date:
+    value: publish_date
+    label: publish_date
+    machine_name: publish_date
+    type: csv
+  length:
+    value: length
+    label: length
+    machine_name: length
+    type: csv
+  lcc:
+    value: lcc
+    label: lcc
+    machine_name: lcc
+    type: csv
+  lccn:
+    value: lccn
+    label: lccn
+    machine_name: lccn
+    type: csv
+  oclc:
+    value: oclc
+    label: oclc
+    machine_name: oclc
+    type: csv
+  added:
+    value: added
+    label: added
+    machine_name: added
+    type: csv
+  copies:
+    value: copies
+    label: copies
+    machine_name: copies
+    type: csv
+  annotated:
+    value: annotated
+    label: annotated
+    machine_name: annotated
+    type: csv
+  final_destination:
+    value: 'Final Destination'
+    label: 'Final Destination'
+    machine_name: final_destination
+    type: csv
+  notes:
+    value: notes
+    label: notes
+    machine_name: notes
+    type: csv
+  provenance:
+    value: Provenance
+    label: Provenance
+    machine_name: provenance
+    type: csv
+mappings:
+  -
+    target: title
+    map:
+      value: title
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_record_number
+    map:
+      value: record_number
+    settings:
+      language: null
+    unique:
+      value: 1
+  -
+    target: field_creators
+    map:
+      value: creators
+    settings:
+      language: null
+  -
+    target: field_collection
+    map:
+      value: collection
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_isbn13
+    map:
+      value: ean_isbn13
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_isbn10
+    map:
+      value: upc_isbn10
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_publication_description
+    map:
+      value: publication_description
+    settings:
+      language: ''
+      format: plain_text
+  -
+    target: field_publisher
+    map:
+      target_id: publisher
+    settings:
+      language: ''
+      reference_by: name
+      autocreate: 1
+      autocreate_bundle: publisher
+  -
+    target: field_publish_date
+    map:
+      value: publish_date
+    settings:
+      language: null
+      timezone: UTC
+  -
+    target: field_length
+    map:
+      value: length
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_lcc
+    map:
+      value: lcc
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_lccn
+    map:
+      value: lccn
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_oclc
+    map:
+      value: oclc
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_date_added
+    map:
+      value: added
+    settings:
+      language: null
+      timezone: UTC
+  -
+    target: field_copies
+    map:
+      value: copies
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_annotated
+    map:
+      value: annotated
+    settings:
+      language: null
+  -
+    target: field_final_destination
+    map:
+      target_id: final_destination
+    settings:
+      language: ''
+      reference_by: name
+      autocreate: 1
+      autocreate_bundle: final_destination
+  -
+    target: field_notes
+    map:
+      value: notes
+    settings:
+      language: null
+  -
+    target: field_provenance
+    map:
+      target_id: provenance
+    settings:
+      language: ''
+      reference_by: name
+      autocreate: 1
+      autocreate_bundle: provenance

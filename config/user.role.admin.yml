@@ -12,6 +12,7 @@ dependencies:
     - config
     - contextual
     - feeds
+    - feeds_tamper
     - field_ui
     - file
     - filter
@@ -52,6 +53,7 @@ permissions:
   - 'administer feeds_feed display'
   - 'administer feeds_feed fields'
   - 'administer feeds_feed form display'
+  - 'administer feeds_tamper'
   - 'administer filters'
   - 'administer image styles'
   - 'administer media'
@@ -130,6 +132,7 @@ permissions:
   - 'search content'
   - 'select account cancellation method'
   - 'synchronize configuration'
+  - 'tamper record_import'
   - 'update any media'
   - 'update media'
   - 'use advanced search'

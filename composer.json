@@ -23,6 +23,7 @@
         "drupal/core-recommended": "^11.4",
         "drupal/feeds": "^3.2",
         "drupal/feeds_ex": "^1.0@beta",
+        "drupal/feeds_tamper": "^2.0@RC",
         "drupal/gin": "^5.0",
         "drupal/gin_login": "^2.1",
         "drupal/gin_toolbar": "^3.0",
