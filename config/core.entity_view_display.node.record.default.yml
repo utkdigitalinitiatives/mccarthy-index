@@ -34,7 +34,7 @@ mode: default
 content:
   field_annotated:
     type: boolean
-    label: above
+    label: hidden
     settings:
       format: default
       format_custom_false: ''
@@ -44,7 +44,7 @@ content:
     region: content
   field_collection:
     type: string
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
       link_rel: canonical
@@ -53,7 +53,7 @@ content:
     region: content
   field_copies:
     type: number_integer
-    label: above
+    label: hidden
     settings:
       thousand_separator: ''
       prefix_suffix: true
@@ -62,23 +62,23 @@ content:
     region: content
   field_creators:
     type: basic_string
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 102
     region: content
   field_date_added:
     type: datetime_default
-    label: above
+    label: hidden
     settings:
       timezone_override: ''
-      format_type: medium
+      format_type: html_date
     third_party_settings: {  }
     weight: 113
     region: content
   field_final_destination:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
@@ -86,7 +86,7 @@ content:
     region: content
   field_isbn10:
     type: string
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
       link_rel: canonical
@@ -95,7 +95,7 @@ content:
     region: content
   field_isbn13:
     type: string
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
       link_rel: canonical
@@ -104,7 +104,7 @@ content:
     region: content
   field_lcc:
     type: string
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
       link_rel: canonical
@@ -113,7 +113,7 @@ content:
     region: content
   field_lccn:
     type: string
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
       link_rel: canonical
@@ -122,7 +122,7 @@ content:
     region: content
   field_length:
     type: number_integer
-    label: above
+    label: hidden
     settings:
       thousand_separator: ''
       prefix_suffix: true
@@ -131,14 +131,14 @@ content:
     region: content
   field_notes:
     type: basic_string
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 118
     region: content
   field_oclc:
     type: string
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
       link_rel: canonical
@@ -147,7 +147,7 @@ content:
     region: content
   field_provenance:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
@@ -155,23 +155,23 @@ content:
     region: content
   field_publication_description:
     type: text_default
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 119
     region: content
   field_publish_date:
     type: datetime_default
-    label: above
+    label: hidden
     settings:
       timezone_override: ''
-      format_type: medium
+      format_type: html_date
     third_party_settings: {  }
     weight: 108
     region: content
   field_publisher:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }
@@ -179,7 +179,7 @@ content:
     region: content
   field_record_number:
     type: number_integer
-    label: above
+    label: hidden
     settings:
       thousand_separator: ''
       prefix_suffix: true

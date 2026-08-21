@@ -23,7 +23,21 @@ dependencies:
     - field.field.node.record.field_record_number
     - node.type.record
   module:
+    - feeds_tamper
     - node
+third_party_settings:
+  feeds_tamper:
+    tampers:
+      90eeb213-dc23-49ba-a09a-c413e6be48c9:
+        true_value: 'yes'
+        false_value: 'no'
+        match_case: false
+        no_match_value: false
+        uuid: 90eeb213-dc23-49ba-a09a-c413e6be48c9
+        plugin: convert_boolean
+        source: annotated
+        weight: 0
+        label: 'Convert to Boolean'
 label: 'Record Import'
 id: record_import
 description: ''
