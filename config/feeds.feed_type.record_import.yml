@@ -3,10 +3,20 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.record.field_annotated
     - field.field.node.record.field_collection
+    - field.field.node.record.field_copies
     - field.field.node.record.field_creators
+    - field.field.node.record.field_date_added
+    - field.field.node.record.field_final_destination
     - field.field.node.record.field_isbn10
     - field.field.node.record.field_isbn13
+    - field.field.node.record.field_lcc
+    - field.field.node.record.field_lccn
+    - field.field.node.record.field_length
+    - field.field.node.record.field_notes
+    - field.field.node.record.field_oclc
+    - field.field.node.record.field_provenance
     - field.field.node.record.field_publication_description
     - field.field.node.record.field_publish_date
     - field.field.node.record.field_publisher
@@ -20,13 +30,10 @@ description: ''
 help: ''
 import_period: -1
 import_period_per_feed: false
-fetcher: http
+fetcher: upload
 fetcher_configuration:
-  auto_detect_feeds: false
-  use_pubsubhubbub: false
-  always_download: false
-  fallback_hub: ''
-  request_timeout: 30
+  allowed_extensions: 'txt csv tsv xml opml'
+  directory: 'public://feeds'
 parser: csv
 parser_configuration:
   delimiter: ','
@@ -94,6 +101,56 @@ custom_sources:
     label: publish_date
     machine_name: publish_date
     type: csv
+  length:
+    value: length
+    label: length
+    machine_name: length
+    type: csv
+  lcc:
+    value: lcc
+    label: lcc
+    machine_name: lcc
+    type: csv
+  lccn:
+    value: lccn
+    label: lccn
+    machine_name: lccn
+    type: csv
+  oclc:
+    value: oclc
+    label: oclc
+    machine_name: oclc
+    type: csv
+  added:
+    value: added
+    label: added
+    machine_name: added
+    type: csv
+  copies:
+    value: copies
+    label: copies
+    machine_name: copies
+    type: csv
+  annotated:
+    value: annotated
+    label: annotated
+    machine_name: annotated
+    type: csv
+  final_destination:
+    value: 'Final Destination'
+    label: 'Final Destination'
+    machine_name: final_destination
+    type: csv
+  notes:
+    value: notes
+    label: notes
+    machine_name: notes
+    type: csv
+  provenance:
+    value: Provenance
+    label: Provenance
+    machine_name: provenance
+    type: csv
 mappings:
   -
     target: title
@@ -160,3 +217,75 @@ mappings:
     settings:
       language: null
       timezone: UTC
+  -
+    target: field_length
+    map:
+      value: length
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_lcc
+    map:
+      value: lcc
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_lccn
+    map:
+      value: lccn
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_oclc
+    map:
+      value: oclc
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_date_added
+    map:
+      value: added
+    settings:
+      language: null
+      timezone: UTC
+  -
+    target: field_copies
+    map:
+      value: copies
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_annotated
+    map:
+      value: annotated
+    settings:
+      language: null
+  -
+    target: field_final_destination
+    map:
+      target_id: final_destination
+    settings:
+      language: ''
+      reference_by: name
+      autocreate: 1
+      autocreate_bundle: final_destination
+  -
+    target: field_notes
+    map:
+      value: notes
+    settings:
+      language: null
+  -
+    target: field_provenance
+    map:
+      target_id: provenance
+    settings:
+      language: ''
+      reference_by: name
+      autocreate: 1
+      autocreate_bundle: provenance
