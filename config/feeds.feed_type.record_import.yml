@@ -1,0 +1,162 @@
+uuid: b41e22b5-e59d-41d2-b912-a2a288d5574f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.record.field_collection
+    - field.field.node.record.field_creators
+    - field.field.node.record.field_isbn10
+    - field.field.node.record.field_isbn13
+    - field.field.node.record.field_publication_description
+    - field.field.node.record.field_publish_date
+    - field.field.node.record.field_publisher
+    - field.field.node.record.field_record_number
+    - node.type.record
+  module:
+    - node
+label: 'Record Import'
+id: record_import
+description: ''
+help: ''
+import_period: -1
+import_period_per_feed: false
+fetcher: http
+fetcher_configuration:
+  auto_detect_feeds: false
+  use_pubsubhubbub: false
+  always_download: false
+  fallback_hub: ''
+  request_timeout: 30
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  values:
+    type: record
+  langcode: en
+  insert_new: 1
+  update_existing: 2
+  update_non_existent: _keep
+  skip_hash_check: false
+  skip_validation: false
+  skip_validation_types: {  }
+  authorize: true
+  revision: false
+  expire: -1
+  owner_feed_author: false
+  owner_id: 1
+custom_sources:
+  title:
+    value: title
+    label: title
+    machine_name: title
+    type: csv
+  record_number:
+    value: 'record number'
+    label: 'record number'
+    machine_name: record_number
+    type: csv
+  creators:
+    value: creators
+    label: creators
+    machine_name: creators
+    type: csv
+  collection:
+    value: collection
+    label: collection
+    machine_name: collection
+    type: csv
+  ean_isbn13:
+    value: ean_isbn13
+    label: ean_isbn13
+    machine_name: ean_isbn13
+    type: csv
+  upc_isbn10:
+    value: upc_isbn10
+    label: upc_isbn10
+    machine_name: upc_isbn10
+    type: csv
+  publication_description:
+    value: 'Publication Description'
+    label: 'Publication Description'
+    machine_name: publication_description
+    type: csv
+  publisher:
+    value: publisher
+    label: publisher
+    machine_name: publisher
+    type: csv
+  publish_date:
+    value: publish_date
+    label: publish_date
+    machine_name: publish_date
+    type: csv
+mappings:
+  -
+    target: title
+    map:
+      value: title
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_record_number
+    map:
+      value: record_number
+    settings:
+      language: null
+    unique:
+      value: 1
+  -
+    target: field_creators
+    map:
+      value: creators
+    settings:
+      language: null
+  -
+    target: field_collection
+    map:
+      value: collection
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_isbn13
+    map:
+      value: ean_isbn13
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_isbn10
+    map:
+      value: upc_isbn10
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_publication_description
+    map:
+      value: publication_description
+    settings:
+      language: ''
+      format: plain_text
+  -
+    target: field_publisher
+    map:
+      target_id: publisher
+    settings:
+      language: ''
+      reference_by: name
+      autocreate: 1
+      autocreate_bundle: publisher
+  -
+    target: field_publish_date
+    map:
+      value: publish_date
+    settings:
+      language: null
+      timezone: UTC

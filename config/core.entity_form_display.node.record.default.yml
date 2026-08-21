@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.record.feeds_item
     - field.field.node.record.field_annotated
     - field.field.node.record.field_collection
     - field.field.node.record.field_copies
@@ -17,7 +18,7 @@ dependencies:
     - field.field.node.record.field_notes
     - field.field.node.record.field_oclc
     - field.field.node.record.field_provenance
-    - field.field.node.record.field_publication_details
+    - field.field.node.record.field_publication_description
     - field.field.node.record.field_publish_date
     - field.field.node.record.field_publisher
     - field.field.node.record.field_record_number
@@ -25,6 +26,7 @@ dependencies:
   module:
     - datetime
     - path
+    - text
 id: node.record.default
 targetEntityType: node
 bundle: record
@@ -147,9 +149,9 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_publication_details:
-    type: string_textarea
-    weight: 126
+  field_publication_description:
+    type: text_textarea
+    weight: 139
     region: content
     settings:
       rows: 5
@@ -210,5 +212,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden:
+  feeds_item: true
   promote: true
   sticky: true
