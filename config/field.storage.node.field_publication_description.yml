@@ -1,16 +1,16 @@
-uuid: 76d7a7c9-6ff0-4729-af50-9d6578361aee
+uuid: 6c1bb113-0fb5-42fe-a884-9cd2b877f9af
 langcode: en
 status: true
 dependencies:
   module:
     - node
-id: node.field_publication_details
-field_name: field_publication_details
+    - text
+id: node.field_publication_description
+field_name: field_publication_description
 entity_type: node
-type: string_long
-settings:
-  case_sensitive: false
-module: core
+type: text_long
+settings: {  }
+module: text
 locked: false
 cardinality: 1
 translatable: true
