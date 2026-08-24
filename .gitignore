@@ -31,3 +31,5 @@
 !/.ddev/.env*.example
 
 .DS_Store
+/.editorconfig
+/.gitattributes
