@@ -125,14 +125,15 @@
 }
 
 .sidebar-nav__toggle-icon {
-    width: 10px;
-    height: 10px;
-    border-left: 2px solid var(--utk-logo--smokey);
-    border-bottom: 2px solid var(--utk-logo--smokey);
-    transform: rotate(45deg);
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    transform: rotate(180deg);
     transition: transform 0.2s ease;
 }
 
 .sidebar-nav--collapsed .sidebar-nav__toggle-icon {
-    transform: rotate(-135deg);
+    transform: rotate(0deg);
 }
