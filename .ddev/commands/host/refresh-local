@@ -1,0 +1,167 @@
+#!/usr/bin/env bash
+
+## Description: Load a production dump, point files at public://, and sync media
+## Usage: refresh-local [path/to/dump.sql.gz] [--no-sanitize]
+## Example: "ddev refresh-local drupal-20260818T153918Z.sql.gz"
+
+set -euo pipefail
+
+# WHAT THIS IS FOR, AND WHY IT HAS TO EXIST.
+#
+# Production stores files in Azure Blob Storage through az_blob_fs, so file URIs
+# in the database read `azblob://...`. az_blob_fs IS enabled in
+# config/core.extension.yml, so `drush config:import` registers the `azblob`
+# stream wrapper on your laptop too -- but every credential field in
+# config/az_blob_fs.settings.yml exports empty, so locally the wrapper has
+# nowhere to read from.
+#
+# The scheme in the URI is what routes the request, NOT where the bytes are. So
+# copying blobs into web/sites/default/files does nothing on its own: Drupal
+# still asks the `azblob` wrapper, which has no credentials, and you get broken
+# images with the files sitting right there. This command rewrites the URIs so
+# the local site uses public:// instead.
+#
+# You cannot fix this by configuring az_blob_fs locally: it authenticates with a
+# storage ACCOUNT KEY, and developers deliberately hold only container-scoped
+# RBAC. Do not ask for the key.
+#
+# THIS IS A LOCAL-ONLY OPERATION. It rewrites file_managed in place. Never point
+# it at a shared or production database.
+#
+# Modelled on lib-main's command of the same name, with three deliberate changes:
+# media syncs over per-person RBAC instead of a shared SAS URL; the upload
+# diagnostic enumerates config instead of a hardcoded list; and the template for
+# the overrides it tells you to apply is committed here as
+# web/sites/default/settings.local.php.example rather than kept out of the repo.
+
+DUMP=""
+SANITIZE=1
+
+for arg in "$@"; do
+  case "$arg" in
+    --no-sanitize) SANITIZE=0 ;;
+    -*) echo "ERROR: unknown option '$arg'"; exit 1 ;;
+    *) DUMP="$arg" ;;
+  esac
+done
+
+if [ -z "$DUMP" ]; then
+  # Convenience: pick up a single dump sitting in the project root.
+  shopt -s nullglob
+  CANDIDATES=(*.sql.gz *.sql)
+  shopt -u nullglob
+  if [ "${#CANDIDATES[@]}" -eq 1 ]; then
+    DUMP="${CANDIDATES[0]}"
+    echo "Using the only dump in the project root: $DUMP"
+  elif [ "${#CANDIDATES[@]}" -eq 0 ]; then
+    echo "ERROR: no dump given and none found in the project root."
+    echo "       Get one with the 'Dump Production Database' workflow in"
+    echo "       mccarthy-infra, then:  ddev refresh-local <file>"
+    exit 1
+  else
+    echo "ERROR: more than one dump in the project root. Name the one you want:"
+    printf '       %s\n' "${CANDIDATES[@]}"
+    exit 1
+  fi
+fi
+
+if [ ! -f "$DUMP" ]; then
+  echo "ERROR: no such file: $DUMP"
+  exit 1
+fi
+
+echo "==> Importing $DUMP"
+ddev import-db --src="$DUMP"
+
+# config:import runs BEFORE the scheme change below, not after as in lib-main.
+# This is a small robustness point, not a fix for anything: committed
+# config/system.file.yml already says `default_scheme: public`, so the cset below
+# is a no-op today and the order cannot matter. It would start mattering if that
+# committed value ever changed.
+#
+# What the order does NOT do is silence the upload diagnostic at the end. That
+# warns about `uri_scheme: azblob` in committed field config, which nothing in
+# this script touches and only a settings.local.php override can change.
+#
+# Anything this command sets is either identical to committed config
+# (default_scheme) or a runtime-only settings.local.php override, so
+# `ddev drush cex` can never carry a local hack into the repository.
+echo
+echo "==> Importing committed configuration"
+ddev drush config:import -y
+
+echo
+echo "==> Pointing the default file scheme at public://"
+ddev drush cset system.file default_scheme public -y
+
+echo
+echo "==> Rewriting azblob:// file URIs to public://"
+ddev drush sqlq "UPDATE file_managed SET uri = REPLACE(uri, 'azblob://', 'public://') WHERE uri LIKE 'azblob://%';"
+
+echo
+echo "==> Syncing media"
+ddev pull-assets
+
+if [ "$SANITIZE" -eq 1 ]; then
+  echo
+  echo "==> Scrubbing password hashes and staff email addresses"
+  # On by default because the dump is the real production user table and this
+  # repository is public. --no-sanitize exists for the rare case where real
+  # addresses matter; you are on your own if you use it.
+  ddev drush sql:sanitize -y
+  echo "    Passwords are now scrambled. Log in with: ddev drush uli"
+else
+  echo
+  echo "==> SKIPPING sanitize (--no-sanitize)"
+  echo "    Your database now holds real password hashes and real staff email"
+  echo "    addresses. Do not commit it and do not share it."
+fi
+
+echo
+echo "==> Rebuilding caches"
+ddev drush cr
+
+echo
+echo "==> Checking where new uploads would go"
+# Enumerated, not hardcoded. lib-main lists eight specific config objects, which
+# silently stops covering anything added after the list was written. This finds
+# every file field and text-editor upload target that exists today.
+DIAGNOSTIC="$(ddev drush php:eval '
+$violations = [];
+$factory = \Drupal::configFactory();
+foreach ($factory->listAll("field.storage.") as $name) {
+  $value = \Drupal::config($name)->get("settings.uri_scheme");
+  if ($value !== NULL && $value !== "public") {
+    $violations[] = "$name -> $value";
+  }
+}
+foreach ($factory->listAll("editor.editor.") as $name) {
+  $value = \Drupal::config($name)->get("image_upload.scheme");
+  if ($value !== NULL && $value !== "public") {
+    $violations[] = "$name -> $value";
+  }
+}
+$default = \Drupal::config("system.file")->get("default_scheme");
+if ($default !== "public") {
+  $violations[] = "system.file:default_scheme -> $default";
+}
+echo $violations ? implode(PHP_EOL, $violations) : "OK";
+')"
+
+if [ "$DIAGNOSTIC" = "OK" ]; then
+  echo "    OK: every upload target resolves to public://"
+else
+  echo "    WARNING: these upload targets are not public://, so new local"
+  echo "    uploads through them will fail:"
+  echo
+  echo "$DIAGNOSTIC" | sed 's/^/      /'
+  echo
+  echo "    Fix it locally, without touching committed config:"
+  echo "      cp web/sites/default/settings.local.php.example web/sites/default/settings.local.php"
+  echo "    then add a \$config override for each line above. The example file"
+  echo "    shows the exact shape. settings.local.php is gitignored and its"
+  echo "    overrides never appear in 'drush cex'."
+fi
+
+echo
+echo "Done. Site: https://cormac-index.ddev.site"

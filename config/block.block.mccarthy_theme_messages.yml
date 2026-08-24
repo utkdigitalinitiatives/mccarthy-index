@@ -1,0 +1,22 @@
+uuid: c461a0a9-73e9-4735-8838-cfb7d117d62d
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - mccarthy_theme
+_core:
+  default_config_hash: aeqlWs7HwctZeZC7ADcbxfqehJzBRfZKmuZz3DsH3_4
+id: mccarthy_theme_messages
+theme: mccarthy_theme
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }
