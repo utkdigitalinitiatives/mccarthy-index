@@ -115,3 +115,19 @@ user:
     component:
       css/components/user.css:
         weight: -10
+google-font:
+  version: "UTK Lib v1.0"
+  css:
+    theme:
+      'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet':
+        { type: external }
+bootstrap:
+  css:
+    theme:
+      css/base/bootstrap.min.css: {}
+  js:
+    js/bootstrap.bundle.min.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+

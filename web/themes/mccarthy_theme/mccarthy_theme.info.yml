@@ -5,6 +5,8 @@ version: 1.0.0
 libraries:
   - mccarthy_theme/base
   - mccarthy_theme/messages
+  - mccarthy_theme/bootstrap
+  - mccarthy_theme/google-font
   - core/normalize
 libraries-extend:
   user/drupal.user:
