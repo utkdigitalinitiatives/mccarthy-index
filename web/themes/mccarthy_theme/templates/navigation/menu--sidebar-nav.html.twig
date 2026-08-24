@@ -1,2 +1,65 @@
-{{ dump() }}
+{#
+/**
+ * @file
+ * Theme override for the "sidebar-nav" menu on the front page.
+ *
+ * @see menu.html.twig
+ */
+#}
+{% import _self as menus %}
+
+{#
+  Map menu link titles to a fluent-icon modifier class.
+  Add/adjust entries here as new links are added to the menu in the Drupal UI.
+#}
+{%
+  set icon_map = {
+    'all works': 'fluent-icon-library',
+    'manuscripts': 'fluent-icon-document',
+    'correspondence': 'fluent-icon-mail',
+    'periodicals': 'fluent-icon-book-open',
+    'annotations': 'fluent-icon-note',
+  }
+%}
+
+<div class="sidebar-nav__inner">
+  <h2 class="sidebar-nav__title">Collections</h2>
+  <p class="sidebar-nav__subtitle">Browse by Category</p>
+  {{ menus.menu_links(items, attributes, 0, icon_map) }}
+  <button type="button" class="sidebar-nav__toggle" aria-expanded="true" aria-label="Collapse sidebar navigation">
+    <span class="sidebar-nav__toggle-icon" aria-hidden="true"></span>
+  </button>
+</div>
+
+{% macro menu_links(items, attributes, menu_level, icon_map) %}
+  {% import _self as menus %}
+  {% if items %}
+    {% if menu_level == 0 %}
+      <ul{{ attributes.addClass('sidebar-nav__menu') }}>
+    {% else %}
+      <ul class="sidebar-nav__submenu">
+    {% endif %}
+    {% for item in items %}
+      {%
+        set classes = [
+          'sidebar-nav__item',
+          item.is_expanded ? 'menu-item--expanded',
+          item.is_collapsed ? 'menu-item--collapsed',
+          item.in_active_trail ? 'sidebar-nav__item--active',
+        ]
+      %}
+      {% set icon_class = icon_map[item.title|lower]|default('fluent-icon-folder') %}
+      <li{{ item.attributes.addClass(classes) }}>
+        <a href="{{ item.url }}" class="sidebar-nav__link">
+          <span class="sidebar-nav__icon {{ icon_class }}" aria-hidden="true"></span>
+          <span class="sidebar-nav__label">{{ item.title }}</span>
+        </a>
+        {% if item.below %}
+          {{ menus.menu_links(item.below, attributes, menu_level + 1, icon_map) }}
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}
 
