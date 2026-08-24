@@ -42,9 +42,9 @@
 
 <hr class="top-line py-0">
 <div class="layout-container">
-    <header class="header">
-        {% include "/themes/mccarthy_theme/templates/components/utk--header.html.twig" %}
-    </header>
+    
+    <utk-lib-header></utk-lib-header>
+
     <main {{ attributes.addClass(classes)}} >
         <div class='container-fluid d-lg-flex justify-content-center utk-article'>
             <div class='row pt-4 px-2 utk-section-body text-center'>
@@ -58,9 +58,6 @@
         </div>
     </main>
     <footer>
-        <hr class="top-line py-0">
-        {% include "themes/mccarthy_theme/templates/components/utk--library-footer.html.twig" %}
-        {% include "themes/mccarthy_theme/templates/components/utk--campus-footer/utk--campus-footer.html.twig" %}
-        {% include "themes/mccarthy_theme/templates/components/utk--campus-footer/utk--campus-footer-subfooter.html.twig" %}
+
     </footer>
 </div>

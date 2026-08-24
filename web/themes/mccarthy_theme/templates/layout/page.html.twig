@@ -44,9 +44,9 @@
 #}
 <div class="layout-container">
 
-  <header>
-    {{ page.header }}
-  </header>
+  
+    <utk-lib-header></utk-lib-header>
+ 
 
   {{ page.primary_menu }}
   {{ page.secondary_menu }}
@@ -78,10 +78,6 @@
 
   </main>
 
-  {% if page.footer %}
-    <footer>
-      {{ page.footer }}
-    </footer>
-  {% endif %}
+  <utk-lib-footer></utk-lib-footer>
 
 </div>{# /.layout-container #}

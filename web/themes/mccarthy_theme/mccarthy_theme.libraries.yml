@@ -4,7 +4,6 @@ base:
     base:
       css/base/utilies.css: {}
       css/base/fluent-icons.css: {}
-      css/base/utk-header-footer.css: {}
     component:
       css/components/action-links.css:
         weight: -10
@@ -68,12 +67,12 @@ image-widget:
   version: VERSION
   css:
     component:
-      css/components/image-widget.css: {  }
+      css/components/image-widget.css: {}
 indented:
   version: VERSION
   css:
     component:
-      css/components/indented.css: {  }
+      css/components/indented.css: {}
 messages:
   version: VERSION
   css:
@@ -108,7 +107,7 @@ search-results:
   version: VERSION
   css:
     component:
-      css/components/search-results.css: {  }
+      css/components/search-results.css: {}
 user:
   version: VERSION
   css:
@@ -130,4 +129,14 @@ bootstrap:
   dependencies:
     - core/drupal
     - core/once
-
+utk-web-components:
+  version: "1.0"
+  js:
+    https://utkwebcomponents1-afdzech8c2a9eubz.a01.azurefd.net/components/v1/utk-library-header.js:
+      type: external
+      attributes:
+        defer: true
+    https://utkwebcomponents1-afdzech8c2a9eubz.a01.azurefd.net/components/v1/utk-library-footer.js:
+      type: external
+      attributes:
+        defer: true
