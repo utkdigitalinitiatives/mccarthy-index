@@ -121,22 +121,6 @@ a {
   background-color: white;
 }
 
-/* Contact Hover Effect */
-.utk-contact-hover {
-  padding: 0.5rem 0.75rem;
-  border-radius: 4px;
-  transition: all 0.2s ease-in-out;
-  border: 1px solid transparent;
-  margin-bottom: 0.25rem;
-}
-
-.utk-contact-hover:hover {
-  background-color: rgb(from var(--utk-black) r g b / 0.03);
-  transform: translateY(-2px);
-  border-color: rgb(from var(--utk-logo--orange) r g b / 0.2);
-  box-shadow: 0 2px 5px rgb(from var(--utk-black) r g b / 0.05);
-}
-
 .text-link {
   color: var(--utk-link);
 }
@@ -399,61 +383,4 @@ a:active {
 
 .max-row-width {
   max-width: 1200px;
-}
-
-.quicklink-box {
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--bs-border-radius);
-  padding-top: 0.4rem;
-}
-
-.quicklink-vertical-line {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 10px;
-  background-color: inherit;
-  box-shadow: 0 0 10px rgb(from var(--utk-black) r g b / 0.1);
-  border-bottom-left-radius: var(--bs-border-radius);
-  border-bottom-right-radius: var(--bs-border-radius);
-}
-
-.quicklink-horizontal-line {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  overflow: hidden;
-  border-top-left-radius: var(--bs-border-radius);
-  border-top-right-radius: var(--bs-border-radius);
-}
-
-.quicklink-box .utk-search-selector > div {
-  position: relative;
-  padding: 20px 0;
-}
-
-.quicklink-box .utk-search-selector > div + div::before {
-  content: "";
-  position: absolute;
-  left: 60px;
-  right: 60px;
-  top: 0;
-  height: 1px;
-  box-shadow: 0 1px 2px rgb(from var(--utk-black) r g b / 0.12);
-}
-
-.quicklink-box h2 {
-  text-align: center;
-}
-.quicklink-box .utk-search-selector {
-  text-align: center;
-}
-.quicklink-box .utk-search-selector a {
-  display: inline-block;
-  padding: 10px 0;
-  margin-top: 5px;
 }
