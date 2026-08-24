@@ -42,6 +42,9 @@
 
 <utk-lib-header></utk-lib-header>
 <div class="layout-container">
+    <aside class="sidebar-nav">
+        {{ drupal_block('system_menu_block:sidebar-nav') }}
+    </aside>
     <main {{ attributes.addClass(classes)}} >
         <div class='container-fluid d-lg-flex justify-content-center utk-article'>
             <div class='row pt-4 px-2 utk-section-body text-center'>
