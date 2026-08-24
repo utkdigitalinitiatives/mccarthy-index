@@ -1,0 +1,95 @@
+{#
+/**
+ * @file
+ * UTK Custom - Campus Footer template.
+ *
+ * This template is used to render the campus footer with custom styling and Layout.
+ *
+ * Customizations:
+ * - Recreates the footer to match the main campus WordPress template using Bootstrap 5.3.
+ * - Includes an SVG version of the campus network logo.
+ * - Displays contact information for the University of Tennessee, Knoxville.
+ * - Provides a search form for searching `utk.edu`.
+ * - Includes links to key resources such as Events, A-Z Index, Apply, Privacy, Map, Directory, and Accessibility.
+ * - Ensures responsive design for proper alignment and spacing across devices.
+ *
+ * Styling:
+ * - Styling for this component is contained in `utk-header-footer.css`.
+ *
+ * Included templates:
+ * - campus-logo-svg.html.twig: Renders the campus network logo.
+ *
+ * @see template_preprocess()
+ */
+#}
+
+{% set footer_links = [
+        {
+            'url': 'http://calendar.utk.edu/',
+            'text': 'Events'
+        },
+        {
+            'url': 'http://www.utk.edu/alpha/',
+            'text': 'A-Z'
+        },
+        {
+            'url': 'http://www.utk.edu/admissions/',
+            'text': 'Apply'
+        },
+        {
+            'url': 'https://www.utk.edu/aboutut/privacy/',
+            'text': 'Privacy'
+        },
+        {
+            'url': 'http://maps.utk.edu/',
+            'text': 'Map'
+        },
+        {
+            'url': 'http://directory.utk.edu',
+            'text': 'Directory'
+        },
+        {
+            'url': 'http://giveto.utk.edu',
+            'text': 'Give to UT'
+        },
+        {
+            'url': 'https://oed.utk.edu/ada/campus-accessibility/',
+            'text': 'Accessibility'
+        }
+    ] 
+%}
+
+<div class='container-fluid text-smokey link-smokey font-small utk-search-selector underline-smokey utk--inset-box-shadow'>
+    <div class="row utk-header-footer-max mx-auto pt-2">
+        <div class='col-lg py-2'>
+            <div class='row'>
+                <div>
+                    <a href="https://www.utk.edu" aria-label="University of Tennessee Knoxville home page">
+                        {% include "themes/mccarthy_theme/templates/components/campus-logo-svg.html.twig" %} 
+                    </a>
+                </div>
+            </div>
+            <div class='row pt-2'>
+                <p>
+                    <strong>The University of Tennessee, Knoxville</strong>
+                    <br>
+                    Knoxville, Tennessee 37996
+                    <br>
+                    <a href="tel:+18659741000" class="tel">865-974-1000</a>
+                </p>
+            </div>
+        </div>
+        <div class='col-lg'>
+            <div class='row py-3'>
+                {% for link in footer_links %}
+                    <div class='col-3 mb-2'>
+                        <a href="{{ link.url }}">
+                            {{ link.text }}
+                            <span class='svg-settings fluent-icon-external' style="width:12px; height:12px; display:inline-block; position:relative; top:1px; margin-left:2px;"></span>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

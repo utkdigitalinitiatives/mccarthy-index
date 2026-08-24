@@ -368,12 +368,6 @@ a {
   color: var(--utk-link);
 }
 
-/* TODO: Verify this is actually unused/unnecessary */
-/* .utk-search-selector,
-.utk-search-selector a {
-  color: var(--text-color, var(--utk-logo--white));
-} */
-
 /* Underline effect */
 .utk-search-selector a:hover,
 a:focus,

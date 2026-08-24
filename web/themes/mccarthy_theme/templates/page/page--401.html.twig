@@ -1,0 +1,66 @@
+{#
+/**
+ * @file
+ * UTK Custom - 401 Unauthorized Page template.
+ *
+ * This template is used to render the 401 Unauthorized error page with custom
+ * styling and layout.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the main container.
+ * - search_endpoint: The URL for the search functionality.
+ *
+ * Customizations:
+ * - Displays a custom 401 error message with a prominent title and description.
+ * - Includes a search bar for users to find relevant content.
+ * - Provides a "Back to Homepage" button for easy navigation.
+ * - Renders the site header, library footer, and campus footer for consistent branding.
+ *
+ * Included templates:
+ * - utk--header.html.twig: Renders the site header.
+ * - utk--search-header.html.twig: Displays the search bar.
+ * - utk--large-button.html.twig: Renders a large button for navigation.
+ * - utk--library-footer.html.twig: Renders the library footer.
+ * - utk--campus-footer.html.twig: Renders the campus footer.
+ * - utk--campus-footer-subfooter.html.twig: Renders the subfooter for the campus footer.
+ *
+ * @see page.html.twig
+ */
+#}
+
+{%
+    set classes = [
+    'container-fluid',
+    'mb-4',
+    'pb-4',
+    'px-0',
+    'mx-0',
+    'text-smokey',
+    'link-link',
+    ]
+%}
+
+<hr class="top-line py-0">
+<div class="layout-container">
+    <header class="header">
+        {% include "/themes/mccarthy_theme/templates/components/utk--header.html.twig" %}
+    </header>
+    <main {{ attributes.addClass(classes)}} >
+        <div class='container-fluid d-lg-flex justify-content-center utk-article'>
+            <div class='row pt-4 px-2 utk-section-body text-center'>
+                <h1><span class='fw-bolder'>401</span> Not Authorized</h1>
+                <p class='mx-auto'>You are not authorized to access that page.</p>
+                 {# {% include "@mccarthy_theme/templates/components/utk--search-header.html.twig" with {search_url:search_endpoint} %} #}
+                <div>
+                    {# {% include "@mccarthy_theme/templates/components/utk--large-button.html.twig" with {title:"Back to Homepage", url:"/"  } %} #}
+                </div>
+            </div> 
+        </div>
+    </main>
+    <footer>
+        <hr class="top-line py-0">
+        {% include "themes/mccarthy_theme/templates/components/utk--library-footer.html.twig" %}
+        {% include "themes/mccarthy_theme/templates/components/utk--campus-footer/utk--campus-footer.html.twig" %}
+        {% include "themes/mccarthy_theme/templates/components/utk--campus-footer/utk--campus-footer-subfooter.html.twig" %}
+    </footer>
+</div>
