@@ -48,6 +48,7 @@ module:
   text: 0
   token: 0
   toolbar: 0
+  twig_tweak: 0
   user: 0
   views_ui: 0
   pathauto: 1
@@ -57,4 +58,5 @@ theme:
   stark: 0
   claro: 0
   gin: 0
+  mccarthy_theme: 0
 profile: minimal

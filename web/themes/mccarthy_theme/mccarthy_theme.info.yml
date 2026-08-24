@@ -1,0 +1,26 @@
+name: mccarthy_theme
+type: theme
+"base theme": false
+version: 1.0.0
+libraries:
+  - mccarthy_theme/base
+  - mccarthy_theme/messages
+  - core/normalize
+libraries-extend:
+  user/drupal.user:
+    - mccarthy_theme/user
+  core/drupal.dropbutton:
+    - mccarthy_theme/dropbutton
+  core/drupal.dialog:
+    - mccarthy_theme/dialog
+  file/drupal.file:
+    - mccarthy_theme/file
+  core/drupal.item-list:
+    - mccarthy_theme/item-list
+  core/drupal.progress:
+    - mccarthy_theme/progress
+  core/drupal.tablesort:
+    - mccarthy_theme/drupal.tablesort
+description: ""
+core_version_requirement: ^11
+generator: "starterkit_theme:11.4.5"
