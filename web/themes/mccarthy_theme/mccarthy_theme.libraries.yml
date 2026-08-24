@@ -4,7 +4,7 @@ base:
     base:
       css/base/utilies.css: {}
       css/base/fluent-icons.css: {}
-      css/base/utk-header-footer: {}
+      css/base/utk-header-footer.css: {}
     component:
       css/components/action-links.css:
         weight: -10

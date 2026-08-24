@@ -5,6 +5,7 @@ version: 1.0.0
 libraries:
   - mccarthy_theme/base
   - mccarthy_theme/messages
+  - utk_lib_main_d11/utk-campus-footer
   - mccarthy_theme/bootstrap
   - mccarthy_theme/google-font
   - core/normalize
