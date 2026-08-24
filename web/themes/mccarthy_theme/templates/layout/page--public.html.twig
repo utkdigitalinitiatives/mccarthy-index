@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * Shared layout for public-facing pages.
+ *
+ * Provides the site header, sidebar navigation, footer, and the default page
+ * regions. Child templates may override the main_content block.
+ */
+#}
+<utk-lib-header></utk-lib-header>
+
+<div class="layout-container">
+  <aside class="sidebar-nav text-smokey">
+    {{ drupal_block('system_menu_block:sidebar-nav') }}
+  </aside>
+
+  {% block main_content %}
+    {{ page.primary_menu }}
+    {{ page.secondary_menu }}
+    {{ page.breadcrumb }}
+    {{ page.highlighted }}
+    {{ page.help }}
+
+    <main>
+      <a id="main-content" tabindex="-1"></a>
+
+      <div class="layout-content">
+        {{ page.content }}
+      </div>
+
+      {% if page.sidebar_first %}
+        <aside class="layout-sidebar-first">
+          {{ page.sidebar_first }}
+        </aside>
+      {% endif %}
+
+      {% if page.sidebar_second %}
+        <aside class="layout-sidebar-second">
+          {{ page.sidebar_second }}
+        </aside>
+      {% endif %}
+    </main>
+  {% endblock %}
+</div>
+
+<utk-lib-footer></utk-lib-footer>

@@ -27,6 +27,7 @@
  * @see page.html.twig
  */
 #}
+{% extends "page--public.html.twig" %}
 
 {%
     set classes = [
@@ -40,11 +41,7 @@
     ]
 %}
 
-<utk-lib-header></utk-lib-header>
-<div class="layout-container">
-    <aside class="sidebar-nav">
-        {{ drupal_block('system_menu_block:sidebar-nav') }}
-    </aside>
+{% block main_content %}
     <main {{ attributes.addClass(classes)}} >
         <div class='container-fluid d-lg-flex justify-content-center utk-article'>
             <div class='row pt-4 px-2 utk-section-body text-center'>
@@ -58,7 +55,4 @@
             </div> 
         </div>
     </main>
-
-</div>
-
-<utk-lib-footer></utk-lib-footer>
+{% endblock %}

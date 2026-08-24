@@ -29,15 +29,8 @@
  * @see node_preprocess_page()
  */
 #}
+{% extends "page--public.html.twig" %}
 
-
-<utk-lib-header></utk-lib-header>
-<div class="layout-container">
-    <aside class="sidebar-nav">
-        {{ drupal_block('system_menu_block:sidebar-nav') }}
-    </aside>
-    <main role="main" id="main-content">
-        
-    </main>
-</div>
-<utk-lib-footer></utk-lib-footer>
+{% block main_content %}
+    <main role="main" id="main-content"></main>
+{% endblock %}

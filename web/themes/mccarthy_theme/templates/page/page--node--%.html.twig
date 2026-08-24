@@ -20,6 +20,11 @@
  */
 #}
 
-{% block page %}
-    {{ page.content }}
+{% block main_content %}
+    <main>
+        <a id="main-content" tabindex="-1"></a>
+        <div class="layout-content">
+            {{ page.content }}
+        </div>
+    </main>
 {% endblock %}

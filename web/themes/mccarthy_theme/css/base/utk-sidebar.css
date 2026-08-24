@@ -7,7 +7,7 @@
     position: relative;
     width: 260px;
     flex: 0 0 260px;
-    background: #ffffff;
+    background: var(--utk-logo--white);
     border-right: 1px solid #e5e2da;
     padding: 1.5rem 1.25rem;
     box-sizing: border-box;
@@ -39,20 +39,16 @@
 }
 
 .sidebar-nav__title {
-    font-family: var(--font-family-base);
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--utk-logo--smokey);
     margin: 0 0 0.25rem;
 }
 
 .sidebar-nav__subtitle {
-    font-family: var(--font-family-base);
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--utk-logo--smokey);
     margin: 0 0 1rem;
 }
 
@@ -73,8 +69,7 @@
     gap: 0.65rem;
     padding: 0.6rem 0.75rem;
     border-radius: 6px;
-    color: var(--utk-logo--smokey);
-    font-family: var(--font-family-base);
+    color: inherit;
     font-size: 0.95rem;
     text-decoration: none;
 }
@@ -85,7 +80,6 @@
 
 .sidebar-nav__item--active .sidebar-nav__link {
     background: #e8eefb;
-    color: var(--utk-logo--smokey);
     font-weight: 600;
 }
 
@@ -115,7 +109,7 @@
     margin-right: auto;
     border: 1px solid #e5e2da;
     border-radius: 50%;
-    background: #ffffff;
+    background: var(--utk-logo--white);
     cursor: pointer;
     padding: 0;
 }
