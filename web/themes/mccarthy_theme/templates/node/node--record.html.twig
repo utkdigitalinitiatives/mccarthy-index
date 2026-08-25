@@ -14,81 +14,105 @@
       <img class="record-detail__cover" src="https://picsum.photos/480/640" alt="Book cover placeholder" />
 
       <div class="record-detail__summary">
-        <dl class="record-detail__list">
-        <div class="record-detail__row">
-          <dt class="record-detail__label">Author</dt>
-          <dd class="record-detail__value text-smokey">{{ content.field_creators }}</dd>
+        <div class="record-detail__row-inline">
+          <div class="record-field">
+            <span class="record-field__label">Author</span>
+            <div class="record-field__value text-smokey">{{ content.field_creators }}</div>
+          </div>
+          <div class="record-field">
+            <span class="record-field__label">Publisher</span>
+            <div class="record-field__value link-link">
+              {{ content.field_publisher }}
+              {% if not node.field_publish_date.isEmpty() %}
+                <span class="record-field__meta text-smokey">({{ content.field_publish_date }})</span>
+              {% endif %}
+            </div>
+          </div>
         </div>
-        <div class="record-detail__row">
-          <dt class="record-detail__label">Publisher</dt>
-          <dd class="record-detail__value link-link">{{ content.field_publisher }}</dd>
-        </div>
-        <div class="record-detail__row">
-          <dt class="record-detail__label">Publish Date</dt>
-          <dd class="record-detail__value text-smokey">{{ content.field_publish_date }}</dd>
-        </div>
-        <div class="record-detail__row">
-          <dt class="record-detail__label">ISBN13</dt>
-          <dd class="record-detail__value text-smokey">{{ content.field_isbn13 }}</dd>
-        </div>
-        <div class="record-detail__row">
-          <dt class="record-detail__label">ISBN10</dt>
-          <dd class="record-detail__value text-smokey">{{ content.field_isbn10 }}</dd>
-        </div>
-        <div class="record-detail__row">
-          <dt class="record-detail__label">Record Number</dt>
-          <dd class="record-detail__value text-smokey">{{ content.field_record_number }}</dd>
-        </div>
-        <div class="record-detail__row">
-          <dt class="record-detail__label">Collection</dt>
-          <dd class="record-detail__value text-smokey">{{ content.field_collection }}</dd>
-        </div>
-        <div class="record-detail__row">
-          <dt class="record-detail__label">LCC</dt>
-          <dd class="record-detail__value text-smokey">{{ content.field_lcc }}</dd>
-        </div>
-        <div class="record-detail__row">
-          <dt class="record-detail__label">LCCN</dt>
-          <dd class="record-detail__value text-smokey">{{ content.field_lccn }}</dd>
-        </div>
-        <div class="record-detail__row">
-          <dt class="record-detail__label">OCLC</dt>
-          <dd class="record-detail__value text-smokey">{{ content.field_oclc }}</dd>
-        </div>
-        <div class="record-detail__row">
-          <dt class="record-detail__label">Length</dt>
-          <dd class="record-detail__value text-smokey">{{ content.field_length }}</dd>
-        </div>
-        <div class="record-detail__row">
-          <dt class="record-detail__label">Date Added</dt>
-          <dd class="record-detail__value text-smokey">{{ content.field_date_added }}</dd>
-        </div>
-        <div class="record-detail__row">
-          <dt class="record-detail__label">Copies</dt>
-          <dd class="record-detail__value text-smokey">{{ content.field_copies }}</dd>
-        </div>
-        <div class="record-detail__row">
-          <dt class="record-detail__label">Final Destination</dt>
-          <dd class="record-detail__value link-link">{{ content.field_final_destination }}</dd>
-        </div>
-        <div class="record-detail__row">
-          <dt class="record-detail__label">Annotated</dt>
-          <dd class="record-detail__value">
-            {% if node.field_annotated.value %}
-              <span class="record-detail__badge record-detail__badge--yes">Yes</span>
-            {% else %}
-              <span class="record-detail__badge record-detail__badge--no">No</span>
-            {% endif %}
-          </dd>
-        </div>
-      </dl>
 
-      {% if not node.field_provenance.isEmpty() %}
-        <div class="record-detail__provenance link-link">
-          <h2 class="record-detail__section-title">Provenance</h2>
-          <p>{{ content.field_provenance }}</p>
+        <div class="record-detail__divider"></div>
+
+        <div class="record-detail__grid">
+          <div class="record-detail__group">
+            <h2 class="record-detail__group-title">Identifiers</h2>
+            <div class="record-field">
+              <span class="record-field__label">ISBN13</span>
+              <div class="record-field__value text-smokey">{{ content.field_isbn13 }}</div>
+            </div>
+            <div class="record-field">
+              <span class="record-field__label">ISBN10</span>
+              <div class="record-field__value text-smokey">{{ content.field_isbn10 }}</div>
+            </div>
+            <div class="record-field">
+              <span class="record-field__label">OCLC</span>
+              <div class="record-field__value text-smokey">{{ content.field_oclc }}</div>
+            </div>
+          </div>
+          <div class="record-detail__group">
+            <h2 class="record-detail__group-title">Classification</h2>
+            <div class="record-detail__row-inline">
+              <div class="record-field">
+                <span class="record-field__label">LCC</span>
+                <div class="record-field__value text-smokey">{{ content.field_lcc }}</div>
+              </div>
+              <div class="record-field">
+                <span class="record-field__label">LCCN</span>
+                <div class="record-field__value text-smokey">{{ content.field_lccn }}</div>
+              </div>
+            </div>
+            <div class="record-field">
+              <span class="record-field__label">Record Number</span>
+              <div class="record-field__value text-smokey">{{ content.field_record_number }}</div>
+            </div>
+          </div>
         </div>
-      {% endif %}
+
+        <div class="record-detail__divider"></div>
+
+        <div class="record-detail__row-inline record-detail__row-inline--four">
+          <div class="record-field">
+            <span class="record-field__label">Collection</span>
+            <div class="record-field__value text-smokey">{{ content.field_collection }}</div>
+          </div>
+          <div class="record-field">
+            <span class="record-field__label">Length</span>
+            <div class="record-field__value text-smokey">{{ content.field_length }}</div>
+          </div>
+          <div class="record-field">
+            <span class="record-field__label">Date Added</span>
+            <div class="record-field__value text-smokey">{{ content.field_date_added }}</div>
+          </div>
+          <div class="record-field">
+            <span class="record-field__label">Copies</span>
+            <div class="record-field__value text-smokey">{{ content.field_copies }}</div>
+          </div>
+        </div>
+
+        <div class="record-detail__divider"></div>
+
+        <div class="record-detail__box record-detail__row-inline">
+          <div class="record-field">
+            <span class="record-field__label">Final Destination</span>
+            <div class="record-field__value link-link">{{ content.field_final_destination }}</div>
+          </div>
+          <div class="record-field">
+            <span class="record-field__label">Annotated</span>
+            <div class="record-field__value">
+              {% if node.field_annotated.value %}
+                <span class="record-detail__badge record-detail__badge--yes">Yes</span>
+              {% else %}
+                <span class="record-detail__badge record-detail__badge--no">No</span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        {% if not node.field_provenance.isEmpty() %}
+          <div class="record-detail__provenance link-link">
+            <h2 class="record-detail__section-title">Provenance</h2>
+            <p>{{ content.field_provenance }}</p>
+          </div>
+        {% endif %}
       </div>
     </div>
   </header>

@@ -20,8 +20,8 @@
 }
 
 .record-detail__cover {
-    flex: 0 0 260px;
-    width: 260px;
+    flex: 0 0 340px;
+    width: 340px;
     height: auto;
     aspect-ratio: 3 / 4;
     object-fit: cover;
@@ -48,21 +48,14 @@
     margin: 0;
 }
 
-.record-detail__row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1.5rem;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid rgb(from var(--utk-black) r g b / 0.07);
+.record-field {
+    flex: 1 1 160px;
+    min-width: 0;
 }
 
-.record-detail__row:last-child {
-    border-bottom: none;
-}
-
-.record-detail__label {
-    flex: 0 0 170px;
-    margin: 0;
+.record-field__label {
+    display: block;
+    margin: 0 0 0.35rem;
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.06em;
@@ -71,10 +64,68 @@
     opacity: 0.75;
 }
 
-.record-detail__value {
-    flex: 1 1 240px;
-    min-width: 0;
+.record-field__value {
     margin: 0;
+}
+
+.record-field__meta {
+    font-size: 0.9em;
+}
+
+.record-detail__row-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 3rem;
+    padding: 1.25rem 0;
+}
+
+.record-detail__row-inline--four .record-field {
+    flex: 1 1 140px;
+}
+
+.record-detail__divider {
+    border-top: 1px solid rgb(from var(--utk-black) r g b / 0.08);
+}
+
+.record-detail__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    padding: 1.25rem 0;
+}
+
+.record-detail__group {
+    flex: 1 1 260px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.record-detail__group:first-child {
+    padding-right: 2.5rem;
+    border-right: 1px solid rgb(from var(--utk-black) r g b / 0.08);
+}
+
+.record-detail__group-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--utk-logo--smokey);
+    opacity: 0.6;
+    margin: 0;
+}
+
+.record-detail__group .record-detail__row-inline {
+    padding: 0;
+    gap: 1.5rem;
+}
+
+.record-detail__box {
+    border: 1px solid rgb(from var(--utk-black) r g b / 0.1);
+    border-radius: 0.375rem;
+    padding: 1.25rem 1.5rem;
 }
 
 .record-detail__badge {
@@ -108,6 +159,11 @@
     margin: 0 0 0.5rem;
 }
 
+.record-detail__section .record-detail__section-title {
+    font-size: 1.35rem;
+    letter-spacing: 0.02em;
+}
+
 .record-detail__provenance p {
     font-style: italic;
     color: var(--utk-logo--smokey);
@@ -132,12 +188,12 @@
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    gap: 2rem;
+    gap: 1.25rem;
 }
 
 .record-annotation__image {
-    flex: 0 0 260px;
-    max-width: 260px;
+    flex: 0 0 340px;
+    max-width: 340px;
     width: 100%;
     height: auto;
     aspect-ratio: 10 / 13;
