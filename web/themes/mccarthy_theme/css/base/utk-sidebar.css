@@ -23,7 +23,8 @@
 
 .sidebar-nav--collapsed .sidebar-nav__title,
 .sidebar-nav--collapsed .sidebar-nav__subtitle,
-.sidebar-nav--collapsed .sidebar-nav__label {
+.sidebar-nav--collapsed .sidebar-nav__label,
+.sidebar-nav--collapsed .sidebar-nav__brand-label {
     display: none;
 }
 
@@ -32,10 +33,37 @@
     padding: 0.6rem 0;
 }
 
+.sidebar-nav--collapsed .sidebar-nav__brand {
+    justify-content: center;
+}
+
 .layout-container>main {
     flex: 1 1 auto;
     min-width: 0;
     transition: margin-left 0.2s ease;
+}
+
+.sidebar-nav__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin: 0 0 1rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.sidebar-nav__brand-logo {
+    width: 1.75rem;
+    height: 1.75rem;
+    flex: 0 0 1.75rem;
+    object-fit: contain;
+}
+
+.sidebar-nav__brand-label {
+    font-size: 1.75rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
 }
 
 .sidebar-nav__title {
@@ -131,3 +159,4 @@
 .sidebar-nav--collapsed .sidebar-nav__toggle-icon {
     transform: rotate(0deg);
 }
+
