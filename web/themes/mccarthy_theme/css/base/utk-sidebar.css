@@ -79,6 +79,24 @@
     text-decoration: none;
 }
 
+.sidebar-nav__title-icon {
+    display: none;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.sidebar-nav--collapsed .sidebar-nav__title-link {
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar-nav--collapsed .sidebar-nav__title-icon {
+    display: inline-block;
+}
+
 .sidebar-nav__subtitle {
     font-size: 0.7rem;
     font-weight: 600;
