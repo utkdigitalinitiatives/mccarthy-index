@@ -60,10 +60,6 @@
                 <div class="record-field__value text-smokey">{{ content.field_lccn }}</div>
               </div>
             </div>
-            <div class="record-field">
-              <span class="record-field__label">Record Number</span>
-              <div class="record-field__value text-smokey">{{ content.field_record_number }}</div>
-            </div>
           </div>
         </div>
 
@@ -110,7 +106,7 @@
         {% if not node.field_provenance.isEmpty() %}
           <div class="record-detail__provenance link-link">
             <h2 class="record-detail__section-title">Provenance</h2>
-            <p>{{ content.field_provenance }}</p>
+            <p>{{ content.field_provenance.0 }}</p>
           </div>
         {% endif %}
       </div>
@@ -131,9 +127,8 @@
       <h2 class="record-detail__section-title">Notes</h2>
       <div class="record-annotation">
         <img class="record-annotation__image" src="https://picsum.photos/500/650" alt="Annotated manuscript page placeholder" />
-        <p class="record-annotation__quote text-smokey">{{ content.field_notes }}</p>
+        <p class="record-annotation__quote text-smokey">{{ content.field_notes.0 }}</p>
       </div>
     </section>
   {% endif %}
-
 </article>
