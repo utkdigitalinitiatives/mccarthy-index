@@ -91,6 +91,11 @@ node:
     component:
       css/components/node.css:
         weight: -10
+node-record:
+  version: VERSION
+  css:
+    base:
+      css/base/node--record.css: {}
 progress:
   version: VERSION
   css:

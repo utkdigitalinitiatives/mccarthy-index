@@ -1,0 +1,156 @@
+/* Editorial full-page layout and typography for the "record" content type. */
+
+.record-detail {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1rem 4rem;
+}
+
+.record-detail__header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgb(from var(--utk-black) r g b / 0.08);
+}
+
+.record-detail__cover {
+    flex: 0 0 260px;
+    width: 260px;
+    height: auto;
+    border-radius: 0.25rem;
+    border: 1px solid rgb(from var(--utk-black) r g b / 0.1);
+    box-shadow: 0 8px 20px rgb(from var(--utk-black) r g b / 0.12);
+}
+
+.record-detail__summary {
+    flex: 1 1 380px;
+    min-width: 0;
+}
+
+.record-detail__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0 0 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 3px solid var(--utk-logo--orange);
+}
+
+.record-detail__subtitle {
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--utk-logo--smokey);
+    margin: 0 0 1.75rem;
+}
+
+.record-detail__list {
+    margin: 0;
+}
+
+.record-detail__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgb(from var(--utk-black) r g b / 0.07);
+}
+
+.record-detail__row:last-child {
+    border-bottom: none;
+}
+
+.record-detail__label {
+    flex: 0 0 170px;
+    margin: 0;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--utk-logo--smokey);
+    opacity: 0.75;
+}
+
+.record-detail__value {
+    flex: 1 1 240px;
+    min-width: 0;
+    margin: 0;
+}
+
+.record-detail__badge {
+    display: inline-block;
+    padding: 0.15rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.record-detail__badge--yes {
+    background-color: var(--utk-standard);
+    color: var(--utk-logo--smokey);
+}
+
+.record-detail__badge--no {
+    background-color: rgb(from var(--utk-logo--smokey) r g b / 0.12);
+    color: var(--utk-logo--smokey);
+}
+
+.record-detail__provenance {
+    margin-top: 1.75rem;
+}
+
+.record-detail__section-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--utk-logo--orange);
+    margin: 0 0 0.5rem;
+}
+
+.record-detail__provenance p {
+    font-style: italic;
+    color: var(--utk-logo--smokey);
+    margin: 0;
+}
+
+.record-detail__section {
+    padding: 2rem 0;
+    border-bottom: 1px solid rgb(from var(--utk-black) r g b / 0.08);
+}
+
+.record-detail__section:last-child {
+    border-bottom: none;
+}
+
+.record-detail__description {
+    max-width: 70ch;
+    line-height: 1.7;
+}
+
+.record-annotation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.record-annotation__image {
+    flex: 0 0 260px;
+    max-width: 260px;
+    width: 100%;
+    height: auto;
+    border-radius: 0.25rem;
+    border: 1px solid rgb(from var(--utk-black) r g b / 0.1);
+    box-shadow: 0 8px 20px rgb(from var(--utk-black) r g b / 0.12);
+}
+
+.record-annotation__quote {
+    flex: 1 1 320px;
+    min-width: 0;
+    font-style: italic;
+    line-height: 1.7;
+    margin: 0;
+    padding-left: 1.25rem;
+    border-left: 3px solid var(--utk-logo--orange);
+}
