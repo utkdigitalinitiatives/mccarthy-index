@@ -24,7 +24,8 @@
 .sidebar-nav--collapsed .sidebar-nav__title,
 .sidebar-nav--collapsed .sidebar-nav__subtitle,
 .sidebar-nav--collapsed .sidebar-nav__label,
-.sidebar-nav--collapsed .sidebar-nav__brand-label {
+.sidebar-nav--collapsed .sidebar-nav__brand-label,
+.sidebar-nav--collapsed .sidebar-nav__toggle-label {
     display: none;
 }
 
@@ -70,6 +71,12 @@
     font-size: 1.5rem;
     font-weight: 700;
     margin: 0 0 0.25rem;
+}
+
+.sidebar-nav__title-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
 }
 
 .sidebar-nav__subtitle {
@@ -130,16 +137,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
+    gap: 0.4rem;
+    width: auto;
     height: 28px;
     margin-top: 1rem;
     margin-left: auto;
     margin-right: auto;
     border: 1px solid #e5e2da;
-    border-radius: 50%;
+    border-radius: 14px;
+    padding: 0 0.75rem;
     background: var(--utk-logo--white);
     cursor: pointer;
+}
+
+.sidebar-nav--collapsed .sidebar-nav__toggle {
+    width: 28px;
     padding: 0;
+    border-radius: 50%;
 }
 
 .sidebar-nav__toggle:hover {
@@ -158,4 +172,9 @@
 
 .sidebar-nav--collapsed .sidebar-nav__toggle-icon {
     transform: rotate(0deg);
+}
+
+.sidebar-nav__toggle-label {
+    font-size: 0.85rem;
+    white-space: nowrap;
 }
