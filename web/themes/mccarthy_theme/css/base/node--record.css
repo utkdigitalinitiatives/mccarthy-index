@@ -5,12 +5,13 @@
     margin: 0 auto;
     padding: 2rem 1rem 4rem;
     font-family: var(--font-family-base);
+    --record-divider: rgb(from var(--utk-black) r g b / 0.08);
 }
 
 .record-detail__header {
     padding-bottom: 2rem;
     margin-bottom: 2rem;
-    border-bottom: 1px solid rgb(from var(--utk-black) r g b / 0.08);
+    border-bottom: 1px solid var(--record-divider);
 }
 
 .record-detail__body {
@@ -20,15 +21,18 @@
     gap: 2.5rem;
 }
 
+.record-detail__media {
+    object-fit: cover;
+    border-radius: 0.25rem;
+    border: 1px solid rgb(from var(--utk-black) r g b / 0.1);
+    box-shadow: 0 8px 20px rgb(from var(--utk-black) r g b / 0.12);
+}
+
 .record-detail__cover {
     flex: 0 0 340px;
     width: 340px;
     height: auto;
     aspect-ratio: 3 / 4;
-    object-fit: cover;
-    border-radius: 0.25rem;
-    border: 1px solid rgb(from var(--utk-black) r g b / 0.1);
-    box-shadow: 0 8px 20px rgb(from var(--utk-black) r g b / 0.12);
 }
 
 .record-detail__summary {
@@ -52,6 +56,7 @@
 .record-field {
     flex: 1 1 60px;
     min-width: 0;
+    margin: 0;
 }
 
 .record-field__label {
@@ -61,7 +66,6 @@
     font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--utk-logo--smokey);
     opacity: 0.75;
 }
 
@@ -92,7 +96,7 @@
 }
 
 .record-detail__divider {
-    border-top: 1px solid rgb(from var(--utk-black) r g b / 0.08);
+    border-top: 1px solid var(--record-divider);
 }
 
 .record-detail__grid {
@@ -119,7 +123,7 @@
 
 .record-detail__group:first-child {
     padding-right: 2.5rem;
-    border-right: 1px solid rgb(from var(--utk-black) r g b / 0.08);
+    border-right: 1px solid var(--record-divider);
 }
 
 .record-detail__group-title {
@@ -127,7 +131,6 @@
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
-    color: var(--utk-logo--smokey);
     opacity: 0.6;
     margin: 0;
 }
@@ -153,12 +156,10 @@
 
 .record-detail__badge--yes {
     background-color: var(--utk-standard);
-    color: var(--utk-logo--smokey);
 }
 
 .record-detail__badge--no {
     background-color: rgb(from var(--utk-logo--smokey) r g b / 0.12);
-    color: var(--utk-logo--smokey);
 }
 
 .record-detail__provenance {
@@ -187,7 +188,7 @@
 
 .record-detail__section {
     padding: 2rem 0;
-    border-bottom: 1px solid rgb(from var(--utk-black) r g b / 0.08);
+    border-bottom: 1px solid var(--record-divider);
 }
 
 .record-detail__section:last-child {
@@ -212,10 +213,6 @@
     width: 100%;
     height: auto;
     aspect-ratio: 10 / 13;
-    object-fit: cover;
-    border-radius: 0.25rem;
-    border: 1px solid rgb(from var(--utk-black) r g b / 0.1);
-    box-shadow: 0 8px 20px rgb(from var(--utk-black) r g b / 0.12);
 }
 
 .record-annotation__quote {
