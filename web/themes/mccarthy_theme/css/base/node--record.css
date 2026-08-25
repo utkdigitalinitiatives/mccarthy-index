@@ -7,18 +7,24 @@
 }
 
 .record-detail__header {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2.5rem;
     padding-bottom: 2rem;
     margin-bottom: 2rem;
     border-bottom: 1px solid rgb(from var(--utk-black) r g b / 0.08);
+}
+
+.record-detail__body {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 2.5rem;
 }
 
 .record-detail__cover {
     flex: 0 0 260px;
     width: 260px;
     height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
     border-radius: 0.25rem;
     border: 1px solid rgb(from var(--utk-black) r g b / 0.1);
     box-shadow: 0 8px 20px rgb(from var(--utk-black) r g b / 0.12);
@@ -125,6 +131,7 @@
 .record-annotation {
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
     gap: 2rem;
 }
 
@@ -133,6 +140,8 @@
     max-width: 260px;
     width: 100%;
     height: auto;
+    aspect-ratio: 10 / 13;
+    object-fit: cover;
     border-radius: 0.25rem;
     border: 1px solid rgb(from var(--utk-black) r g b / 0.1);
     box-shadow: 0 8px 20px rgb(from var(--utk-black) r g b / 0.12);
