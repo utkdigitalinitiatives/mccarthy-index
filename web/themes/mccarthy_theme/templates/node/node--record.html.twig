@@ -4,18 +4,14 @@
  * Full book-detail display for the "record" content type.
  */
 #}
-{% set cover_seed = node.id %}
 {{ attach_library('mccarthy_theme/node-record') }}
 <article class="record-detail">
 
   <header class="record-detail__header">
-    <img class="record-detail__cover" src="https://picsum.photos/seed/{{ cover_seed }}/480/640" alt="Cover of {{ label }}" />
+    <img class="record-detail__cover" src="https://picsum.photos/480/640" alt="Book cover placeholder" />
 
     <div class="record-detail__summary">
       <h1 class="record-detail__title">{{ label }}</h1>
-      {% if not node.field_collection.isEmpty() %}
-        <p class="record-detail__subtitle">{{ node.field_collection.value }}</p>
-      {% endif %}
 
       <dl class="record-detail__list">
         <div class="record-detail__row">
@@ -108,7 +104,7 @@
     <section class="record-detail__section">
       <h2 class="record-detail__section-title">Author's Annotations</h2>
       <div class="record-annotation">
-        <img class="record-annotation__image" src="https://picsum.photos/seed/{{ cover_seed }}-note/500/650" alt="Annotated page from {{ label }}" />
+        <img class="record-annotation__image" src="https://picsum.photos/500/650" alt="Annotated manuscript page placeholder" />
         <p class="record-annotation__quote">{{ content.field_notes }}</p>
       </div>
     </section>
