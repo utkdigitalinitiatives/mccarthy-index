@@ -1,0 +1,133 @@
+.layout-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.sidebar-nav {
+    position: relative;
+    width: 260px;
+    flex: 0 0 260px;
+    background: var(--utk-logo--white);
+    border-right: 1px solid #e5e2da;
+    padding: 1.5rem 1.25rem;
+    box-sizing: border-box;
+    transition: width 0.2s ease, flex-basis 0.2s ease, padding 0.2s ease;
+    overflow: hidden;
+}
+
+.sidebar-nav--collapsed {
+    width: 56px;
+    flex: 0 0 56px;
+    padding: 1.5rem 0.5rem;
+}
+
+.sidebar-nav--collapsed .sidebar-nav__title,
+.sidebar-nav--collapsed .sidebar-nav__subtitle,
+.sidebar-nav--collapsed .sidebar-nav__label {
+    display: none;
+}
+
+.sidebar-nav--collapsed .sidebar-nav__link {
+    justify-content: center;
+    padding: 0.6rem 0;
+}
+
+.layout-container>main {
+    flex: 1 1 auto;
+    min-width: 0;
+    transition: margin-left 0.2s ease;
+}
+
+.sidebar-nav__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem;
+}
+
+.sidebar-nav__subtitle {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 1rem;
+}
+
+.sidebar-nav__menu,
+.sidebar-nav__submenu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar-nav__item {
+    margin-bottom: 0.25rem;
+}
+
+.sidebar-nav__item .sidebar-nav__link {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.6rem 0.75rem;
+    border-radius: 6px;
+    color: inherit;
+    font-size: 0.95rem;
+    text-decoration: none;
+}
+
+.sidebar-nav__item .sidebar-nav__link:hover {
+    background: #f4f2ec;
+}
+
+.sidebar-nav__item--active .sidebar-nav__link {
+    background: #e8eefb;
+    font-weight: 600;
+}
+
+.sidebar-nav__icon {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.7;
+}
+
+.sidebar-nav__item--active .sidebar-nav__icon {
+    opacity: 1;
+}
+
+.sidebar-nav__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #e5e2da;
+    border-radius: 50%;
+    background: var(--utk-logo--white);
+    cursor: pointer;
+    padding: 0;
+}
+
+.sidebar-nav__toggle:hover {
+    background: #f4f2ec;
+}
+
+.sidebar-nav__toggle-icon {
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    transform: rotate(180deg);
+    transition: transform 0.2s ease;
+}
+
+.sidebar-nav--collapsed .sidebar-nav__toggle-icon {
+    transform: rotate(0deg);
+}

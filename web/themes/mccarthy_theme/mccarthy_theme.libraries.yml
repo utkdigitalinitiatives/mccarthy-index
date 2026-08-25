@@ -1,6 +1,10 @@
 base:
   version: VERSION
   css:
+    base:
+      css/base/utilities.css: {}
+      css/base/fluent-icons.css: {}
+      css/base/utk-sidebar.css: {}
     component:
       css/components/action-links.css:
         weight: -10
@@ -42,6 +46,11 @@ base:
         weight: -10
       css/components/ui-dialog.css:
         weight: -10
+  js:
+    js/sidebar-nav.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
 dialog:
   version: VERSION
   css:
@@ -64,12 +73,12 @@ image-widget:
   version: VERSION
   css:
     component:
-      css/components/image-widget.css: {  }
+      css/components/image-widget.css: {}
 indented:
   version: VERSION
   css:
     component:
-      css/components/indented.css: {  }
+      css/components/indented.css: {}
 messages:
   version: VERSION
   css:
@@ -104,10 +113,36 @@ search-results:
   version: VERSION
   css:
     component:
-      css/components/search-results.css: {  }
+      css/components/search-results.css: {}
 user:
   version: VERSION
   css:
     component:
       css/components/user.css:
         weight: -10
+google-font:
+  version: "UTK Lib v1.0"
+  css:
+    theme:
+      'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet':
+        { type: external }
+bootstrap:
+  css:
+    theme:
+      css/base/bootstrap.min.css: {}
+  js:
+    js/bootstrap.bundle.min.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+utk-web-components:
+  version: "1.0"
+  js:
+    https://utkwebcomponents1-afdzech8c2a9eubz.a01.azurefd.net/components/v1/utk-library-header.js:
+      type: external
+      attributes:
+        defer: true
+    https://utkwebcomponents1-afdzech8c2a9eubz.a01.azurefd.net/components/v1/utk-library-footer.js:
+      type: external
+      attributes:
+        defer: true

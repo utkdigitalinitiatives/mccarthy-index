@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * Theme override for the front page layout.
+ *
+ * This template provides the structure for the front page of the site.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the main container.
+ * - page: Contains the content of the page, including regions such as header, footer, and main content.
+ * - content: Rendered content of the page.
+ *
+ * Included templates:
+ * - utk--header.html.twig: Renders the site header.
+ * - utk--search-section.html.twig: Displays the search section on the front page.
+ * - utk--icon-section.html.twig: Displays the icon section on the front page.
+ * - utk--quicklink-section.html.twig: Displays quick links for navigation.
+ * - utk--library-footer.html.twig: Renders the library footer.
+ * - utk--campus-footer.html.twig: Renders the campus footer.
+ * - utk--campus-footer-subfooter.html.twig: Renders the subfooter for the campus footer.
+ *
+ * Dynamic content:
+ * - drupal_block('views_block:library_hours-hours_block'): Displays the library hours block.
+ * - drupal_view('spotlight_collection', 'spotlight_block'): Displays the spotlight collection block.
+ * - drupal_view('news_view', 'news_block'): Displays the recent news block.
+ * - drupal_view('events_view', 'events_block'): Displays the upcoming events block.
+ *
+ * @see page.html.twig
+ * @see node_preprocess_page()
+ */
+#}
+{% extends "page--public.html.twig" %}
+
+{% block main_content %}
+    <main role="main" id="main-content"></main>
+{% endblock %}

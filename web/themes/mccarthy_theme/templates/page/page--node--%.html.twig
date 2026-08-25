@@ -1,0 +1,30 @@
+{% extends "page.html.twig" %}
+{#
+/**
+ * @file
+ * Theme override for node-specific pages.
+ *
+ * This template extends the base page.html.twig template and provides
+ * customizations for node-specific pages.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the main container.
+ * - page: Contains the content of the page, including regions such as header, footer, and main content.
+ * - content: Rendered content of the page.
+ *
+ * Customizations:
+ * - Overrides the `page` block to render only the content section.
+ *
+ * @see page.html.twig
+ * @see node_preprocess_page()
+ */
+#}
+
+{% block main_content %}
+    <main>
+        <a id="main-content" tabindex="-1"></a>
+        <div class="layout-content">
+            {{ page.content }}
+        </div>
+    </main>
+{% endblock %}
