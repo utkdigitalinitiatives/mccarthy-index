@@ -1,0 +1,43 @@
+/* Floating back-to-top button, hidden below tablet widths. */
+
+.back-to-top {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    border: 1px solid rgb(from var(--utk-black) r g b / 0.1);
+    border-radius: 50%;
+    background-color: var(--utk-logo--white);
+    box-shadow: 0 4px 12px rgb(from var(--utk-black) r g b / 0.15);
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+}
+
+.back-to-top:hover {
+    box-shadow: 0 6px 16px rgb(from var(--utk-black) r g b / 0.2);
+}
+
+.back-to-top__icon {
+    width: 16px;
+    height: 16px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.back-to-top__icon+.back-to-top__icon {
+    margin-top: -8px;
+}
+
+@media (max-width: 767px) {
+    .back-to-top {
+        display: none;
+    }
+}

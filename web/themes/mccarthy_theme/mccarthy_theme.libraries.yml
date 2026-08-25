@@ -5,6 +5,7 @@ base:
       css/base/utilities.css: {}
       css/base/fluent-icons.css: {}
       css/base/utk-sidebar.css: {}
+      css/base/back-to-top.css: {}
     component:
       css/components/action-links.css:
         weight: -10
@@ -48,6 +49,7 @@ base:
         weight: -10
   js:
     js/sidebar-nav.js: {}
+    js/back-to-top.js: {}
   dependencies:
     - core/drupal
     - core/once
