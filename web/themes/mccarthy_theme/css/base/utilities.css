@@ -40,6 +40,13 @@ a {
   color: var(--utk-logo--white);
 }
 
+.top-line {
+    border-top: 6px solid var(--utk-logo--orange);
+    margin: 0;
+    padding-bottom: 5px;
+    opacity: 1;
+}
+
 .black-overlay,
 .utk-overlay-dark-chip {
   background-color: var(--utk-overlay-dark-background);

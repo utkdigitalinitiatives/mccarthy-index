@@ -23,11 +23,19 @@
 %}
 
 <div class="sidebar-nav__inner">
-  <h2 class="sidebar-nav__title">Cormac McCarthy</h2>
+  <a href="https://lib.utk.edu/" class="sidebar-nav__brand text-smokey">
+    <img src="/themes/mccarthy_theme/images/power_t_logo.png" alt="" class="sidebar-nav__brand-logo">
+    <span class="sidebar-nav__brand-label">Libraries</span>
+  </a>
+  <a href="{{ path('<front>') }}" class="sidebar-nav__title-link" aria-label="Cormac McCarthy home">
+    <span class="sidebar-nav__title-icon fluent-icon-home" aria-hidden="true"></span>
+    <h2 class="sidebar-nav__title">Cormac McCarthy</h2>
+  </a>
   <p class="sidebar-nav__subtitle">Browse by the Collection Project</p>
   {{ menus.menu_links(items, attributes, 0, icon_map) }}
   <button type="button" class="sidebar-nav__toggle" aria-expanded="true" aria-label="Collapse sidebar navigation">
     <span class="sidebar-nav__toggle-icon fluent-icon-arrow-circle-right" aria-hidden="true"></span>
+    <span class="sidebar-nav__toggle-label">Close</span>
   </button>
 </div>
 
