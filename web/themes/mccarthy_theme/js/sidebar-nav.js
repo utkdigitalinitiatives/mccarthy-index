@@ -12,15 +12,28 @@
             }
             toggle.dataset.sidebarNavBound = 'true';
 
+            // Mobile reuses the icon-rail "collapsed" look as its resting state;
+            // opening trades --collapsed for --mobile-open (fixed overlay).
             function closeMobileOverlay() {
                 sidebar.classList.remove('sidebar-nav--mobile-open');
+                sidebar.classList.add('sidebar-nav--collapsed');
                 toggle.setAttribute('aria-expanded', 'false');
+            }
+
+            function syncForViewport() {
+                if (mobileQuery.matches) {
+                    closeMobileOverlay();
+                } else {
+                    sidebar.classList.remove('sidebar-nav--mobile-open');
+                }
             }
 
             toggle.addEventListener('click', function () {
                 if (mobileQuery.matches) {
-                    const open = sidebar.classList.toggle('sidebar-nav--mobile-open');
-                    toggle.setAttribute('aria-expanded', String(open));
+                    const opening = !sidebar.classList.contains('sidebar-nav--mobile-open');
+                    sidebar.classList.toggle('sidebar-nav--mobile-open', opening);
+                    sidebar.classList.toggle('sidebar-nav--collapsed', !opening);
+                    toggle.setAttribute('aria-expanded', String(opening));
                     return;
                 }
 
@@ -32,13 +45,10 @@
                 backdrop.addEventListener('click', closeMobileOverlay);
             }
 
-            // Drop the mobile overlay state if the viewport is resized past the breakpoint.
-            mobileQuery.addEventListener('change', function (event) {
-                if (!event.matches) {
-                    closeMobileOverlay();
-                }
-            });
+            mobileQuery.addEventListener('change', syncForViewport);
+            syncForViewport();
         },
     };
 })(Drupal);
+
 

@@ -202,50 +202,8 @@
 }
 
 @media (max-width: 600px) {
-    /* Mobile default: narrow icon-only rail, matching the desktop "collapsed" look. */
-    .sidebar-nav {
-        width: 56px;
-        flex: 0 0 56px;
-        padding: 1.5rem 0.5rem;
-    }
 
-    .sidebar-nav .sidebar-nav__title,
-    .sidebar-nav .sidebar-nav__subtitle,
-    .sidebar-nav .sidebar-nav__label,
-    .sidebar-nav .sidebar-nav__brand-label,
-    .sidebar-nav .sidebar-nav__toggle-label {
-        display: none;
-    }
-
-    .sidebar-nav .sidebar-nav__link {
-        justify-content: center;
-        padding: 0.6rem 0;
-    }
-
-    .sidebar-nav .sidebar-nav__brand {
-        justify-content: center;
-    }
-
-    .sidebar-nav .sidebar-nav__title-link {
-        display: flex;
-        justify-content: center;
-    }
-
-    .sidebar-nav .sidebar-nav__title-icon {
-        display: inline-block;
-    }
-
-    .sidebar-nav .sidebar-nav__toggle {
-        width: 28px;
-        padding: 0;
-        border-radius: 50%;
-    }
-
-    .sidebar-nav .sidebar-nav__toggle-icon {
-        transform: rotate(0deg);
-    }
-
-    /* Overlay drawer: expands over content instead of pushing <main>. */
+    /* Mobile reuses the existing collapsed (icon-rail) styles as its resting state. */
     .sidebar-nav--mobile-open {
         position: fixed;
         top: 0;
@@ -259,51 +217,11 @@
         overflow-y: auto;
     }
 
-    .sidebar-nav--mobile-open .sidebar-nav__title,
-    .sidebar-nav--mobile-open .sidebar-nav__subtitle,
-    .sidebar-nav--mobile-open .sidebar-nav__label,
-    .sidebar-nav--mobile-open .sidebar-nav__brand-label,
-    .sidebar-nav--mobile-open .sidebar-nav__toggle-label {
-        display: block;
-    }
-
-    .sidebar-nav--mobile-open .sidebar-nav__link {
-        justify-content: flex-start;
-        padding: 0.6rem 0.75rem;
-    }
-
-    .sidebar-nav--mobile-open .sidebar-nav__brand {
-        justify-content: flex-start;
-    }
-
-    .sidebar-nav--mobile-open .sidebar-nav__title-link {
-        display: block;
-    }
-
-    .sidebar-nav--mobile-open .sidebar-nav__title-icon {
-        display: none;
-    }
-
-    .sidebar-nav--mobile-open .sidebar-nav__toggle {
-        width: auto;
-        padding: 0 0.75rem;
-        border-radius: 14px;
-    }
-
-    .sidebar-nav--mobile-open .sidebar-nav__toggle-icon {
-        transform: rotate(180deg);
-    }
-
-    .sidebar-nav--mobile-open ~ .sidebar-nav__backdrop {
+    .sidebar-nav--mobile-open~.sidebar-nav__backdrop {
         display: block;
         position: fixed;
         inset: 0;
         z-index: 999;
         background: var(--utk-overlay-dark-background);
-    }
-
-    /* Overlay never pushes page content on mobile. */
-    .layout-container > main {
-        margin-left: 0;
     }
 }
