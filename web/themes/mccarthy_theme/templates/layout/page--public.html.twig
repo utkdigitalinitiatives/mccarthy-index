@@ -12,6 +12,8 @@
   <aside class="sidebar-nav text-smokey">
     {{ drupal_block('system_menu_block:sidebar-nav') }}
   </aside>
+  {# Only rendered/visible below the mobile breakpoint; closes the sidebar overlay on tap. #}
+  <div class="sidebar-nav__backdrop"></div>
 
   {% block main_content %}
     {{ page.primary_menu }}
