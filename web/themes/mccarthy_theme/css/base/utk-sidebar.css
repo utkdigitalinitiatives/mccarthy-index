@@ -196,3 +196,114 @@
     font-size: 0.85rem;
     white-space: nowrap;
 }
+
+.sidebar-nav__backdrop {
+    display: none;
+}
+
+@media (max-width: 600px) {
+    /* Mobile default: narrow icon-only rail, matching the desktop "collapsed" look. */
+    .sidebar-nav {
+        width: 56px;
+        flex: 0 0 56px;
+        padding: 1.5rem 0.5rem;
+    }
+
+    .sidebar-nav .sidebar-nav__title,
+    .sidebar-nav .sidebar-nav__subtitle,
+    .sidebar-nav .sidebar-nav__label,
+    .sidebar-nav .sidebar-nav__brand-label,
+    .sidebar-nav .sidebar-nav__toggle-label {
+        display: none;
+    }
+
+    .sidebar-nav .sidebar-nav__link {
+        justify-content: center;
+        padding: 0.6rem 0;
+    }
+
+    .sidebar-nav .sidebar-nav__brand {
+        justify-content: center;
+    }
+
+    .sidebar-nav .sidebar-nav__title-link {
+        display: flex;
+        justify-content: center;
+    }
+
+    .sidebar-nav .sidebar-nav__title-icon {
+        display: inline-block;
+    }
+
+    .sidebar-nav .sidebar-nav__toggle {
+        width: 28px;
+        padding: 0;
+        border-radius: 50%;
+    }
+
+    .sidebar-nav .sidebar-nav__toggle-icon {
+        transform: rotate(0deg);
+    }
+
+    /* Overlay drawer: expands over content instead of pushing <main>. */
+    .sidebar-nav--mobile-open {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        width: min(80vw, 300px);
+        flex: 0 0 min(80vw, 300px);
+        height: 100%;
+        padding: 1.5rem 1.25rem;
+        box-shadow: 4px 0 20px rgb(from var(--utk-black) r g b / 0.2);
+        overflow-y: auto;
+    }
+
+    .sidebar-nav--mobile-open .sidebar-nav__title,
+    .sidebar-nav--mobile-open .sidebar-nav__subtitle,
+    .sidebar-nav--mobile-open .sidebar-nav__label,
+    .sidebar-nav--mobile-open .sidebar-nav__brand-label,
+    .sidebar-nav--mobile-open .sidebar-nav__toggle-label {
+        display: block;
+    }
+
+    .sidebar-nav--mobile-open .sidebar-nav__link {
+        justify-content: flex-start;
+        padding: 0.6rem 0.75rem;
+    }
+
+    .sidebar-nav--mobile-open .sidebar-nav__brand {
+        justify-content: flex-start;
+    }
+
+    .sidebar-nav--mobile-open .sidebar-nav__title-link {
+        display: block;
+    }
+
+    .sidebar-nav--mobile-open .sidebar-nav__title-icon {
+        display: none;
+    }
+
+    .sidebar-nav--mobile-open .sidebar-nav__toggle {
+        width: auto;
+        padding: 0 0.75rem;
+        border-radius: 14px;
+    }
+
+    .sidebar-nav--mobile-open .sidebar-nav__toggle-icon {
+        transform: rotate(180deg);
+    }
+
+    .sidebar-nav--mobile-open ~ .sidebar-nav__backdrop {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        background: var(--utk-overlay-dark-background);
+    }
+
+    /* Overlay never pushes page content on mobile. */
+    .layout-container > main {
+        margin-left: 0;
+    }
+}
