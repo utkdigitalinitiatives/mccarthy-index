@@ -1,8 +1,12 @@
+{% set classes = ['view', 'view-' ~ id|clean_class, 'view-id-' ~ id, 'view-display-id-' ~ display_id] %}
+<div{{ attributes.addClass(classes) }}>
+  {{ exposed }}
 
-{{ exposed }}
+  <div class="view-content">
+    {{ rows }}
+  </div>
 
-{{ rows }}
-
-{% if pager %}
+  {% if pager %}
     {{ pager }}
-{% endif %}
+  {% endif %}
+</div>
