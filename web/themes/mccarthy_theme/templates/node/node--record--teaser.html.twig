@@ -3,7 +3,7 @@
   <div class="record-card__body">
     <h3 class="record-card__title">{{ node.label }}</h3>
     {% if not node.field_creators.isEmpty() %}
-      <p class="record-card__creators">{{ content.field_creators }}</p>
+      <div class="record-card__creators">{{ content.field_creators }}</div>
     {% endif %}
     {% if not node.field_publish_date.isEmpty() %}
       {# Year-only date; content.field_publish_date would render the full formatted date. #}

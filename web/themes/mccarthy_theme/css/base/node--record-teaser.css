@@ -20,8 +20,10 @@
 
 .record-card {
     display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: .5rem;
     border-radius: 0.375rem;
     border: 1px solid rgb(from var(--utk-black) r g b / 0.125);
     text-decoration: none;
@@ -36,16 +38,21 @@
 }
 
 .record-card__cover {
-    width: 100%;
+    flex: 0 0 80px;
+    width: 80px;
+    height: 107px;
     aspect-ratio: 3 / 4;
     object-fit: cover;
+    border-radius: 0.25rem;
+    border: 1px solid rgb(from var(--utk-black) r g b / 0.1);
 }
 
 .record-card__body {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 0.35rem;
-    padding: 1rem;
+    min-width: 0;
 }
 
 .record-card__title {
@@ -55,12 +62,14 @@
     margin: 0;
 }
 
-.record-card__creators {
-    font-size: 0.85rem;
-    opacity: 0.75;
+.record-card__creators,
+.record-card__creators .field {
+    margin: 0;
+    font-size: 1rem;
+    opacity: 0.8;
 }
 
 .record-card__year {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     opacity: 0.6;
 }
