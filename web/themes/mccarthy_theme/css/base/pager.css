@@ -5,7 +5,6 @@
 
 .pager {
     margin: 2rem 0;
-    font-family: var(--font-family-base);
 }
 
 .pager__items {
@@ -40,7 +39,7 @@
 }
 
 .pager__item a:hover {
-    border-color: var(--utk-link);
+    border-color: var(--utk-logo--orange);
     color: var(--utk-link);
 }
 
