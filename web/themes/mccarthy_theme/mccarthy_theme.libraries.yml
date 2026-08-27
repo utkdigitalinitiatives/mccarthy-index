@@ -6,6 +6,10 @@ base:
       css/base/fluent-icons.css: {}
       css/base/utk-sidebar.css: {}
       css/base/back-to-top.css: {}
+      css/base/node--record.css: {}
+      css/base/node--record-teaser.css: {}
+      css/base/pager.css: {}
+      css/base/page--front.css: {}
     component:
       css/components/action-links.css:
         weight: -10
@@ -34,8 +38,6 @@ base:
       css/components/menu.css:
         weight: -10
       css/components/more-link.css:
-        weight: -10
-      css/components/pager.css:
         weight: -10
       css/components/tabledrag.css:
         weight: -10
@@ -93,11 +95,7 @@ node:
     component:
       css/components/node.css:
         weight: -10
-node-record:
-  version: VERSION
-  css:
-    base:
-      css/base/node--record.css: {}
+
 progress:
   version: VERSION
   css:
