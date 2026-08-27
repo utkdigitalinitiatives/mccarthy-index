@@ -1,7 +1,15 @@
 
-<a class='' href={{ url }}>
-<img class="record-detail__cover record-detail__media" src="https://picsum.photos/480/640" alt="Book cover placeholder" />
-{{ node.label }}
-{{ content.field_creators }}
-{{ content.field_publish_date }}
+{{ attach_library('mccarthy_theme/node-record-teaser') }}
+<a class="record-card" href="{{ url }}">
+  <img class="record-card__cover" src="https://picsum.photos/300/400" alt="Book cover placeholder" />
+  <div class="record-card__body">
+    <h3 class="record-card__title">{{ node.label }}</h3>
+    {% if not node.field_creators.isEmpty() %}
+      <p class="record-card__creators">{{ content.field_creators }}</p>
+    {% endif %}
+    {% if not node.field_publish_date.isEmpty() %}
+      {# Year-only date; content.field_publish_date would render the full formatted date. #}
+      <p class="record-card__year">{{ node.field_publish_date.date|date('Y') }}</p>
+    {% endif %}
+  </div>
 </a>

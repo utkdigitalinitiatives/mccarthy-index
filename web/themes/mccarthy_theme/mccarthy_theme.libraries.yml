@@ -6,6 +6,8 @@ base:
       css/base/fluent-icons.css: {}
       css/base/utk-sidebar.css: {}
       css/base/back-to-top.css: {}
+      css/base/node--record.css: {}
+      css/base/node--record-teaser.css: {}
     component:
       css/components/action-links.css:
         weight: -10
@@ -93,11 +95,7 @@ node:
     component:
       css/components/node.css:
         weight: -10
-node-record:
-  version: VERSION
-  css:
-    base:
-      css/base/node--record.css: {}
+      
 progress:
   version: VERSION
   css:
