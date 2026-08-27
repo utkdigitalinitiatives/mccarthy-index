@@ -33,6 +33,11 @@
 
 {% block main_content %}
     <main role="main" id="main-content">
+        <section class="front-hero">
+            <h1 class="front-hero__title">Explore the McCarthy Index</h1>
+            <p class="front-hero__subtitle">Browse and search cataloged records from the collection.</p>
+            <div class="front-hero__search-placeholder">Search placeholder</div>
+        </section>
         {{ drupal_view('records', 'block_1') }}
     </main>
 {% endblock %}
