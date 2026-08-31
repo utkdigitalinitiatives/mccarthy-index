@@ -1,1 +1,14 @@
+{#
+/**
+ * @file
+ * Fields row display for the "Records" view.
+ *
+ * Available variables:
+ * - fields: A list of fields, keyed by field alias. This override only
+ *   prints fields.rendered_entity, since the row is displayed as the
+ *   full rendered node.
+ *
+ * @ingroup views_templates
+ */
+#}
 {{ fields.rendered_entity.content }}

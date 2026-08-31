@@ -2,6 +2,23 @@
 /**
  * @file
  * Full book-detail display for the "record" content type.
+ *
+ * Available variables:
+ * - node: The record node entity.
+ * - label: The record title.
+ * - content: Renderable fields, keyed by field name (field_creators,
+ *   field_publisher, field_publish_date, field_isbn13, field_isbn10,
+ *   field_oclc, field_lcc, field_lccn, field_collection, field_length,
+ *   field_date_added, field_copies, field_final_destination,
+ *   field_annotated, field_provenance, field_publication_description,
+ *   field_notes).
+ *
+ * Field presence is checked directly on `node` (e.g. node.field_x.isEmpty())
+ * since `content` is only populated for fields actually rendered.
+ *
+ * @see template_preprocess_node()
+ *
+ * @ingroup themeable
  */
 #}
 <article class="record-detail">
