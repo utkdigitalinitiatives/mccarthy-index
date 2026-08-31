@@ -1,3 +1,18 @@
+{#
+/**
+ * @file
+ * Teaser (card) display for the "record" content type.
+ *
+ * Available variables:
+ * - url: The record's URL.
+ * - node: The record node entity.
+ * - content.field_creators: Rendered creators field.
+ *
+ * @see template_preprocess_node()
+ *
+ * @ingroup themeable
+ */
+#}
 <a class="record-card" href="{{ url }}">
   <img class="record-card__cover" src="https://picsum.photos/300/400" alt="Book cover placeholder" />
   <div class="record-card__body">

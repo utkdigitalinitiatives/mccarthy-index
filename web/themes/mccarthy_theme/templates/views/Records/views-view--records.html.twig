@@ -1,3 +1,19 @@
+{#
+/**
+ * @file
+ * Default view template for the "Records" view.
+ *
+ * Available variables:
+ * - attributes: Remaining HTML attributes for the element.
+ * - id: The view ID.
+ * - display_id: The current display ID.
+ * - exposed: The exposed filter form.
+ * - rows: The rendered view rows.
+ * - pager: The pager.
+ *
+ * @ingroup views_templates
+ */
+#}
 {% set classes = ['view', 'view-' ~ id|clean_class, 'view-id-' ~ id, 'view-display-id-' ~ display_id] %}
 <div{{ attributes.addClass(classes) }}>
   {{ exposed }}
