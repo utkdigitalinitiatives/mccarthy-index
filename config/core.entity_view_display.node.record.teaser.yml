@@ -1,0 +1,74 @@
+uuid: ef46c500-3e1d-4959-a3ee-1712c890f68e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.record.feeds_item
+    - field.field.node.record.field_annotated
+    - field.field.node.record.field_collection
+    - field.field.node.record.field_copies
+    - field.field.node.record.field_creators
+    - field.field.node.record.field_date_added
+    - field.field.node.record.field_final_destination
+    - field.field.node.record.field_isbn10
+    - field.field.node.record.field_isbn13
+    - field.field.node.record.field_lcc
+    - field.field.node.record.field_lccn
+    - field.field.node.record.field_length
+    - field.field.node.record.field_notes
+    - field.field.node.record.field_oclc
+    - field.field.node.record.field_provenance
+    - field.field.node.record.field_publication_description
+    - field.field.node.record.field_publish_date
+    - field.field.node.record.field_publisher
+    - field.field.node.record.field_record_number
+    - node.type.record
+  module:
+    - datetime
+    - layout_builder
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.record.teaser
+targetEntityType: node
+bundle: record
+mode: teaser
+content:
+  field_creators:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_publish_date:
+    type: datetime_default
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: html_date
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  feeds_item: true
+  field_annotated: true
+  field_collection: true
+  field_copies: true
+  field_date_added: true
+  field_final_destination: true
+  field_isbn10: true
+  field_isbn13: true
+  field_lcc: true
+  field_lccn: true
+  field_length: true
+  field_notes: true
+  field_oclc: true
+  field_provenance: true
+  field_publication_description: true
+  field_publisher: true
+  field_record_number: true
+  links: true
