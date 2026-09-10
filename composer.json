@@ -29,6 +29,8 @@
         "drupal/gin_toolbar": "^3.0",
         "drupal/key": ">=1.15",
         "drupal/pathauto": "^1.15",
+        "drupal/search_api": "^1.41",
+        "drupal/search_api_solr": "^4.4",
         "drupal/twig_tweak": "^3.4",
         "drush/drush": "^13.7"
     },
