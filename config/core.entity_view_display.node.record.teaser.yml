@@ -71,4 +71,6 @@ hidden:
   field_publication_description: true
   field_publisher: true
   field_record_number: true
+  langcode: true
   links: true
+  search_api_excerpt: true
