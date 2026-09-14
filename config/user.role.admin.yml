@@ -3,11 +3,14 @@ langcode: en
 status: true
 dependencies:
   config:
+    - feeds.feed_type.record_import
+    - node.type.home
     - node.type.record
     - taxonomy.vocabulary.final_destination
     - taxonomy.vocabulary.provenance
     - taxonomy.vocabulary.publisher
   module:
+    - az_blob_fs
     - block
     - config
     - contextual
@@ -17,6 +20,8 @@ dependencies:
     - file
     - filter
     - image
+    - key
+    - language
     - layout_builder
     - media
     - node
@@ -24,6 +29,9 @@ dependencies:
     - pathauto
     - responsive_image
     - search
+    - search_api
+    - search_api_autocomplete
+    - search_api_solr_admin
     - system
     - taxonomy
     - toolbar
@@ -46,6 +54,7 @@ permissions:
   - 'access user profiles'
   - 'administer account settings'
   - 'administer actions'
+  - 'administer azure blob storage'
   - 'administer blocks'
   - 'administer content types'
   - 'administer display modes'
@@ -56,6 +65,9 @@ permissions:
   - 'administer feeds_tamper'
   - 'administer filters'
   - 'administer image styles'
+  - 'administer key configuration overrides'
+  - 'administer keys'
+  - 'administer languages'
   - 'administer media'
   - 'administer media display'
   - 'administer media fields'
@@ -72,6 +84,8 @@ permissions:
   - 'administer permissions'
   - 'administer responsive images'
   - 'administer search'
+  - 'administer search_api'
+  - 'administer search_api_autocomplete'
   - 'administer site configuration'
   - 'administer software updates'
   - 'administer taxonomy'
@@ -90,10 +104,14 @@ permissions:
   - 'bypass node access'
   - 'cancel account'
   - 'change own username'
+  - 'clear own record_import feeds'
+  - 'clear record_import feeds'
   - 'configure any layout'
   - 'create and edit custom blocks'
+  - 'create home content'
   - 'create media'
   - 'create record content'
+  - 'create record_import feeds'
   - 'create terms in final_destination'
   - 'create terms in provenance'
   - 'create terms in publisher'
@@ -101,47 +119,68 @@ permissions:
   - 'delete all revisions'
   - 'delete all taxonomy revisions'
   - 'delete any file'
+  - 'delete any home content'
   - 'delete any media'
   - 'delete any record content'
+  - 'delete home revisions'
   - 'delete media'
   - 'delete own files'
+  - 'delete own home content'
   - 'delete own record content'
+  - 'delete own record_import feeds'
   - 'delete record revisions'
+  - 'delete record_import feeds'
   - 'delete term revisions in final_destination'
   - 'delete term revisions in provenance'
   - 'delete term revisions in publisher'
   - 'delete terms in final_destination'
   - 'delete terms in provenance'
   - 'delete terms in publisher'
+  - 'edit any home content'
   - 'edit any record content'
+  - 'edit own home content'
   - 'edit own record content'
   - 'edit terms in final_destination'
   - 'edit terms in provenance'
   - 'edit terms in publisher'
+  - 'execute solr admin task'
   - 'export configuration'
   - 'import configuration'
+  - 'import own record_import feeds'
+  - 'import record_import feeds'
   - 'link to any page'
   - 'notify of path changes'
+  - 'perform field analysis'
   - 'rebuild node access permissions'
   - 'revert all revisions'
   - 'revert all taxonomy revisions'
+  - 'revert home revisions'
   - 'revert record revisions'
   - 'revert term revisions in final_destination'
   - 'revert term revisions in provenance'
   - 'revert term revisions in publisher'
+  - 'schedule_import own record_import feeds'
+  - 'schedule_import record_import feeds'
   - 'search content'
   - 'select account cancellation method'
   - 'synchronize configuration'
   - 'tamper record_import'
+  - 'unlock own record_import feeds'
+  - 'unlock record_import feeds'
   - 'update any media'
   - 'update media'
+  - 'update own record_import feeds'
+  - 'update record_import feeds'
   - 'use advanced search'
   - 'view all media revisions'
   - 'view all revisions'
   - 'view all taxonomy revisions'
+  - 'view home revisions'
+  - 'view own record_import feeds'
   - 'view own unpublished content'
   - 'view own unpublished media'
   - 'view record revisions'
+  - 'view record_import feeds'
   - 'view term revisions in final_destination'
   - 'view term revisions in provenance'
   - 'view term revisions in publisher'
