@@ -1,6 +1,6 @@
 uuid: e3d9e81f-7bc3-4c43-ab36-4a7d0c1561c6
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - field.storage.node.field_annotated
@@ -18,6 +18,7 @@ dependencies:
     - field.storage.node.field_publication_description
     - field.storage.node.field_publish_date
     - field.storage.node.field_publisher
+    - search_api.server.solr_mccarthy
   module:
     - node
     - search_api_solr
@@ -59,25 +60,25 @@ third_party_settings:
       fuzzy: 1
       fuzzy_analyzer: true
     advanced:
-      index_prefix: ''
-      collection: ''
-      timezone: ''
+      index_prefix: ""
+      collection: ""
+      timezone: ""
     multilingual:
       limit_to_content_language: false
       include_language_independent: true
       use_language_undefined_as_fallback_language: false
       specific_languages:
-        en: '0'
+        en: "0"
       use_universal_collation: false
 id: records
 name: Records
-description: ''
+description: ""
 read_only: false
 field_settings:
   description:
-    label: 'Provenance » Taxonomy term » Description'
-    datasource_id: 'entity:node'
-    property_path: 'field_provenance:entity:description'
+    label: "Provenance » Taxonomy term » Description"
+    datasource_id: "entity:node"
+    property_path: "field_provenance:entity:description"
     type: text
     dependencies:
       config:
@@ -85,9 +86,9 @@ field_settings:
       module:
         - taxonomy
   description_1:
-    label: 'Publisher » Taxonomy term » Description'
-    datasource_id: 'entity:node'
-    property_path: 'field_publisher:entity:description'
+    label: "Publisher » Taxonomy term » Description"
+    datasource_id: "entity:node"
+    property_path: "field_publisher:entity:description"
     type: text
     dependencies:
       config:
@@ -96,7 +97,7 @@ field_settings:
         - taxonomy
   field_annotated:
     label: Annotated
-    datasource_id: 'entity:node'
+    datasource_id: "entity:node"
     property_path: field_annotated
     type: boolean
     dependencies:
@@ -104,7 +105,7 @@ field_settings:
         - field.storage.node.field_annotated
   field_collection:
     label: Collection
-    datasource_id: 'entity:node'
+    datasource_id: "entity:node"
     property_path: field_collection
     type: text
     dependencies:
@@ -112,15 +113,15 @@ field_settings:
         - field.storage.node.field_collection
   field_creators:
     label: Creators
-    datasource_id: 'entity:node'
+    datasource_id: "entity:node"
     property_path: field_creators
     type: text
     dependencies:
       config:
         - field.storage.node.field_creators
   field_date_added:
-    label: 'Date Added'
-    datasource_id: 'entity:node'
+    label: "Date Added"
+    datasource_id: "entity:node"
     property_path: field_date_added
     type: date
     dependencies:
@@ -128,7 +129,7 @@ field_settings:
         - field.storage.node.field_date_added
   field_isbn10:
     label: ISBN10
-    datasource_id: 'entity:node'
+    datasource_id: "entity:node"
     property_path: field_isbn10
     type: string
     dependencies:
@@ -136,7 +137,7 @@ field_settings:
         - field.storage.node.field_isbn10
   field_isbn13:
     label: ISBN13
-    datasource_id: 'entity:node'
+    datasource_id: "entity:node"
     property_path: field_isbn13
     type: string
     dependencies:
@@ -144,7 +145,7 @@ field_settings:
         - field.storage.node.field_isbn13
   field_lcc:
     label: LCC
-    datasource_id: 'entity:node'
+    datasource_id: "entity:node"
     property_path: field_lcc
     type: string
     dependencies:
@@ -152,7 +153,7 @@ field_settings:
         - field.storage.node.field_lcc
   field_lccn:
     label: LCCN
-    datasource_id: 'entity:node'
+    datasource_id: "entity:node"
     property_path: field_lccn
     type: string
     dependencies:
@@ -160,7 +161,7 @@ field_settings:
         - field.storage.node.field_lccn
   field_notes:
     label: Notes
-    datasource_id: 'entity:node'
+    datasource_id: "entity:node"
     property_path: field_notes
     type: text
     dependencies:
@@ -168,32 +169,32 @@ field_settings:
         - field.storage.node.field_notes
   field_oclc:
     label: OCLC
-    datasource_id: 'entity:node'
+    datasource_id: "entity:node"
     property_path: field_oclc
     type: string
     dependencies:
       config:
         - field.storage.node.field_oclc
   field_publication_description:
-    label: 'Publication Description'
-    datasource_id: 'entity:node'
+    label: "Publication Description"
+    datasource_id: "entity:node"
     property_path: field_publication_description
     type: text
     dependencies:
       config:
         - field.storage.node.field_publication_description
   field_publish_date:
-    label: 'Publish Date'
-    datasource_id: 'entity:node'
+    label: "Publish Date"
+    datasource_id: "entity:node"
     property_path: field_publish_date
     type: date
     dependencies:
       config:
         - field.storage.node.field_publish_date
   name:
-    label: 'Final Destination » Taxonomy term » Name'
-    datasource_id: 'entity:node'
-    property_path: 'field_final_destination:entity:name'
+    label: "Final Destination » Taxonomy term » Name"
+    datasource_id: "entity:node"
+    property_path: "field_final_destination:entity:name"
     type: text
     dependencies:
       config:
@@ -201,9 +202,9 @@ field_settings:
       module:
         - taxonomy
   name_1:
-    label: 'Provenance » Taxonomy term » Name'
-    datasource_id: 'entity:node'
-    property_path: 'field_provenance:entity:name'
+    label: "Provenance » Taxonomy term » Name"
+    datasource_id: "entity:node"
+    property_path: "field_provenance:entity:name"
     type: text
     dependencies:
       config:
@@ -211,9 +212,9 @@ field_settings:
       module:
         - taxonomy
   name_2:
-    label: 'Publisher » Taxonomy term » Name'
-    datasource_id: 'entity:node'
-    property_path: 'field_publisher:entity:name'
+    label: "Publisher » Taxonomy term » Name"
+    datasource_id: "entity:node"
+    property_path: "field_publisher:entity:name"
     type: text
     dependencies:
       config:
@@ -221,9 +222,9 @@ field_settings:
       module:
         - taxonomy
   processed:
-    label: 'Final Destination » Taxonomy term » Description » Processed text'
-    datasource_id: 'entity:node'
-    property_path: 'field_final_destination:entity:description:processed'
+    label: "Final Destination » Taxonomy term » Description » Processed text"
+    datasource_id: "entity:node"
+    property_path: "field_final_destination:entity:description:processed"
     type: text
     dependencies:
       config:
@@ -232,7 +233,7 @@ field_settings:
         - taxonomy
   title:
     label: Title
-    datasource_id: 'entity:node'
+    datasource_id: "entity:node"
     property_path: title
     type: text
     boost: 1.5
@@ -240,21 +241,21 @@ field_settings:
       module:
         - node
 datasource_settings:
-  'entity:node':
+  "entity:node":
     bundles:
       default: true
       selected:
         - home
     languages:
       default: true
-      selected: {  }
+      selected: {}
 processor_settings:
-  add_url: {  }
-  aggregated_field: {  }
-  auto_aggregated_fulltext_field: {  }
-  custom_value: {  }
-  entity_status: {  }
-  entity_type: {  }
+  add_url: {}
+  aggregated_field: {}
+  auto_aggregated_fulltext_field: {}
+  custom_value: {}
+  entity_status: {}
+  entity_type: {}
   html_filter:
     weights:
       preprocess_index: -15
@@ -309,8 +310,8 @@ processor_settings:
       - name_2
       - processed
       - title
-  language_with_fallback: {  }
-  rendered_item: {  }
+  language_with_fallback: {}
+  rendered_item: {}
   solr_date_range:
     weights:
       preprocess_index: 0
@@ -331,7 +332,7 @@ processor_settings:
       - name_2
       - processed
       - title
-    exceptions: {  }
+    exceptions: {}
   stopwords:
     weights:
       preprocess_index: -5
@@ -365,10 +366,10 @@ processor_settings:
       - into
       - is
       - it
-      - 'no'
+      - "no"
       - not
       - of
-      - 'on'
+      - "on"
       - or
       - s
       - such
@@ -402,10 +403,10 @@ processor_settings:
       - name_2
       - processed
       - title
-    spaces: ''
+    spaces: ""
     ignored: ._-
     overlap_cjk: 1
-    minimum_word_size: '3'
+    minimum_word_size: "3"
 tracker_settings:
   default:
     indexing_order: fifo
@@ -414,4 +415,4 @@ options:
   delete_on_fail: true
   index_directly: true
   track_changes_in_references: true
-server: ''
+server: solr_mccarthy
