@@ -1,0 +1,23 @@
+uuid: 722f68b4-1ff2-49fa-8368-6efc1267a38d
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.record
+  module:
+    - node
+id: record_path
+label: 'Record Path'
+type: 'canonical_entities:node'
+pattern: '/record/[node:nid]'
+selection_criteria:
+  a38cadfc-6a00-452d-8d51-90d505435776:
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      record: record
+selection_logic: and
+weight: -5
+relationships: {  }
