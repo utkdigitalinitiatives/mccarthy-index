@@ -13,4 +13,12 @@ weight: 1
 is_admin: false
 permissions:
   - 'access content'
+  - 'access media overview'
+  - 'create media'
+  - 'delete any media'
+  - 'delete media'
+  - 'update any media'
+  - 'update media'
+  - 'view all media revisions'
   - 'view media'
+  - 'view own unpublished media'
