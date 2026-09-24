@@ -52,6 +52,7 @@ base:
   js:
     js/sidebar-nav.js: {}
     js/back-to-top.js: {}
+    js/disable-ajax-scroll.js: {}
   dependencies:
     - core/drupal
     - core/once
@@ -143,10 +144,6 @@ bootstrap:
 utk-web-components:
   version: "1.0"
   js:
-    https://utkwebcomponents1-afdzech8c2a9eubz.a01.azurefd.net/components/v1/utk-library-header.js:
-      type: external
-      attributes:
-        defer: true
     https://utkwebcomponents1-afdzech8c2a9eubz.a01.azurefd.net/components/v1/utk-library-footer.js:
       type: external
       attributes:

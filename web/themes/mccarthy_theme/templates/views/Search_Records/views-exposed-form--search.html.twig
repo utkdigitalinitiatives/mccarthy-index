@@ -1,34 +1,39 @@
 {#
 /**
  * @file
- * Custom Views exposed form template for the search block_1 display.
- *
- * Available variables:
- * - form: Form elements render array.
- * - attributes: HTML attributes for the <form> element.
+ * Custom Views exposed form template for the hero search block.
  */
 #}
 
 <div class="front-hero__search-wrapper">
-  <form{{ attributes }}>
+  <form{{ attributes.addClass('front-hero__search-form') }}>
     
     {# Required Drupal hidden tokens for AJAX routing #}
     {{ form.form_build_id }}
     {{ form.form_token }}
     {{ form.form_id }}
 
-    {# Crucial for Views AJAX parameter tracking #}
     {% if form.q %}
       {{ form.q }}
     {% endif %}
 
-    <div class="front-hero__search-input-wrapper flex items-center relative">
-      {# Render the main text input field #}
+    <div class="front-hero__search-field-container">
+      {# Search Icon (SVG) #}
+      <span class="front-hero__search-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+
+      {# Render text input — adjust 'keys' if your exposed filter machine name is different #}
       {% if form.keys %}
         {{ form.keys }}
+      {% elseif form.search_api_fulltext %}
+        {{ form.search_api_fulltext }}
       {% endif %}
 
-      {# Render the submit button if needed #}
+      {# Submit action button #}
       {% if form.actions %}
         <div class="front-hero__search-actions">
           {{ form.actions }}
@@ -36,9 +41,11 @@
       {% endif %}
     </div>
 
-    {# Render remaining exposed elements cleanly #}
+    {# Render remaining exposed elements cleanly (excluding the search input & tokens) #}
+    {% set reserved_keys = ['form_build_id', 'form_token', 'form_id', 'q', 'keys', 'search_api_fulltext', 'actions'] %}
+    
     {% for key in form|keys %}
-      {% if key not in ['form_build_id', 'form_token', 'form_id', 'q', 'keys', 'actions'] and key|first != '#' %}
+      {% if key not in reserved_keys and key|first != '#' %}
         <div class="front-hero__search-extra">
           {{ form[key] }}
         </div>

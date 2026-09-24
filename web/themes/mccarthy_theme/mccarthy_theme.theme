@@ -14,7 +14,9 @@ function mccarthy_theme_form_views_exposed_form_alter(array &$form, FormStateInt
       $form['actions']['submit']['#attributes']['class'][] = 'use-ajax';
     }
 
-    // Optional: Add a custom CSS wrapper class to the form element for easier styling
-    $form['#attributes']['class'][] = 'custom-search-form-ajax';
+    // Set custom placeholder text
+    if (isset($form['keys'])) {
+      $form['keys']['#attributes']['placeholder'] = t('Search the collection...');
+    }
   }
 }
