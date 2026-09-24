@@ -1,12 +1,49 @@
 {#
 /**
  * @file
- * Exposed filter form for the "Records" view.
+ * Custom Views exposed form template for the search block_1 display.
  *
  * Available variables:
- * - form: The exposed filter form.
- *
- * @ingroup views_templates
+ * - form: Form elements render array.
+ * - attributes: HTML attributes for the <form> element.
  */
 #}
-{{ form }}
+
+<div class="front-hero__search-wrapper">
+  <form{{ attributes }}>
+    
+    {# Required Drupal hidden tokens for AJAX routing #}
+    {{ form.form_build_id }}
+    {{ form.form_token }}
+    {{ form.form_id }}
+
+    {# Crucial for Views AJAX parameter tracking #}
+    {% if form.q %}
+      {{ form.q }}
+    {% endif %}
+
+    <div class="front-hero__search-input-wrapper flex items-center relative">
+      {# Render the main text input field #}
+      {% if form.keys %}
+        {{ form.keys }}
+      {% endif %}
+
+      {# Render the submit button if needed #}
+      {% if form.actions %}
+        <div class="front-hero__search-actions">
+          {{ form.actions }}
+        </div>
+      {% endif %}
+    </div>
+
+    {# Render remaining exposed elements cleanly #}
+    {% for key in form|keys %}
+      {% if key not in ['form_build_id', 'form_token', 'form_id', 'q', 'keys', 'actions'] and key|first != '#' %}
+        <div class="front-hero__search-extra">
+          {{ form[key] }}
+        </div>
+      {% endif %}
+    {% endfor %}
+
+  </form>
+</div>

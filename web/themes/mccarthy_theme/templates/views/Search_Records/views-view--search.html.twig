@@ -14,7 +14,15 @@
  * @ingroup views_templates
  */
 #}
-{% set classes = ['view', 'view-' ~ id|clean_class, 'view-id-' ~ id, 'view-display-id-' ~ display_id, "view-id-records"] %}
+{% set classes = [
+  'view',
+  'view-' ~ id|clean_class,
+  'view-id-' ~ id,
+  'view-display-id-' ~ display_id,
+  'view-id-records',
+  dom_id ? 'js-view-dom-id-' ~ dom_id,
+] %}
+
 <div{{ attributes.addClass(classes) }}>
   {{ exposed }}
 
