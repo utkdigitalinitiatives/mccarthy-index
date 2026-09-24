@@ -14,6 +14,13 @@
  * @ingroup views_templates
  */
 #}
+{% if view.args[0] %}
+    {% set title = view.getTitle() %}
+{% endif %}
+    <section class='front-hero'>
+        <h1 class="page-title">{{ title|raw }}</h1>
+    </section>
+
 {% set classes = ['view', 'view-' ~ id|clean_class, 'view-id-' ~ id, 'view-display-id-' ~ display_id, 'view-id-records'] %}
 <div{{ attributes.addClass(classes) }}>
   {{ exposed }}
