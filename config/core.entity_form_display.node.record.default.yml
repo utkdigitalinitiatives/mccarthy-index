@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.record.field_annotated
     - field.field.node.record.field_collection
     - field.field.node.record.field_copies
+    - field.field.node.record.field_cover
     - field.field.node.record.field_creators
     - field.field.node.record.field_date_added
     - field.field.node.record.field_final_destination
@@ -25,6 +26,7 @@ dependencies:
     - node.type.record
   module:
     - datetime
+    - media_library
     - path
     - text
 id: node.record.default
@@ -59,6 +61,13 @@ content:
     region: content
     settings:
       placeholder: ''
+    third_party_settings: {  }
+  field_cover:
+    type: media_library_widget
+    weight: 140
+    region: content
+    settings:
+      media_types: {  }
     third_party_settings: {  }
   field_creators:
     type: string_textarea

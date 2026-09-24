@@ -1,0 +1,29 @@
+uuid: a0f4e7c3-4a45-491e-877b-18d830290e69
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_cover
+    - media.type.book_cover
+    - node.type.record
+id: node.record.field_cover
+field_name: field_cover
+entity_type: node
+bundle: record
+label: Cover
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      book_cover: book_cover
+    sort:
+      field: name
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

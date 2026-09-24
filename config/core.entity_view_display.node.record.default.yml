@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.record.field_annotated
     - field.field.node.record.field_collection
     - field.field.node.record.field_copies
+    - field.field.node.record.field_cover
     - field.field.node.record.field_creators
     - field.field.node.record.field_date_added
     - field.field.node.record.field_final_destination
@@ -59,6 +60,15 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     weight: 114
+    region: content
+  field_cover:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: cover
+      link: false
+    third_party_settings: {  }
+    weight: 120
     region: content
   field_creators:
     type: basic_string
