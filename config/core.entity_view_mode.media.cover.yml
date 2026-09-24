@@ -1,0 +1,11 @@
+uuid: 353b5674-fddb-454d-8724-e84d3fff7048
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.cover
+label: Cover
+description: null
+targetEntityType: media
+cache: true

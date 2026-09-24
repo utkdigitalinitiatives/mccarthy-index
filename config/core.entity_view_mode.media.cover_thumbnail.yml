@@ -1,0 +1,11 @@
+uuid: c336caac-9339-4690-8a9b-5cfe7f8f4783
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.cover_thumbnail
+label: 'Cover Thumbnail'
+description: null
+targetEntityType: media
+cache: true

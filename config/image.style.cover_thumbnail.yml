@@ -1,0 +1,15 @@
+uuid: 67e80874-fc20-49bb-8f95-02cbe36c4d44
+langcode: en
+status: true
+dependencies: {  }
+name: cover_thumbnail
+label: 'Cover Thumbnail'
+effects:
+  860f170f-6326-42d9-8938-f455a1feb840:
+    uuid: 860f170f-6326-42d9-8938-f455a1feb840
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 80
+      height: 107
+      anchor: center-center

@@ -1,0 +1,14 @@
+uuid: e52c5430-1279-4e4f-9104-23586cc67b56
+langcode: en
+status: true
+dependencies: {  }
+id: book_cover
+label: 'Book Cover'
+description: ''
+source: image
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_image
+field_map:
+  name: name
