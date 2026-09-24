@@ -1,0 +1,11 @@
+uuid: 7eb14f52-cfc7-4e05-a8bd-3b08918ce3c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - media.type.book_cover
+id: media.book_cover
+target_entity_type_id: media
+target_bundle: book_cover
+default_langcode: site_default
+language_alterable: false
