@@ -3,7 +3,7 @@
 .front-hero {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 3rem 1rem 2rem;
+    padding: 3rem 1rem 0rem;
     text-align: center;
 }
 
@@ -23,13 +23,93 @@
     opacity: 0.75;
 }
 
-.front-hero__search-placeholder {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 0.85rem 1.25rem;
-    border: 1px solid rgb(from var(--utk-black) r g b / 0.125);
-    border-radius: 0.375rem;
-    color: var(--utk-logo--smokey);
-    opacity: 0.6;
-    font-size: 0.95rem;
+/* Container sizing and centering */
+.front-hero__search-wrapper {
+  max-width: 500px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.front-hero__search-field-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Glass/Minimal Input Styling based on your base rules */
+.front-hero__search-field-container input[type="text"],
+.front-hero__search-field-container input[type="search"] {
+  width: 100%;
+  padding: 0.85rem 1.25rem 0.85rem 2.85rem; /* Extra left padding for search icon */
+  border: 1px solid rgb(from var(--utk-black, #000000) r g b / 0.125);
+  border-radius: 0.375rem;
+  color: var(--utk-logo--smokey, #4b4b4b);
+  background-color: #ffffff;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+/* Placeholder Styling */
+.front-hero__search-field-container input::placeholder {
+  color: var(--utk-logo--smokey, #4b4b4b);
+  opacity: 0.6;
+}
+
+/* Hover & Focus States */
+.front-hero__search-field-container input:hover {
+  border-color: rgb(from var(--utk-black, #000000) r g b / 0.25);
+}
+
+.front-hero__search-field-container input:focus {
+  border-color: var(--utk-logo--smokey, #4b4b4b);
+  box-shadow: 0 0 0 3px rgb(from var(--utk-black, #000000) r g b / 0.08);
+}
+
+/* Search Icon positioning */
+.front-hero__search-icon {
+  position: absolute;
+  left: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--utk-logo--smokey, #4b4b4b);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Hide submit button visually if using auto-submit (remains accessible) */
+.front-hero__search-actions {
+  display: none;
+}
+
+/* AJAX Loading Spinner inside the input field */
+.front-hero__search-form .ajax-progress-throbber {
+  position: absolute;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.front-hero__search-form .ajax-progress-throbber .throbber {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--utk-logo--smokey, #4b4b4b);
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: heroSearchSpin 0.6s linear infinite;
+}
+
+.front-hero__search-form .ajax-progress-throbber .message {
+  display: none;
+}
+
+@keyframes heroSearchSpin {
+  to {
+    transform: rotate(360deg);
+  }
 }
