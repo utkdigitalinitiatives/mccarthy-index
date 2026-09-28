@@ -4,7 +4,7 @@
   /* max-width: 900px; */
   margin: 0 auto;
   padding: 30px 20px;
-  background-color: #f8f9fa; /* Very light subtle gray TODO: edit this */
+  background-color: #f8f9fa; 
   border-radius: 8px;
 }
 
@@ -16,7 +16,7 @@
   bottom: 0;
   left: 50%;
   width: 2px;
-  background-color: #d1d5db; /* Crisp gray line TODO: */
+  background-color: #d1d5db;
   transform: translateX(-50%);
 }
 
@@ -45,10 +45,10 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background-color: var(--utk-logo--white); /* Crisp white background for contrast */
+  background-color: var(--utk-logo--white); 
   padding: 10px 16px;
   border-radius: 6px;
-  border: 1px solid #e5e7eb; /* Subtle card border */
+  border: 1px solid #e5e7eb; 
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* Soft shadow */
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -71,4 +71,40 @@
 
 .timeline-info {
   color: #374151;
+}
+
+/* Responsive Layout for Tablets and Mobile Devices */
+@media screen and (max-width: 768px) {
+  
+  .timeline-container::before {
+    left: 20px;
+  }
+
+  /* Make items full width and clear side offsets */
+  .timeline-item {
+    width: 100%;
+    padding-left: 45px;
+    padding-right: 15px;
+    margin-bottom: 16px;
+  }
+
+  /* Reset left/right specific positioning */
+  .timeline-item--left,
+  .timeline-item--right {
+    left: 0;
+    text-align: left;
+  }
+
+  /* Reset flex direction on left cards so Year is always first on mobile */
+  .timeline-item--left .timeline-row {
+    flex-direction: row;
+  }
+
+  /* Make row adapt if text content is long on narrow screens */
+  .timeline-row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+  }
 }
