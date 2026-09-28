@@ -5,6 +5,9 @@ dependencies:
   config:
     - feeds.feed_type.record_import
     - filter.format.full_text
+    - filter.format.timeline
+    - media.type.book_cover
+    - node.type.about
     - node.type.home
     - node.type.record
     - taxonomy.vocabulary.final_destination
@@ -108,7 +111,9 @@ permissions:
   - 'clear own record_import feeds'
   - 'clear record_import feeds'
   - 'configure any layout'
+  - 'create about content'
   - 'create and edit custom blocks'
+  - 'create book_cover media'
   - 'create home content'
   - 'create media'
   - 'create record content'
@@ -117,14 +122,20 @@ permissions:
   - 'create terms in provenance'
   - 'create terms in publisher'
   - 'create url aliases'
+  - 'delete about revisions'
   - 'delete all revisions'
   - 'delete all taxonomy revisions'
+  - 'delete any about content'
+  - 'delete any book_cover media'
+  - 'delete any book_cover media revisions'
   - 'delete any file'
   - 'delete any home content'
   - 'delete any media'
   - 'delete any record content'
   - 'delete home revisions'
   - 'delete media'
+  - 'delete own about content'
+  - 'delete own book_cover media'
   - 'delete own files'
   - 'delete own home content'
   - 'delete own record content'
@@ -137,8 +148,12 @@ permissions:
   - 'delete terms in final_destination'
   - 'delete terms in provenance'
   - 'delete terms in publisher'
+  - 'edit any about content'
+  - 'edit any book_cover media'
   - 'edit any home content'
   - 'edit any record content'
+  - 'edit own about content'
+  - 'edit own book_cover media'
   - 'edit own home content'
   - 'edit own record content'
   - 'edit terms in final_destination'
@@ -153,8 +168,10 @@ permissions:
   - 'notify of path changes'
   - 'perform field analysis'
   - 'rebuild node access permissions'
+  - 'revert about revisions'
   - 'revert all revisions'
   - 'revert all taxonomy revisions'
+  - 'revert any book_cover media revisions'
   - 'revert home revisions'
   - 'revert record revisions'
   - 'revert term revisions in final_destination'
@@ -174,9 +191,12 @@ permissions:
   - 'update record_import feeds'
   - 'use advanced search'
   - 'use text format full_text'
+  - 'use text format timeline'
+  - 'view about revisions'
   - 'view all media revisions'
   - 'view all revisions'
   - 'view all taxonomy revisions'
+  - 'view any book_cover media revisions'
   - 'view home revisions'
   - 'view own record_import feeds'
   - 'view own unpublished content'
