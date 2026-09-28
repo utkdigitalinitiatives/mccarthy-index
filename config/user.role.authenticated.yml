@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - filter.format.full_text
+    - filter.format.timeline
   module:
     - filter
     - media
@@ -23,6 +24,7 @@ permissions:
   - 'update any media'
   - 'update media'
   - 'use text format full_text'
+  - 'use text format timeline'
   - 'view all media revisions'
   - 'view media'
   - 'view own unpublished media'

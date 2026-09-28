@@ -1,0 +1,11 @@
+uuid: 7d399962-c2f2-4cb9-9876-2adc61db4f1a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.timeline_item
+id: node.timeline_item
+target_entity_type_id: node
+target_bundle: timeline_item
+default_langcode: site_default
+language_alterable: false

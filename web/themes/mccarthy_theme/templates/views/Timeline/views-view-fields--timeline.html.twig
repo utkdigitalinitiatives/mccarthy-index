@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Fields row display for the "Records" view.
+ *
+ * Available variables:
+ * - fields: A list of fields, keyed by field alias. This override only
+ *   prints fields.rendered_entity, since the row is displayed as the
+ *   full rendered node.
+ *
+ * @ingroup views_templates
+ */
+#}
+{# {{ dump()}} #}
+
+<div class="timeline-row">
+  <span class="timeline-year">
+    {{ fields.field_year.content }}
+  </span>
+  <span class="timeline-separator">&mdash;</span>
+  <span class="timeline-info">
+    {{ fields.field_timeline_info.content }}
+  </span>
+</div>

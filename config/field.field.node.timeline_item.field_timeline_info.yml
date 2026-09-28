@@ -1,0 +1,24 @@
+uuid: 95600c88-21a6-4cd5-a15c-ab0340767479
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_timeline_info
+    - filter.format.timeline
+    - node.type.timeline_item
+  module:
+    - text
+id: node.timeline_item.field_timeline_info
+field_name: field_timeline_info
+entity_type: node
+bundle: timeline_item
+label: 'Timeline Info'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - timeline
+field_type: text_long

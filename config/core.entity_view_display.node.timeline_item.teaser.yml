@@ -1,0 +1,42 @@
+uuid: e4415e68-89d7-4102-aa44-f5410d09f62e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.timeline_item.field_timeline_info
+    - field.field.node.timeline_item.field_year
+    - node.type.timeline_item
+  module:
+    - layout_builder
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.timeline_item.teaser
+targetEntityType: node
+bundle: timeline_item
+mode: teaser
+content:
+  field_timeline_info:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_year:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  langcode: true
+  links: true
+  search_api_excerpt: true

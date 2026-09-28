@@ -11,6 +11,7 @@ base:
       css/base/node--record-teaser.css: {}
       css/base/pager.css: {}
       css/base/page--front.css: {}
+      css/base/timeline.css: {}
     component:
       css/components/action-links.css:
         weight: -10

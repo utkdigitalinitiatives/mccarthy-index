@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Unformatted row iterator for the "Timeline" view.
+ *
+ * Available variables:
+ * - rows: A list of the view's row items, each with a `content` property.
+ *
+ * @ingroup views_templates
+ */
+#}
+<div class="timeline-container">
+  {% for row in rows %}
+    {% set side_class = loop.index is odd ? 'timeline-item--left' : 'timeline-item--right' %}
+    <div class="timeline-item {{ side_class }}">
+      {{ row.content }}
+    </div>
+  {% endfor %}
+</div>
