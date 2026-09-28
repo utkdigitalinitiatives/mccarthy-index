@@ -1,7 +1,18 @@
+.timeline-title {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--utk-logo--smokey);
+}
+
+.timeline-title h2 {
+    text-decoration: solid;
+    text-decoration-color: var(--utk-logo--orange);
+}
+
 /* Center timeline container with subtle gray background */
 .timeline-container {
   position: relative;
-  /* max-width: 900px; */
   margin: 0 auto;
   padding: 30px 20px;
   background-color: #f8f9fa; 

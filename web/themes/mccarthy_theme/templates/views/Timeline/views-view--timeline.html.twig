@@ -1,18 +1,13 @@
  {# {% if view.args[0] %}
     {% set title = view.getTitle() %}
 {% endif %} #}
-    {# <section class=''> #}
-        <h1 class="mx-auto">Timeline</h1>
-    {# </section>  #}
+<section class='timeline-title'>
+    <h2 class="">Timeline</h2>
+</section> 
 
 {% set classes = ['view', 'view-' ~ id|clean_class, 'view-id-' ~ id, 'view-display-id-' ~ display_id] %}
 <div{{ attributes.addClass(classes) }}>
-
   <div class="p-2">
     {{ rows }}
   </div>
-
-  {% if pager %}
-    {{ pager }}
-  {% endif %}
 </div>
