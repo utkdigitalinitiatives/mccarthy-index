@@ -35,12 +35,16 @@ $config['system.file']['default_scheme'] = 'public';
 /**
  * Per-field overrides.
  *
- * The site has no file fields yet, so this list is empty on purpose. The day one
- * is added with `uri_scheme: azblob`, `ddev refresh-local` will print it in the
- * upload diagnostic and you add a line for it here. Copy the shape:
+ * One line per file field whose committed config says `uri_scheme: azblob`.
+ * When another is added, `ddev refresh-local` prints it in the upload
+ * diagnostic and you add a line for it here.
+ */
+$config['field.storage.media.field_media_image']['settings']['uri_scheme'] = 'public';
+
+/**
+ * Other shapes, for fields the site does not have yet:
  *
  * @code
- * $config['field.storage.media.field_media_image']['settings']['uri_scheme'] = 'public';
  * $config['field.storage.media.field_media_document']['settings']['uri_scheme'] = 'public';
  * $config['field.storage.user.user_picture']['settings']['uri_scheme'] = 'public';
  * @endcode
