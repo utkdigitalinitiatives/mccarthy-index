@@ -1,0 +1,23 @@
+uuid: b88bc154-7d0e-4b28-b91b-ebc6c4050f5d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_year_number
+    - node.type.timeline_item
+id: node.timeline_item.field_year_number
+field_name: field_year_number
+entity_type: node
+bundle: timeline_item
+label: 'Year Number'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer
