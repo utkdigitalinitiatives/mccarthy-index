@@ -13,5 +13,12 @@
 #}
 {# {{ dump()}} #}
 
-{{ fields.field_year.content }}
-{{ fields.field_timeline_info.content }}
+<div class="timeline-row">
+  <span class="timeline-year">
+    {{ fields.field_year.content }}
+  </span>
+  <span class="timeline-separator">&mdash;</span>
+  <span class="timeline-info">
+    {{ fields.field_timeline_info.content }}
+  </span>
+</div>
