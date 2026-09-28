@@ -1,0 +1,30 @@
+uuid: 44726ae7-f055-41c5-8337-4ca9d140ff20
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.about.field_page_content
+    - node.type.about
+  module:
+    - text
+    - user
+id: node.about.default
+targetEntityType: node
+bundle: about
+mode: default
+content:
+  field_page_content:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

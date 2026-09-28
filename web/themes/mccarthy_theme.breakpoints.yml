@@ -1,0 +1,20 @@
+mccarthy_theme.mobile:
+  label: mobile
+  mediaQuery: '(max-width: 599px)'
+  weight: 0
+  multipliers:
+    - 1x
+
+mccarthy_theme.tablet:
+  label: tablet
+  mediaQuery: '(min-width: 600px) and (max-width: 1023px)'
+  weight: 1
+  multipliers:
+    - 1x
+
+mccarthy_theme.desktop:
+  label: desktop
+  mediaQuery: '(min-width: 1024px)'
+  weight: 2
+  multipliers:
+    - 1x

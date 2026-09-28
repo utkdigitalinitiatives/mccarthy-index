@@ -1,0 +1,24 @@
+uuid: 55beb8f4-fdbd-44c4-86a3-3e09f0f2b5d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_page_content
+    - filter.format.full_text
+    - node.type.about
+  module:
+    - text
+id: node.about.field_page_content
+field_name: field_page_content
+entity_type: node
+bundle: about
+label: 'Page Content'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_text
+field_type: text_long
