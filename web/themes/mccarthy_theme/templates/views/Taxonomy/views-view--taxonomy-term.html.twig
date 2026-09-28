@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Default view template for the "Taxonomy Term" view.
+ *
+ * Available variables:
+ * - attributes: Remaining HTML attributes for the element.
+ * - id: The view ID.
+ * - display_id: The current display ID.
+ * - exposed: The exposed filter form.
+ * - rows: The rendered view rows.
+ * - pager: The pager.
+ *
+ * @ingroup views_templates
+ */
+#}
+{% if view.args[0] %}
+    {% set title = view.getTitle() %}
+{% endif %}
+    <section class='front-hero'>
+        <h1 class="page-title">More of: {{ title|raw }}</h1>
+    </section>
+
+{% set classes = ['view', 'view-' ~ id|clean_class, 'view-id-' ~ id, 'view-display-id-' ~ display_id, 'view-id-records'] %}
+<div{{ attributes.addClass(classes) }}>
+  {{ exposed }}
+
+  <div class="view-id-records view-content p-2">
+    {{ rows }}
+  </div>
+
+  {% if pager %}
+    {{ pager }}
+  {% endif %}
+</div>
