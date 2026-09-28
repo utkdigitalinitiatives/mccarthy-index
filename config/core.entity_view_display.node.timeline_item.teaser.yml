@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.timeline_item.field_timeline_info
     - field.field.node.timeline_item.field_year
+    - field.field.node.timeline_item.field_year_number
     - node.type.timeline_item
   module:
     - layout_builder
@@ -37,6 +38,7 @@ content:
     weight: 1
     region: content
 hidden:
+  field_year_number: true
   langcode: true
   links: true
   search_api_excerpt: true
