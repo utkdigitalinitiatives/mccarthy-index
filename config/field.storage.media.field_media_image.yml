@@ -14,7 +14,7 @@ settings:
   target_type: file
   display_field: false
   display_default: true
-  uri_scheme: public
+  uri_scheme: azblob
   default_image:
     uuid: null
     alt: ''
