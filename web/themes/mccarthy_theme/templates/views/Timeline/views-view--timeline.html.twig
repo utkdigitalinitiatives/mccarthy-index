@@ -1,0 +1,10 @@
+<section class='timeline-title'>
+    <h2 class="timeline-text">Timeline</h2>
+</section> 
+
+{% set classes = ['view', 'view-' ~ id|clean_class, 'view-id-' ~ id, 'view-display-id-' ~ display_id] %}
+<div{{ attributes.addClass(classes) }}>
+  <div class="p-2">
+    {{ rows }}
+  </div>
+</div>

@@ -41,12 +41,13 @@
 }
 
 .record-detail__title {
-    font-size: 3.25rem;
+    font-size: clamp(2rem, 5vw, 3.25rem); 
     font-weight: 700;
     line-height: 1.1;
     margin: 0 0 1.75rem;
-    padding-top: 0.75rem;
-    border-top: 3px solid var(--utk-logo--orange);
+    padding-top: 0.25rem;
+    padding-left: 1.25rem; 
+    border-left: 4px solid var(--utk-logo--orange); 
 }
 
 .record-detail__list {

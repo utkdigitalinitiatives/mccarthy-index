@@ -1,0 +1,23 @@
+uuid: 03167c69-0214-4a9e-b928-a250d6fe234c
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.full_width
+    - image.style.inline_large
+    - image.style.inline_medium
+id: full_width
+label: 'Full Width'
+image_style_mappings:
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: 100vw
+      sizes_image_styles:
+        - full_width
+        - inline_large
+        - inline_medium
+    breakpoint_id: responsive_image.viewport_sizing
+    multiplier: 1x
+breakpoint_group: responsive_image
+fallback_image_style: full_width

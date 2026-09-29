@@ -1,0 +1,23 @@
+uuid: 43ffb140-23ff-49d7-9575-7fc007ef106c
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.inline_large
+    - image.style.inline_medium
+    - image.style.inline_small
+id: inline_medium
+label: 'Inline - Medium'
+image_style_mappings:
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: 100vw
+      sizes_image_styles:
+        - inline_large
+        - inline_medium
+        - inline_small
+    breakpoint_id: responsive_image.viewport_sizing
+    multiplier: 1x
+breakpoint_group: responsive_image
+fallback_image_style: inline_medium

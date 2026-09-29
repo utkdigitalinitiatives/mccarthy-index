@@ -1,0 +1,23 @@
+uuid: f7bc56b2-f512-43e0-b177-b8c96b197e85
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.about
+  module:
+    - node
+id: about_page_paths
+label: 'About Page Paths'
+type: 'canonical_entities:node'
+pattern: '/[node:title]'
+selection_criteria:
+  a2f7e8f7-744e-4cc5-9f39-ac72d1e0a6ac:
+    id: 'entity_bundle:node'
+    negate: false
+    context_mapping:
+      node: node
+    bundles:
+      about: about
+selection_logic: and
+weight: -5
+relationships: {  }

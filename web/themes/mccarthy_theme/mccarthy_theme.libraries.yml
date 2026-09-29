@@ -7,9 +7,12 @@ base:
       css/base/utk-sidebar.css: {}
       css/base/back-to-top.css: {}
       css/base/node--record.css: {}
+      css/base/node--about.css: {}
       css/base/node--record-teaser.css: {}
       css/base/pager.css: {}
       css/base/page--front.css: {}
+      css/base/timeline.css: {}
+      css/base/action-card.css: {}
     component:
       css/components/action-links.css:
         weight: -10

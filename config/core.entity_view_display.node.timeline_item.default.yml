@@ -1,0 +1,50 @@
+uuid: 56449ee9-86f4-41f2-aaf9-d9e74d3d1620
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.timeline_item.field_timeline_info
+    - field.field.node.timeline_item.field_year
+    - field.field.node.timeline_item.field_year_number
+    - node.type.timeline_item
+  module:
+    - text
+    - user
+id: node.timeline_item.default
+targetEntityType: node
+bundle: timeline_item
+mode: default
+content:
+  field_timeline_info:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_year:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+      link_rel: canonical
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_year_number:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

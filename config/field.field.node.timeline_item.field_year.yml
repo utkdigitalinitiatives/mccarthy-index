@@ -1,0 +1,19 @@
+uuid: 08aba525-6629-4b54-85e5-6169f0936a0e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_year
+    - node.type.timeline_item
+id: node.timeline_item.field_year
+field_name: field_year
+entity_type: node
+bundle: timeline_item
+label: Year
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

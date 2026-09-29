@@ -1,0 +1,30 @@
+uuid: 77c0f568-5f86-45ef-b555-a47ff7ef5c95
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_learn_more
+    - node.type.about
+  module:
+    - viewsreference
+id: node.about.field_learn_more
+field_name: field_learn_more
+entity_type: node
+bundle: about
+label: 'Learn More'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:view'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+  plugin_types:
+    block: block
+  preselect_views:
+    about: about
+  enabled_settings: {  }
+field_type: viewsreference

@@ -1,0 +1,138 @@
+
+.timeline-title {
+    max-width: 1100px;
+    margin: 0 auto 20px auto; 
+    text-align: center;
+    color: var(--utk-logo--smokey);
+}
+
+.timeline-text {
+    display: inline-block; 
+    font-size: 2rem;       
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 8px;  
+}
+
+/* Orange highlight line beneath the text */
+.timeline-text::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;           
+    height: 3px;          
+    background-color: var(--utk-logo--orange);
+    border-radius: 2px;
+}
+
+/* Center timeline container with subtle gray background */
+.timeline-container { 
+  position: relative;
+  margin: 0 auto;
+  padding: 30px 20px;
+  background-color: #f8f9fa; 
+  border-radius: 8px;
+}
+
+/* Central vertical line */
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background-color: #d1d5db;
+  transform: translateX(-50%);
+}
+
+/* Timeline Item Wrapper */
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 10px 25px;
+  box-sizing: border-box;
+}
+
+/* Left side alignment */
+.timeline-item--left {
+  left: 0;
+  text-align: right;
+}
+
+/* Right side alignment */
+.timeline-item--right {
+  left: 50%;
+  text-align: left;
+}
+
+/* Single-row card content layout */
+.timeline-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--utk-logo--white); 
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb; 
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* Soft shadow */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Subtle hover effect to enhance "pop" */
+.timeline-row:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Reverse flex direction on the left so Year stays closest to the center line if preferred */
+.timeline-item--left .timeline-row {
+  flex-direction: row-reverse;
+}
+
+.timeline-year {
+  font-weight: 600;
+  color: #111827;
+}
+
+.timeline-info {
+  color: #374151;
+}
+
+/* Responsive Layout for Tablets and Mobile Devices */
+@media screen and (max-width: 768px) {
+  
+  .timeline-container::before {
+    left: 20px;
+  }
+
+  /* Make items full width and clear side offsets */
+  .timeline-item {
+    width: 100%;
+    padding-left: 45px;
+    padding-right: 15px;
+    margin-bottom: 16px;
+  }
+
+  /* Reset left/right specific positioning */
+  .timeline-item--left,
+  .timeline-item--right {
+    left: 0;
+    text-align: left;
+  }
+
+  /* Reset flex direction on left cards so Year is always first on mobile */
+  .timeline-item--left .timeline-row {
+    flex-direction: row;
+  }
+
+  /* Make row adapt if text content is long on narrow screens */
+  .timeline-row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
