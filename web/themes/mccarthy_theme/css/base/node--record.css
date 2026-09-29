@@ -155,10 +155,6 @@
     font-weight: 600;
 }
 
-.record-detail__badge--yes {
-    background-color: var(--utk-standard);
-}
-
 .record-detail__badge--no {
     background-color: rgb(from var(--utk-logo--smokey) r g b / 0.12);
 }
