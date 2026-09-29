@@ -1,80 +1,114 @@
-/* Card styling for the "record" content type teaser view mode. */
-
 .view-id-records .view-content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-
-    /* TODO: re-think some of the spacing and sizing */
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-@media (max-width: 992px) {
-    .view-id-records .view-content {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .view-id-records .view-content {
-        grid-template-columns: 1fr;
-    }
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .record-card {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: .5rem;
-    border-radius: 0.375rem;
-    border: 1px solid rgb(from var(--utk-black) r g b / 0.125);
-    text-decoration: none;
-    color: var(--utk-logo--smokey);
-    font-family: var(--font-family-base);
-    transition: box-shadow 0.2s ease-in-out;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(from var(--utk-black) r g b / 0.125);
+  background-color: #ffffff;
+  text-decoration: none;
+  color: var(--utk-logo--smokey, #1c1c1c);
+  font-family: var(--font-family-base, sans-serif);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .record-card:hover {
-    box-shadow: 0 4px 8px rgb(from var(--utk-black) r g b / 0.1);
-    color: var(--utk-logo--smokey);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px -4px rgb(from var(--utk-black) r g b / 0.1);
+  border-color: rgb(from var(--utk-black) r g b / 0.25);
+  color: var(--utk-logo--smokey, #1c1c1c);
+}
+
+.record-card__cover-wrapper {
+  flex: 0 0 80px; 
+  width: 80px;
+  height: 107px;
+  overflow: hidden;
+  border-radius: 0.25rem;
+  border: 1px solid rgb(from var(--utk-black) r g b / 0.1);
+  background-color: #f3f4f6;
 }
 
 .record-card__cover {
-    flex: 0 0 80px;
-    width: 80px;
-    height: 107px;
-    aspect-ratio: 3 / 4;
-    object-fit: cover;
-    border-radius: 0.25rem;
-    border: 1px solid rgb(from var(--utk-black) r g b / 0.1);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.record-card:hover .record-card__cover {
+  transform: scale(1.03);
 }
 
 .record-card__body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0.35rem;
-    min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+  flex: 1;
 }
 
 .record-card__title {
-    font-size: 1.05rem;
-    font-weight: 700;
-    line-height: 1.3;
-    margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0;
+  color: inherit;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .record-card__creators,
 .record-card__creators .field {
-    margin: 0;
-    font-size: 1rem;
-    opacity: 0.8;
+  margin: 0;
+  font-size: 0.875rem;
+  opacity: 0.8;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.record-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  flex-wrap: wrap;
 }
 
 .record-card__year {
-    font-size: 0.9rem;
-    opacity: 0.6;
+  font-size: 0.825rem;
+  font-weight: 600;
+  opacity: 0.7;
+  line-height: 1;
+}
+
+.record-card__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  border-radius: 9999px; 
+  background-color: #e6f4ea; 
+  color: #137333;           
+  border: 1px solid #ceead6;  
+  line-height: 1;
 }
