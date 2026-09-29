@@ -7,7 +7,7 @@ mccarthy_theme.mobile:
 
 mccarthy_theme.tablet:
   label: tablet
-  mediaQuery: '(min-width: 600px) and (max-width: 1023px)'
+  mediaQuery: '(min-width: 600px) and (max-width: 992px)'
   weight: 1
   multipliers:
     - 1x
