@@ -1,0 +1,33 @@
+uuid: c8f99d19-7b95-494e-b4f1-41073242a5a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.about.field_learn_more
+    - field.field.node.about.field_page_content
+    - field.field.node.about.field_timeline
+    - node.type.about
+  module:
+    - layout_builder
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: false
+    allow_custom: false
+id: node.about.teaser
+targetEntityType: node
+bundle: about
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_learn_more: true
+  field_page_content: true
+  field_timeline: true
+  langcode: true
+  search_api_excerpt: true

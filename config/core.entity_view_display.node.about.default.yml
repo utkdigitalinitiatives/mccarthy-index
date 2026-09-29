@@ -3,22 +3,43 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.node.about.field_learn_more
     - field.field.node.about.field_page_content
+    - field.field.node.about.field_timeline
     - node.type.about
   module:
     - text
     - user
+    - viewsreference
 id: node.about.default
 targetEntityType: node
 bundle: about
 mode: default
 content:
+  field_learn_more:
+    type: viewsreference_formatter
+    label: hidden
+    settings:
+      plugin_types:
+        - block
+    third_party_settings: {  }
+    weight: 103
+    region: content
   field_page_content:
     type: text_default
     label: hidden
     settings: {  }
     third_party_settings: {  }
     weight: 101
+    region: content
+  field_timeline:
+    type: viewsreference_formatter
+    label: hidden
+    settings:
+      plugin_types:
+        - block
+    third_party_settings: {  }
+    weight: 102
     region: content
   links:
     settings: {  }
