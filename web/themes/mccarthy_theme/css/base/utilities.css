@@ -391,3 +391,33 @@ a:active {
 .max-row-width {
   max-width: 1200px;
 }
+
+
+
+/* CKEditor Image Styles to add spacing */
+/* Images aligned to the left: text flows on the right */
+.node__content figure.align-left,
+.field--type-text-with-summary figure.align-left,
+.field--type-text-long figure.align-left {
+  margin-right: 1.5rem;
+  margin-bottom: 1rem;
+  float: left;
+}
+
+/* Images aligned to the right: text flows on the left */
+.node__content figure.align-right,
+.field--type-text-with-summary figure.align-right,
+.field--type-text-long figure.align-right {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+  float: right;
+}
+
+/* Centered images */
+.node__content figure.align-center,
+.field--type-text-with-summary figure.align-center,
+.field--type-text-long figure.align-center {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
