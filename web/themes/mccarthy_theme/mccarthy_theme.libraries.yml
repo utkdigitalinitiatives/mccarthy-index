@@ -12,6 +12,7 @@ base:
       css/base/pager.css: {}
       css/base/page--front.css: {}
       css/base/timeline.css: {}
+      css/base/action-card.css: {}
     component:
       css/components/action-links.css:
         weight: -10

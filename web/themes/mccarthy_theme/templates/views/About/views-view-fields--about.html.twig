@@ -1,0 +1,15 @@
+{% set url = fields.view_node.content|striptags|trim %}
+{% set link_title = "Click Here" %}
+
+<div class='col-md-6 col-12 d-flex justify-content-center py-2 mx-auto'>
+    <article class='utk-card-surface utk-action-card'>
+        <div class='utk-action-card__body'>
+            <div class='utk-action-card__summary fs-5 fw-medium'>
+                {{ fields.title.content }}
+            </div>
+            <div class='utk-action-card__actions'>
+                <a href="{{ url }}" class='utk-blue-button py-1 px-2'>{{ link_title }}</a>
+            </div>
+        </div>
+    </article>
+</div>
