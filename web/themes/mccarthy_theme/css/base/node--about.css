@@ -1,0 +1,10 @@
+.about-page__body {
+    padding: 2rem;
+    margin: 0 auto 0 auto;
+    
+}
+.about-page__body span {
+    font: inherit;
+    font-family: var(--font-family-base);
+}
+
