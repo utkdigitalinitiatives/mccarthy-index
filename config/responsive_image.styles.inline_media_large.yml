@@ -1,0 +1,43 @@
+uuid: 0c35a651-6834-4add-9f06-d9fc178f9533
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.responsive_large_1200
+    - image.style.responsive_medium_768
+    - image.style.responsive_small_480
+    - image.style.responsive_xl_1600
+  theme:
+    - mccarthy_theme
+id: inline_media_large
+label: 'Inline Media (Large)'
+image_style_mappings:
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: 'min(calc(100vw - 2rem), 1200px)'
+      sizes_image_styles:
+        - responsive_large_1200
+        - responsive_xl_1600
+    breakpoint_id: mccarthy_theme.desktop
+    multiplier: 1x
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: 'calc(100vw - 2rem)'
+      sizes_image_styles:
+        - responsive_large_1200
+        - responsive_medium_768
+    breakpoint_id: mccarthy_theme.tablet
+    multiplier: 1x
+  -
+    image_mapping_type: sizes
+    image_mapping:
+      sizes: 'calc(100vw - 2rem)'
+      sizes_image_styles:
+        - responsive_medium_768
+        - responsive_small_480
+    breakpoint_id: mccarthy_theme.mobile
+    multiplier: 1x
+breakpoint_group: mccarthy_theme
+fallback_image_style: responsive_xl_1600

@@ -1,10 +1,48 @@
 .about-page__body {
     padding: 2rem;
     margin: 0 auto 0 auto;
-    
+
 }
 .about-page__body span {
     font: inherit;
     font-family: var(--font-family-base);
 }
 
+/* All embedded image media: preserve aspect ratio and avoid inline gaps. */
+.media--view-mode-image-small img,
+.media--view-mode-image-medium img,
+.media--view-mode-image-large img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Desktop defaults: small = one-third; medium = one-half; large = full width. */
+.media--view-mode-image-small {
+  width: 33.333%;
+}
+
+.media--view-mode-image-medium {
+  width: 50%;
+}
+
+.media--view-mode-image-large {
+  width: 100%;
+}
+
+/* Tablet: medium and large occupy the whole available line. */
+@media (max-width: 770px) {
+  .media--view-mode-image-medium,
+  .media--view-mode-image-large {
+    width: 100%;
+  }
+}
+
+/* Mobile: every embedded image occupies the whole available line. */
+@media (max-width: 480px) {
+  .media--view-mode-image-small,
+  .media--view-mode-image-medium,
+  .media--view-mode-image-large {
+    width: 100%;
+  }
+}

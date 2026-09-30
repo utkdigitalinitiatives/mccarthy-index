@@ -3,11 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.media.cover
-    - core.entity_view_mode.media.cover_thumbnail
-    - core.entity_view_mode.media.full
+    - core.entity_view_mode.media.image_large
+    - core.entity_view_mode.media.image_medium
+    - core.entity_view_mode.media.image_small
     - core.entity_view_mode.media.media_library
-    - core.entity_view_mode.media.token
   module:
     - media
 name: 'Full Text'
@@ -47,10 +46,8 @@ filters:
     settings:
       default_view_mode: media_library
       allowed_view_modes:
-        default: default
-        cover: cover
-        cover_thumbnail: cover_thumbnail
-        full: full
-        media_library: media_library
-        token: token
-      allowed_media_types: {  }
+        image_large: image_large
+        image_medium: image_medium
+        image_small: image_small
+      allowed_media_types:
+        inline_image: inline_image
