@@ -1,0 +1,14 @@
+uuid: 88cc8104-8a95-4daf-8a68-26c676ce0304
+langcode: en
+status: true
+dependencies: {  }
+id: inline_image
+label: 'Inline Image'
+description: ''
+source: image
+queue_thumbnail_downloads: false
+new_revision: false
+source_configuration:
+  source_field: field_media_image
+field_map:
+  name: name

@@ -1,0 +1,11 @@
+uuid: 65857323-dc12-4140-b416-f1262c623274
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.image_large
+label: 'Image: Large'
+description: null
+targetEntityType: media
+cache: true

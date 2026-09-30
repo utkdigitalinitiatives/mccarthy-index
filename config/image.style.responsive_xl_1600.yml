@@ -1,0 +1,15 @@
+uuid: f860ce84-56b2-4479-8b92-9a3ea57cf10b
+langcode: en
+status: true
+dependencies: {  }
+name: responsive_xl_1600
+label: 'Responsive XL (1600)'
+effects:
+  0f37d0be-0f97-4390-bd4c-cf191d301ce6:
+    uuid: 0f37d0be-0f97-4390-bd4c-cf191d301ce6
+    id: image_scale
+    weight: 1
+    data:
+      width: 1600
+      height: null
+      upscale: false

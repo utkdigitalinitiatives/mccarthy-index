@@ -1,0 +1,15 @@
+uuid: 3b825773-eb67-45e1-89e1-528e87f7bf7c
+langcode: en
+status: true
+dependencies: {  }
+name: responsive_small_480
+label: 'Responsive Small (480)'
+effects:
+  bdf26067-aa62-4f8d-b071-218fb7fd13b9:
+    uuid: bdf26067-aa62-4f8d-b071-218fb7fd13b9
+    id: image_scale
+    weight: 1
+    data:
+      width: 480
+      height: null
+      upscale: false
