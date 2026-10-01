@@ -39,7 +39,7 @@ final class BookCoverImportForm extends FormBase {
     $files = $this->listCoverFiles($job_id);
     $session = $this->importer()->getAssignmentSession();
     $form['intro'] = [
-      '#markup' => '<p>Upload one ZIP archive at a time, review the extracted images, then run a dry run or import. Each upload is staged in its own directory under the site’s current default writable scheme: <code>public://covers</code> locally and <code>azblob://covers</code> in production. Keep one import session active while processing all archive parts.</p><p>Allowed image types: <code>webp</code>, <code>jpg</code>, <code>jpeg</code>, <code>png</code>. Names must use <code>{isbn10|isbn13|lcc|lccn|oclc}_{value}.{extension}</code>. Images can be at the ZIP root or inside one enclosing folder.</p>',
+      '#markup' => '<p>Upload one ZIP archive at a time, review the extracted images, then run a dry run or import. Each upload is staged in its own directory under <code>temporary://book-cover-import</code> on the server. Imported covers are saved to the site’s default file scheme: <code>public://</code> locally and <code>azblob://</code> (Azure Blob Storage) on the servers. Keep one import session active while processing all archive parts.</p><p>Allowed image types: <code>webp</code>, <code>jpg</code>, <code>jpeg</code>, <code>png</code>. Names must use <code>{isbn10|isbn13|lcc|lccn|oclc}_{value}.{extension}</code>. Images can be at the ZIP root or inside one enclosing folder.</p>',
     ];
 
     $form['session'] = [
@@ -328,9 +328,14 @@ final class BookCoverImportForm extends FormBase {
     \Drupal::service('tempstore.private')->get('book_cover_import')->set('active_job', $job_id);
   }
 
-  private function sourceDirectory(string $job_id): string {
-    $scheme = \Drupal::config('system.file')->get('default_scheme') ?: 'public';
-    return $scheme . '://covers/' . $job_id;
+  /**
+   * Stages extracted images locally, never on the default scheme.
+   *
+   * On the servers the default scheme is azblob, where unpacking a ZIP and
+   * rescanning the staged files would make one network call per file.
+   */
+  private static function sourceDirectory(string $job_id): string {
+    return 'temporary://book-cover-import/' . $job_id;
   }
 
   private function removeJobDirectory(string $job_id): void {
@@ -341,8 +346,7 @@ final class BookCoverImportForm extends FormBase {
     if (!preg_match('/^[a-f0-9]{32}$/', $job_id)) {
       return;
     }
-    $scheme = \Drupal::config('system.file')->get('default_scheme') ?: 'public';
-    $directory = $scheme . '://covers/' . $job_id;
+    $directory = static::sourceDirectory($job_id);
     if (is_dir($directory)) {
       \Drupal::service('file_system')->deleteRecursive($directory);
     }
