@@ -70,6 +70,13 @@ if [ ! -f "$DUMP" ]; then
   exit 1
 fi
 
+LOCAL_SETTINGS="web/sites/default/settings.local.php"
+if [ ! -f "$LOCAL_SETTINGS" ]; then
+  echo "==> Creating $LOCAL_SETTINGS from the example"
+  cp "$LOCAL_SETTINGS.example" "$LOCAL_SETTINGS"
+  echo
+fi
+
 echo "==> Importing $DUMP"
 ddev import-db --src="$DUMP"
 
@@ -161,6 +168,28 @@ else
   echo "    then add a \$config override for each line above. The example file"
   echo "    shows the exact shape. settings.local.php is gitignored and its"
   echo "    overrides never appear in 'drush cex'."
+fi
+
+echo
+echo "==> Checking the azblob stream wrapper can be constructed"
+# Any page that lists stream wrappers fatals if this throws.
+WRAPPER="$(ddev drush php:eval '
+try {
+  \Drupal::service("stream_wrapper_manager")->getViaScheme("azblob");
+  echo "OK";
+}
+catch (\Throwable $e) {
+  echo $e->getMessage();
+}
+')"
+
+if [ "$WRAPPER" = "OK" ]; then
+  echo "    OK"
+else
+  echo "    WARNING: $WRAPPER"
+  echo "    Pages such as /admin/config/media/file-system will fail. Copy the"
+  echo "    az_blob_fs.settings overrides from $LOCAL_SETTINGS.example"
+  echo "    into $LOCAL_SETTINGS."
 fi
 
 echo
