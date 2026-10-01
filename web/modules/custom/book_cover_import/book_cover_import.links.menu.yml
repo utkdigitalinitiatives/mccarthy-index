@@ -1,0 +1,6 @@
+book_cover_import.admin:
+  title: 'Book Cover import'
+  description: 'Upload and match Record cover images.'
+  route_name: book_cover_import.admin
+  parent: system.admin_content
+  weight: 30

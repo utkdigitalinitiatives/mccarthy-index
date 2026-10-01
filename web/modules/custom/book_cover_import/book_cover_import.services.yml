@@ -1,0 +1,13 @@
+services:
+  book_cover_import.importer:
+    class: Drupal\book_cover_import\Service\BookCoverImporter
+    arguments:
+      - '@entity_type.manager'
+      - '@file_system'
+      - '@logger.channel.book_cover_import'
+      - '@config.factory'
+      - '@state'
+
+  logger.channel.book_cover_import:
+    parent: logger.channel_base
+    arguments: ['book_cover_import']
