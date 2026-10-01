@@ -8,5 +8,5 @@ logo:
   path: 'public://logo.svg'
 favicon:
   use_default: 0
-  path: 'public://favicon_0.ico'
+  path: 'public://favicon.ico'
   mimetype: image/vnd.microsoft.icon
