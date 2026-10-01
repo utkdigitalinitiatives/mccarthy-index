@@ -33,6 +33,18 @@
 $config['system.file']['default_scheme'] = 'public';
 
 /**
+ * Let the `azblob` stream wrapper construct without connecting anywhere.
+ *
+ * AzBlobFsStreamWrapper::__construct() throws when the account name or key
+ * name is empty, which breaks any page that enumerates stream wrappers (e.g.
+ * /admin/config/media/file-system). With these set, the constructor succeeds;
+ * the committed key entity `azure_blob_key` still holds an empty value, so
+ * az_blob_fs builds no client and makes no network calls.
+ */
+$config['az_blob_fs.settings']['az_blob_account_name'] = 'localplaceholder';
+$config['az_blob_fs.settings']['az_blob_account_key_name'] = 'azure_blob_key';
+
+/**
  * Per-field overrides.
  *
  * One line per file field whose committed config says `uri_scheme: azblob`.

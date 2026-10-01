@@ -1,0 +1,4 @@
+book_cover_import.settings:
+  type: config_object
+  label: 'Book Cover Import settings'
+  mapping: {}
