@@ -80,26 +80,18 @@ fi
 echo "==> Importing $DUMP"
 ddev import-db --src="$DUMP"
 
-# config:import runs BEFORE the scheme change below, not after as in lib-main.
-# This is a small robustness point, not a fix for anything: committed
-# config/system.file.yml already says `default_scheme: public`, so the cset below
-# is a no-op today and the order cannot matter. It would start mattering if that
-# committed value ever changed.
+# Committed config/system.file.yml says `default_scheme: azblob`, as the servers
+# need. Locally, the `public` default comes only from the runtime override in
+# settings.local.php (see the example file); the upload diagnostic at the end
+# warns if it is missing. Do not `drush cset` it here: that would put `public`
+# in active config, and the next `ddev drush cex` would commit it.
 #
-# What the order does NOT do is silence the upload diagnostic at the end. That
-# warns about `uri_scheme: azblob` in committed field config, which nothing in
-# this script touches and only a settings.local.php override can change.
-#
-# Anything this command sets is either identical to committed config
-# (default_scheme) or a runtime-only settings.local.php override, so
-# `ddev drush cex` can never carry a local hack into the repository.
+# Nothing this command writes to the database is config (the URI rewrite below
+# is content), so `ddev drush cex` can never carry a local hack into the
+# repository.
 echo
 echo "==> Importing committed configuration"
 ddev drush config:import -y
-
-echo
-echo "==> Pointing the default file scheme at public://"
-ddev drush cset system.file default_scheme public -y
 
 echo
 echo "==> Rewriting azblob:// file URIs to public://"
