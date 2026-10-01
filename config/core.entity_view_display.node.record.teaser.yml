@@ -38,6 +38,16 @@ targetEntityType: node
 bundle: record
 mode: teaser
 content:
+  field_annotated:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
   field_cover:
     type: entity_reference_entity_view
     label: hidden
@@ -65,7 +75,6 @@ content:
     region: content
 hidden:
   feeds_item: true
-  field_annotated: true
   field_collection: true
   field_copies: true
   field_date_added: true
