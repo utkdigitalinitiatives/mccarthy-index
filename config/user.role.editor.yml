@@ -1,0 +1,45 @@
+uuid: 4de3b01d-4933-47a3-b1d0-9652f76313ad
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.about
+    - node.type.record
+    - node.type.timeline_item
+  module:
+    - node
+    - system
+    - toolbar
+id: editor
+label: Editor
+weight: 3
+is_admin: false
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access toolbar'
+  - 'administer node published status'
+  - 'administer nodes'
+  - 'create about content'
+  - 'create record content'
+  - 'create timeline_item content'
+  - 'delete any about content'
+  - 'delete any record content'
+  - 'delete any timeline_item content'
+  - 'delete own about content'
+  - 'delete own record content'
+  - 'delete own timeline_item content'
+  - 'edit any about content'
+  - 'edit any record content'
+  - 'edit any timeline_item content'
+  - 'edit own about content'
+  - 'edit own record content'
+  - 'edit own timeline_item content'
+  - 'revert about revisions'
+  - 'revert record revisions'
+  - 'revert timeline_item revisions'
+  - 'view about revisions'
+  - 'view own unpublished content'
+  - 'view record revisions'
+  - 'view the administration theme'
+  - 'view timeline_item revisions'
