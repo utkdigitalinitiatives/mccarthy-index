@@ -4,6 +4,8 @@
  * Custom Views exposed form template for the hero search block.
  */
 #}
+{% set placeholder_text = 'Search the database for books...'|t %}
+
 <div class="front-hero__search-wrapper">
   <form{{ attributes.addClass('front-hero__search-form') }}>
     
@@ -27,9 +29,9 @@
 
       {# Render text input #}
       {% if form.keys %}
-        {{ form.keys }}
+        {{ form.keys|merge({'#attributes': {'placeholder': placeholder_text}}) }}
       {% elseif form.search_api_fulltext %}
-        {{ form.search_api_fulltext }}
+        {{ form.search_api_fulltext|merge({'#attributes': {'placeholder': placeholder_text}}) }}
       {% endif %}
 
       {# Submit action button #}
