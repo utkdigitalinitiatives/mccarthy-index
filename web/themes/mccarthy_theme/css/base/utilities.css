@@ -394,7 +394,35 @@ a:active {
 
 
 
-/* CKEditor Image Styles to add spacing */
+/* Base figure reset & shrink-wrap fix */
+.node__content figure,
+.field--type-text-with-summary figure,
+.field--type-text-long figure {
+  display: table;            /* Shrinks figure wrapper tightly to the image width */
+  max-width: 100%;           /* Prevents figure from overflowing body content */
+  height: auto;
+}
+
+/* Ensure caption wraps to the exact width of the image */
+.node__content figure figcaption,
+.field--type-text-with-summary figure figcaption,
+.field--type-text-long figure figcaption {
+  display: table-caption;
+  caption-side: bottom;
+}
+
+/* Make image & picture fill the figure boundary */
+.node__content figure img,
+.node__content figure picture,
+.field--type-text-with-summary figure img,
+.field--type-text-with-summary figure picture,
+.field--type-text-long figure img,
+.field--type-text-long figure picture {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /* Images aligned to the left: text flows on the right */
 .node__content figure.align-left,
 .field--type-text-with-summary figure.align-left,
@@ -402,6 +430,7 @@ a:active {
   margin-right: 1.5rem;
   margin-bottom: 1rem;
   float: left;
+  max-width: 50%;            /* Prevents floated images from taking over the line */
 }
 
 /* Images aligned to the right: text flows on the left */
@@ -411,6 +440,7 @@ a:active {
   margin-left: 1.5rem;
   margin-bottom: 1rem;
   float: right;
+  max-width: 50%;            /* Adjust percentage or px max-width as needed */
 }
 
 /* Centered images */
@@ -419,5 +449,7 @@ a:active {
 .field--type-text-long figure.align-center {
   margin-top: 1rem;
   margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
