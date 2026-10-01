@@ -7,6 +7,8 @@ services:
       - '@logger.channel.book_cover_import'
       - '@config.factory'
       - '@state'
+      - '@lock'
+      - '@database'
 
   logger.channel.book_cover_import:
     parent: logger.channel_base

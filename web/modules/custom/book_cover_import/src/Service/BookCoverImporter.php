@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Drupal\book_cover_import\Service;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\File\FileExists;
 use Drupal\Core\File\FileSystemInterface;
+use Drupal\Core\Lock\LockBackendInterface;
 use Drupal\Core\State\StateInterface;
 use Drupal\file\Entity\File;
 use Drupal\media\Entity\Media;
@@ -32,6 +34,8 @@ final class BookCoverImporter {
     private readonly LoggerInterface $logger,
     private readonly ConfigFactoryInterface $configFactory,
     private readonly StateInterface $state,
+    private readonly LockBackendInterface $lock,
+    private readonly Connection $database,
   ) {}
 
   /**
@@ -44,11 +48,13 @@ final class BookCoverImporter {
     if (!preg_match('/^(isbn10|isbn13|lcc|lccn|oclc)_([^_]+)\.(webp|jpe?g|png)$/i', $name, $matches)) {
       return $this->result('error', "$name: invalid filename.");
     }
+    if (!$this->isValidImage($source_uri)) {
+      return $this->result('error', "$name: the staged file is not a valid image.");
+    }
 
     $prefix = strtolower($matches[1]);
     $value = $matches[2];
     $field = self::PREFIX_FIELDS[$prefix];
-
     $node_storage = $this->entityTypeManager->getStorage('node');
     $nids = $node_storage->getQuery()
       ->accessCheck(FALSE)
@@ -77,55 +83,89 @@ final class BookCoverImporter {
       return $this->result('conflict', "$name: matched Record IDs " . implode(', ', array_map(static fn ($record) => $record->id(), $records)) . "; first title is “$first_title”, but Record ID(s) " . implode(', ', $different_title_ids) . ' have different title(s). No cover was assigned.');
     }
 
-    // A node must not be matched by more than one archive image in this ZIP.
     $conflicting_files = $this->otherMatchingFiles($source_uri, $valid_records);
     if ($conflicting_files) {
       return $this->result('conflict', "$name: Record ID(s) " . implode(', ', array_map(static fn ($record) => $record->id(), $valid_records)) . ' also match ' . implode(', ', $conflicting_files) . '. No cover was assigned.');
     }
 
-    // A node must not be assigned by more than one ZIP in the active session.
-    $prior_assignments = $this->priorAssignments($valid_records);
-    if ($prior_assignments) {
-      return $this->result('conflict', "$name: Record ID(s) " . implode(', ', array_keys($prior_assignments)) . ' were already assigned by earlier ZIP file(s) ' . implode(', ', array_unique(array_values($prior_assignments))) . '. No cover was assigned.');
-    }
-
     $record_ids = implode(', ', array_map(static fn ($record) => $record->id(), $valid_records));
     if ($dry_run) {
+      if ($prior_assignments = $this->priorAssignments($valid_records)) {
+        return $this->result('conflict', "$name: Record ID(s) " . implode(', ', array_keys($prior_assignments)) . ' were already assigned by earlier ZIP file(s) ' . implode(', ', array_unique(array_values($prior_assignments))) . '. No cover was assigned.');
+      }
       return $this->result('assigned', "$name: would create one Book Cover Media item and assign it to Record ID(s) $record_ids.");
     }
 
-    $destination = $this->destinationUri($name);
-    $this->fileSystem->prepareDirectory(dirname($destination), FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
-
-    // FileRepository::copy() accepts an existing File entity in Drupal 11,
-    // whereas this importer starts with an extracted stream-wrapper URI.
-    $copied_uri = $this->fileSystem->copy($source_uri, $destination, FileExists::Rename);
-    if ($copied_uri === FALSE) {
-      return $this->result('error', "$name: Drupal could not copy the extracted image to its permanent cover location.");
+    // The lock also serializes read-modify-write access to the State session.
+    $lock_name = 'book_cover_import.records.' . hash('sha256', implode(':', array_map(static fn ($record): string => (string) $record->id(), $valid_records)));
+    if (!$this->lock->acquire($lock_name, 60.0)) {
+      return $this->result('conflict', "$name: another import is currently assigning the same Record ID(s) $record_ids. Retry this archive after that import finishes.");
     }
 
-    $file = File::create(['uri' => $copied_uri]);
-    $file->setPermanent();
-    $file->save();
+    $copied_uri = FALSE;
+    try {
+      // Recheck after acquiring the lock: a parallel batch may have completed.
+      if ($prior_assignments = $this->priorAssignments($valid_records)) {
+        return $this->result('conflict', "$name: Record ID(s) " . implode(', ', array_keys($prior_assignments)) . ' were already assigned by earlier ZIP file(s) ' . implode(', ', array_unique(array_values($prior_assignments))) . '. No cover was assigned.');
+      }
+      if (!$this->isValidImage($source_uri)) {
+        return $this->result('error', "$name: the staged file is no longer a valid image.");
+      }
 
-    $media = Media::create([
-      'bundle' => 'book_cover',
-      'name' => $first_title . ' Cover',
-      'field_media_image' => [
-        'target_id' => $file->id(),
-        'alt' => $first_title . ' Cover',
-        'title' => '',
-      ],
-    ]);
-    $media->save();
+      $destination = $this->destinationUri($name);
+      $directory = dirname($destination);
+      if (!$this->fileSystem->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS)) {
+        return $this->result('error', "$name: Drupal could not prepare the permanent cover directory.");
+      }
+      $copied_uri = $this->fileSystem->copy($source_uri, $destination, FileExists::Rename);
+      if ($copied_uri === FALSE) {
+        return $this->result('error', "$name: Drupal could not copy the extracted image to its permanent cover location.");
+      }
 
-    foreach ($valid_records as $record) {
-      $record->set('field_cover', ['target_id' => $media->id()]);
-      $record->save();
+      $transaction = $this->database->startTransaction();
+      try {
+        $file = File::create(['uri' => $copied_uri]);
+        $file->setPermanent();
+        $file->save();
+
+        $media = Media::create([
+          'bundle' => 'book_cover',
+          'name' => $first_title . ' Cover',
+          'field_media_image' => [
+            'target_id' => $file->id(),
+            'alt' => $first_title . ' Cover',
+            'title' => '',
+          ],
+        ]);
+        $media->save();
+
+        foreach ($valid_records as $record) {
+          $record->set('field_cover', ['target_id' => $media->id()]);
+          $record->save();
+        }
+        $this->rememberAssignments($valid_records, $name);
+      }
+      catch (\Throwable $exception) {
+        // Let Drupal roll back the File, Media, Record, and State database rows.
+        unset($transaction);
+        if ($copied_uri !== FALSE) {
+          $this->fileSystem->delete($copied_uri);
+        }
+        throw $exception;
+      }
+
+      return $this->result('assigned', "$name: created Media ID {$media->id()} and assigned it to Record ID(s) $record_ids.");
     }
-    $this->rememberAssignments($valid_records, $name);
-
-    return $this->result('assigned', "$name: created Media ID {$media->id()} and assigned it to Record ID(s) $record_ids.");
+    catch (\Throwable $exception) {
+      if ($copied_uri !== FALSE) {
+        $this->fileSystem->delete($copied_uri);
+      }
+      $this->logger->error('{name}: import failed: {message}', ['name' => $name, 'message' => $exception->getMessage()]);
+      return ['status' => 'error', 'message' => "$name: import failed; no Record assignments were committed."];
+    }
+    finally {
+      $this->lock->release($lock_name);
+    }
   }
 
   /**
@@ -149,7 +189,6 @@ final class BookCoverImporter {
    * @param \Drupal\node\NodeInterface[] $records
    *
    * @return array<string, string>
-   *   Record IDs keyed by the filename that assigned each record.
    */
   private function priorAssignments(array $records): array {
     $session = $this->getAssignmentSession();
@@ -175,7 +214,7 @@ final class BookCoverImporter {
   }
 
   /**
-   * Finds a second archive file that would assign another image to these nodes.
+   * Finds another staged file that would assign another image to these nodes.
    *
    * @param \Drupal\node\NodeInterface[] $records
    *
@@ -209,6 +248,15 @@ final class BookCoverImporter {
   private function destinationUri(string $filename): string {
     $scheme = $this->configFactory->get('system.file')->get('default_scheme') ?: 'public';
     return $scheme . '://record-covers/' . $filename;
+  }
+
+  private function isValidImage(string $uri): bool {
+    try {
+      return \Drupal::service('image.factory')->get($uri)->isValid();
+    }
+    catch (\Throwable) {
+      return FALSE;
+    }
   }
 
   private function result(string $status, string $message): array {
