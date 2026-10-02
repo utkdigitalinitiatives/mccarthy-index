@@ -27,7 +27,15 @@
     <h1 class="record-detail__title text-smokey">{{ label }}</h1>
 
     <div class="record-detail__body">
-      <img class="record-detail__cover record-detail__media" src="https://picsum.photos/480/640" alt="Book cover placeholder" />
+      <div class="record-detail__cover record-detail__media">
+      {% if not node.field_cover.isEmpty() %}
+        {{ content.field_cover }}
+      {% else %}
+        <div class="record-cover-placeholder" role="img" aria-label="{{ 'No cover available for @title'|t({'@title': node.label}) }}">
+          {{ 'No cover available'|t }}
+        </div>
+      {% endif %}
+      </div>
 
       <div class="record-detail__summary">
         <div class="record-detail__row-inline">
