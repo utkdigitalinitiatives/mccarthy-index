@@ -7,7 +7,13 @@
 {% set annotated = content.field_annotated[0]["#markup"] %}
 <a class="record-card" href="{{ url }}">
   <div class="record-card__cover-wrapper">
-    <img class="record-card__cover" src="https://picsum.photos/300/400" alt="Book cover placeholder" loading="lazy" />
+    {% if not node.field_cover.isEmpty() %}
+      {{ content.field_cover }}
+    {% else %}
+      <div class="record-cover-placeholder" role="img" aria-label="{{ 'No cover available for @title'|t({'@title': node.label}) }}">
+        {{ 'No cover available'|t }}
+      </div>
+    {% endif %}
   </div>
   <div class="record-card__body">
     <h3 class="record-card__title">{{ node.label }}</h3>
