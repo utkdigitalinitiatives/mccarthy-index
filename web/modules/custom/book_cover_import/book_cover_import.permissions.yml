@@ -1,0 +1,3 @@
+administer book cover imports:
+  title: 'Administer Book Cover imports'
+  description: 'Upload cover ZIP archives and run Record cover imports.'

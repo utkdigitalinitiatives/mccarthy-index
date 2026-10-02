@@ -16,6 +16,7 @@ dependencies:
   module:
     - az_blob_fs
     - block
+    - book_cover_import
     - config
     - contextual
     - feeds
@@ -60,6 +61,7 @@ permissions:
   - 'administer actions'
   - 'administer azure blob storage'
   - 'administer blocks'
+  - 'administer book cover imports'
   - 'administer content types'
   - 'administer display modes'
   - 'administer feeds'

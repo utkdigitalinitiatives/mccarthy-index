@@ -1,0 +1,10 @@
+name: Book Cover Import
+type: module
+description: 'One-off ZIP upload and Record cover matching importer.'
+package: Custom
+core_version_requirement: ^11
+
+dependencies:
+  - drupal:media
+  - drupal:file
+  - drupal:node

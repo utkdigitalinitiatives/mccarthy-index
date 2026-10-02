@@ -1,0 +1,7 @@
+book_cover_import.admin:
+  path: '/admin/content/book-cover-import'
+  defaults:
+    _form: '\Drupal\book_cover_import\Form\BookCoverImportForm'
+    _title: 'Book Cover import'
+  requirements:
+    _permission: 'administer book cover imports'
