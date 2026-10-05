@@ -9,6 +9,7 @@ module:
   ckeditor5: 0
   config: 0
   contextual: 0
+  csv_serialization: 0
   ctools_entity_mask: 0
   datetime: 0
   dblog: 0
@@ -41,11 +42,13 @@ module:
   path_alias: 0
   pgsql: 0
   responsive_image: 0
+  rest: 0
   search_api: 0
   search_api_autocomplete: 0
   search_api_solr: 0
   search_api_solr_admin: 0
   search_api_solr_autocomplete: 0
+  serialization: 0
   system: 0
   tamper: 0
   taxonomy: 0
@@ -55,6 +58,8 @@ module:
   toolbar: 0
   twig_tweak: 0
   user: 0
+  views_bulk_operations: 0
+  views_data_export: 0
   views_ui: 0
   viewsreference: 0
   pathauto: 1
