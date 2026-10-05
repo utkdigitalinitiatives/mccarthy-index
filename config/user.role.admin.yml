@@ -33,7 +33,6 @@ dependencies:
     - path
     - pathauto
     - responsive_image
-    - search
     - search_api
     - search_api_autocomplete
     - search_api_solr_admin
@@ -89,7 +88,6 @@ permissions:
   - 'administer pathauto'
   - 'administer permissions'
   - 'administer responsive images'
-  - 'administer search'
   - 'administer search_api'
   - 'administer search_api_autocomplete'
   - 'administer site configuration'
@@ -181,7 +179,6 @@ permissions:
   - 'revert term revisions in publisher'
   - 'schedule_import own record_import feeds'
   - 'schedule_import record_import feeds'
-  - 'search content'
   - 'select account cancellation method'
   - 'synchronize configuration'
   - 'tamper record_import'
@@ -191,7 +188,6 @@ permissions:
   - 'update media'
   - 'update own record_import feeds'
   - 'update record_import feeds'
-  - 'use advanced search'
   - 'use text format full_text'
   - 'use text format timeline'
   - 'view about revisions'

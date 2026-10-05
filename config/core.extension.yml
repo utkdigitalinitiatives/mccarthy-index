@@ -41,13 +41,11 @@ module:
   path_alias: 0
   pgsql: 0
   responsive_image: 0
-  search: 0
   search_api: 0
   search_api_autocomplete: 0
   search_api_solr: 0
   search_api_solr_admin: 0
   search_api_solr_autocomplete: 0
-  search_node: 0
   system: 0
   tamper: 0
   taxonomy: 0
