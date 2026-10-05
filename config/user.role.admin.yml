@@ -28,10 +28,12 @@ dependencies:
     - key
     - language
     - layout_builder
+    - mailsystem
     - media
     - node
     - path
     - pathauto
+    - postmark
     - responsive_image
     - search_api
     - search_api_autocomplete
@@ -87,6 +89,7 @@ permissions:
   - 'administer nodes'
   - 'administer pathauto'
   - 'administer permissions'
+  - 'administer postmark'
   - 'administer responsive images'
   - 'administer search_api'
   - 'administer search_api_autocomplete'
@@ -103,6 +106,7 @@ permissions:
   - 'administer user form display'
   - 'administer users'
   - 'administer views'
+  - administer_mailsystem
   - 'bulk delete aliases'
   - 'bulk update aliases'
   - 'bypass node access'
