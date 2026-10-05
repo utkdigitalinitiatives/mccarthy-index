@@ -13,6 +13,7 @@ base:
       css/base/page--front.css: {}
       css/base/timeline.css: {}
       css/base/action-card.css: {}
+      css/base/gin-override.css: {}
     component:
       css/components/action-links.css:
         weight: -10
