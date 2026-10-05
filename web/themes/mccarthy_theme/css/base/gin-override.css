@@ -1,0 +1,9 @@
+/* To show node name on toolbar */
+em.placeholder {
+  display: inline !important;
+  min-height: 0 !important;
+  vertical-align: baseline !important;
+  cursor: pointer !important;
+  background-color: transparent !important;
+  opacity: 1 !important;
+}
