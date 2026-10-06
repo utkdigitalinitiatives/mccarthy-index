@@ -7,6 +7,7 @@ dependencies:
     - filter.format.full_text
     - filter.format.timeline
     - media.type.book_cover
+    - media.type.inline_image
     - node.type.about
     - node.type.home
     - node.type.record
@@ -119,6 +120,7 @@ permissions:
   - 'create and edit custom blocks'
   - 'create book_cover media'
   - 'create home content'
+  - 'create inline_image media'
   - 'create media'
   - 'create record content'
   - 'create record_import feeds'
@@ -134,6 +136,8 @@ permissions:
   - 'delete any book_cover media revisions'
   - 'delete any file'
   - 'delete any home content'
+  - 'delete any inline_image media'
+  - 'delete any inline_image media revisions'
   - 'delete any media'
   - 'delete any record content'
   - 'delete home revisions'
@@ -142,6 +146,7 @@ permissions:
   - 'delete own book_cover media'
   - 'delete own files'
   - 'delete own home content'
+  - 'delete own inline_image media'
   - 'delete own record content'
   - 'delete own record_import feeds'
   - 'delete record revisions'
@@ -155,10 +160,12 @@ permissions:
   - 'edit any about content'
   - 'edit any book_cover media'
   - 'edit any home content'
+  - 'edit any inline_image media'
   - 'edit any record content'
   - 'edit own about content'
   - 'edit own book_cover media'
   - 'edit own home content'
+  - 'edit own inline_image media'
   - 'edit own record content'
   - 'edit terms in final_destination'
   - 'edit terms in provenance'
@@ -176,6 +183,7 @@ permissions:
   - 'revert all revisions'
   - 'revert all taxonomy revisions'
   - 'revert any book_cover media revisions'
+  - 'revert any inline_image media revisions'
   - 'revert home revisions'
   - 'revert record revisions'
   - 'revert term revisions in final_destination'
@@ -199,6 +207,7 @@ permissions:
   - 'view all revisions'
   - 'view all taxonomy revisions'
   - 'view any book_cover media revisions'
+  - 'view any inline_image media revisions'
   - 'view home revisions'
   - 'view own record_import feeds'
   - 'view own unpublished content'

@@ -3,10 +3,13 @@ langcode: en
 status: true
 dependencies:
   config:
+    - media.type.book_cover
+    - media.type.inline_image
     - node.type.about
     - node.type.record
     - node.type.timeline_item
   module:
+    - media
     - node
     - system
     - toolbar
@@ -17,29 +20,48 @@ is_admin: false
 permissions:
   - 'access administration pages'
   - 'access content overview'
+  - 'access media overview'
   - 'access toolbar'
   - 'administer node published status'
   - 'administer nodes'
   - 'create about content'
+  - 'create book_cover media'
+  - 'create inline_image media'
+  - 'create media'
   - 'create record content'
   - 'create timeline_item content'
   - 'delete any about content'
   - 'delete any record content'
   - 'delete any timeline_item content'
+  - 'delete media'
   - 'delete own about content'
+  - 'delete own book_cover media'
+  - 'delete own inline_image media'
   - 'delete own record content'
   - 'delete own timeline_item content'
   - 'edit any about content'
+  - 'edit any book_cover media'
+  - 'edit any inline_image media'
   - 'edit any record content'
   - 'edit any timeline_item content'
   - 'edit own about content'
+  - 'edit own book_cover media'
+  - 'edit own inline_image media'
   - 'edit own record content'
   - 'edit own timeline_item content'
   - 'revert about revisions'
+  - 'revert any book_cover media revisions'
+  - 'revert any inline_image media revisions'
   - 'revert record revisions'
   - 'revert timeline_item revisions'
+  - 'update any media'
+  - 'update media'
   - 'view about revisions'
+  - 'view all media revisions'
+  - 'view any book_cover media revisions'
+  - 'view any inline_image media revisions'
   - 'view own unpublished content'
+  - 'view own unpublished media'
   - 'view record revisions'
   - 'view the administration theme'
   - 'view timeline_item revisions'
