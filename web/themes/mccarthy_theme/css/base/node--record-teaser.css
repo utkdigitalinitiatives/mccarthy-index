@@ -1,6 +1,6 @@
 .view-id-records .view-content {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
   gap: 1.5rem;
   width: 100%;
   max-width: 1200px;
@@ -32,13 +32,13 @@
 }
 
 .record-card__cover-wrapper {
-  flex: 0 0 80px; 
+  flex: 0 0 80px;
   width: 80px;
   height: 107px;
   overflow: hidden;
   border-radius: 0.25rem;
   border: 1px solid rgb(from var(--utk-black) r g b / 0.1);
-  background-color: #f3f4f6;
+  background-color: var(--utk-logo--white);
 }
 
 .record-card__cover-wrapper img {
@@ -106,9 +106,9 @@
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  border-radius: 9999px; 
-  background-color: #e6f4ea; 
-  color: #137333;           
-  border: 1px solid #ceead6;  
+  border-radius: 9999px;
+  background-color: #e6f4ea;
+  color: #137333;
+  border: 1px solid #ceead6;
   line-height: 1;
 }
