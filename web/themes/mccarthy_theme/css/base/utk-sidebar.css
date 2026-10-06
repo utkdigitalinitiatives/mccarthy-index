@@ -22,7 +22,6 @@
 }
 
 .sidebar-nav--collapsed .sidebar-nav__title,
-.sidebar-nav--collapsed .sidebar-nav__subtitle,
 .sidebar-nav--collapsed .sidebar-nav__label,
 .sidebar-nav--collapsed .sidebar-nav__brand-label,
 .sidebar-nav--collapsed .sidebar-nav__toggle-label {
@@ -68,7 +67,7 @@
 }
 
 .sidebar-nav__title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     margin: 0 0 0.25rem;
 }
@@ -95,14 +94,6 @@
 
 .sidebar-nav--collapsed .sidebar-nav__title-icon {
     display: inline-block;
-}
-
-.sidebar-nav__subtitle {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin: 0 0 1rem;
 }
 
 .sidebar-nav__menu,

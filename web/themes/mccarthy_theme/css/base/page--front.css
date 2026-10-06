@@ -9,10 +9,33 @@
   box-sizing: border-box;
 }
 
+.front-hero-region {
+  position: relative;
+  isolation: isolate;
+}
+
+.front-hero-region::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: clamp(24rem, 36vw, 32rem);
+  background-image:
+    linear-gradient(to bottom, rgba(255, 255, 255, 0) 55%, var(--utk-logo--white) 100%),
+    url("../../images/mccarthy-bg.webp");
+  background-position: center, center;
+  background-size: cover, cover;
+  background-repeat: no-repeat, no-repeat;
+  pointer-events: none;
+}
+
 .front-hero {
-  max-width: 1100px;
+  width: 100%;
+  max-width: none;
   margin: 0 auto;
-  padding: 3rem 1rem 0;
+  padding: 3rem 1rem 1rem;
   text-align: center;
 }
 
@@ -26,7 +49,7 @@
 
 .front-hero__subtitle {
   max-width: 60ch;
-  margin: 0 auto 2rem;
+  margin: 0 auto 1rem;
   font-size: 1.125rem;
   color: var(--utk-logo--smokey, #1c1c1c);
   opacity: 0.75;

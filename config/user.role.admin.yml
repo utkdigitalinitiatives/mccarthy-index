@@ -28,12 +28,13 @@ dependencies:
     - key
     - language
     - layout_builder
+    - mailsystem
     - media
     - node
     - path
     - pathauto
+    - postmark
     - responsive_image
-    - search
     - search_api
     - search_api_autocomplete
     - search_api_solr_admin
@@ -88,8 +89,8 @@ permissions:
   - 'administer nodes'
   - 'administer pathauto'
   - 'administer permissions'
+  - 'administer postmark'
   - 'administer responsive images'
-  - 'administer search'
   - 'administer search_api'
   - 'administer search_api_autocomplete'
   - 'administer site configuration'
@@ -105,6 +106,7 @@ permissions:
   - 'administer user form display'
   - 'administer users'
   - 'administer views'
+  - administer_mailsystem
   - 'bulk delete aliases'
   - 'bulk update aliases'
   - 'bypass node access'
@@ -181,7 +183,6 @@ permissions:
   - 'revert term revisions in publisher'
   - 'schedule_import own record_import feeds'
   - 'schedule_import record_import feeds'
-  - 'search content'
   - 'select account cancellation method'
   - 'synchronize configuration'
   - 'tamper record_import'
@@ -191,7 +192,6 @@ permissions:
   - 'update media'
   - 'update own record_import feeds'
   - 'update record_import feeds'
-  - 'use advanced search'
   - 'use text format full_text'
   - 'use text format timeline'
   - 'view about revisions'

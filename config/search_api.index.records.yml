@@ -57,7 +57,7 @@ third_party_settings:
       interestingTerms: none
     term_modifiers:
       slop: 3
-      fuzzy: 1
+      fuzzy: 2
       fuzzy_analyzer: true
     advanced:
       index_prefix: ''
@@ -243,9 +243,9 @@ field_settings:
 datasource_settings:
   'entity:node':
     bundles:
-      default: true
+      default: false
       selected:
-        - home
+        - record
     languages:
       default: true
       selected: {  }

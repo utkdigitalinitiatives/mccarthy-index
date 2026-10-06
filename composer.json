@@ -29,10 +29,13 @@
         "drupal/gin_toolbar": "^3.0",
         "drupal/key": ">=1.15",
         "drupal/pathauto": "^1.15",
+        "drupal/postmark": "^1.5",
         "drupal/search_api": "^1.41",
         "drupal/search_api_autocomplete": "^1.12",
         "drupal/search_api_solr": "^4.4",
         "drupal/twig_tweak": "^3.4",
+        "drupal/views_bulk_operations": "^4.4",
+        "drupal/views_data_export": "^1.10",
         "drupal/viewsreference": "^2.0@beta",
         "drush/drush": "^13.7"
     },
