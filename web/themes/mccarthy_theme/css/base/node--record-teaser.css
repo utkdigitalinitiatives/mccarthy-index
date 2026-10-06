@@ -32,7 +32,7 @@
 }
 
 .record-card__cover-wrapper {
-  flex: 0 0 80px; 
+  flex: 0 0 80px;
   width: 80px;
   height: 107px;
   overflow: hidden;
@@ -106,9 +106,9 @@
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  border-radius: 9999px; 
-  background-color: #e6f4ea; 
-  color: #137333;           
-  border: 1px solid #ceead6;  
+  border-radius: 9999px;
+  background-color: #e6f4ea;
+  color: #137333;
+  border: 1px solid #ceead6;
   line-height: 1;
 }
