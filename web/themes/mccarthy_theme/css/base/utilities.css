@@ -41,10 +41,10 @@ a {
 }
 
 .top-line {
-    border-top: 6px solid var(--utk-logo--orange);
-    margin: 0;
-    padding-bottom: 5px;
-    opacity: 1;
+  border-top: 6px solid var(--utk-logo--orange);
+  margin: 0;
+  padding-bottom: 5px;
+  opacity: 1;
 }
 
 .black-overlay,
@@ -75,11 +75,9 @@ a {
 
 /* Card Header Styles */
 .utk-card-header {
-  background: linear-gradient(
-    to right,
-    color-mix(in srgb, var(--utk-logo--smokey) 77%, var(--utk-black)),
-    color-mix(in srgb, var(--utk-logo--smokey) 75%, var(--utk-logo--white))
-  );
+  background: linear-gradient(to right,
+      color-mix(in srgb, var(--utk-logo--smokey) 77%, var(--utk-black)),
+      color-mix(in srgb, var(--utk-logo--smokey) 75%, var(--utk-logo--white)));
   color: var(--utk-logo--white);
   padding: 1rem;
   border-top: 3px solid var(--utk-logo--orange);
@@ -89,18 +87,13 @@ a {
 
 .utk-card-header--small-section {
   background:
-    radial-gradient(
-      circle at top left,
+    radial-gradient(circle at top left,
       rgb(from var(--utk-logo--orange) r g b / 0.12) 0%,
-      transparent 42%
-    ),
-    linear-gradient(
-      180deg,
+      transparent 42%),
+    linear-gradient(180deg,
       rgb(from var(--utk-logo--white) r g b / 0.985) 0%,
       color-mix(in srgb, var(--utk-logo--orange) 6%, var(--utk-logo--white)) 52%,
-      color-mix(in srgb, var(--utk-logo--orange) 11%, var(--utk-logo--white))
-        100%
-    );
+      color-mix(in srgb, var(--utk-logo--orange) 11%, var(--utk-logo--white)) 100%);
   color: var(--utk-logo--smokey) !important;
   border-bottom: 1px solid rgb(from var(--utk-logo--orange) r g b / 0.22);
   box-shadow: inset 0 1px 0 rgb(from var(--utk-logo--white) r g b / 0.92);
@@ -252,7 +245,7 @@ a {
   padding: 0;
 }
 
-.breadcrumb-item + .breadcrumb-item::before {
+.breadcrumb-item+.breadcrumb-item::before {
   color: var(--utk-logo--white);
 }
 
@@ -272,11 +265,9 @@ a {
   line-height: 16px;
   padding: 3px 0;
   margin-bottom: 5px;
-  background-image: linear-gradient(
-    to right,
-    var(--utk-logo--white) 100%,
-    var(--utk-logo--white) 100%
-  );
+  background-image: linear-gradient(to right,
+      var(--utk-logo--white) 100%,
+      var(--utk-logo--white) 100%);
   background-size: 0 2px;
   background-repeat: no-repeat;
   background-position: left bottom;
@@ -374,11 +365,9 @@ a:active {
   line-height: 16px;
   padding: 3px 0;
   margin-bottom: 5px;
-  background-image: linear-gradient(
-    to right,
-    var(--underline-color, var(--utk-logo--orange)) 100%,
-    var(--underline-color, var(--utk-logo--orange)) 100%
-  );
+  background-image: linear-gradient(to right,
+      var(--underline-color, var(--utk-logo--orange)) 100%,
+      var(--underline-color, var(--utk-logo--orange)) 100%);
   background-size: 0 2px;
   background-repeat: no-repeat;
   background-position: left bottom;
@@ -395,61 +384,102 @@ a:active {
 
 
 /* Base figure reset & shrink-wrap fix */
-.node__content figure,
-.field--type-text-with-summary figure,
-.field--type-text-long figure {
-  display: table;            /* Shrinks figure wrapper tightly to the image width */
-  max-width: 100%;           /* Prevents figure from overflowing body content */
+:is(.node__content, .field--type-text-with-summary, .field--type-text-long) figure {
+  display: table;
+  max-width: 100%;
   height: auto;
+  margin-block: 1rem;
 }
 
 /* Ensure caption wraps to the exact width of the image */
-.node__content figure figcaption,
-.field--type-text-with-summary figure figcaption,
-.field--type-text-long figure figcaption {
+:is(.node__content, .field--type-text-with-summary, .field--type-text-long) figure figcaption {
   display: table-caption;
   caption-side: bottom;
 }
 
 /* Make image & picture fill the figure boundary */
-.node__content figure img,
-.node__content figure picture,
-.field--type-text-with-summary figure img,
-.field--type-text-with-summary figure picture,
-.field--type-text-long figure img,
-.field--type-text-long figure picture {
+:is(.node__content, .field--type-text-with-summary, .field--type-text-long) figure :is(img, picture) {
   display: block;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: auto;
 }
 
+/* Keep captioned media from expanding the figure to the view-mode width. */
+:is(.node__content, .field--type-text-with-summary, .field--type-text-long) figure :is(.media--view-mode-image-small,
+  .media--view-mode-image-medium,
+  .media--view-mode-image-large) {
+  width: auto;
+  max-width: 100%;
+}
+
+/* Keep uncaptioned images separate from the surrounding text. */
+:is(.node__content, .field--type-text-with-summary, .field--type-text-long) img {
+  display: block;
+  box-sizing: border-box;
+  max-width: calc(100% - 1rem);
+  height: auto;
+  margin-block: 1rem;
+  margin-inline: 0.5rem;
+}
+
+:is(.node__content, .field--type-text-with-summary, .field--type-text-long) figure img {
+  margin-block: 0;
+  margin-inline: 0;
+  max-width: 100%;
+}
+
 /* Images aligned to the left: text flows on the right */
-.node__content figure.align-left,
-.field--type-text-with-summary figure.align-left,
-.field--type-text-long figure.align-left {
+:is(.node__content, .field--type-text-with-summary, .field--type-text-long) figure.align-left {
   margin-right: 1.5rem;
   margin-bottom: 1rem;
   float: left;
-  max-width: 50%;            /* Prevents floated images from taking over the line */
+  max-width: 50%;
 }
 
-/* Images aligned to the right: text flows on the left */
-.node__content figure.align-right,
-.field--type-text-with-summary figure.align-right,
-.field--type-text-long figure.align-right {
+:is(.node__content, .field--type-text-with-summary, .field--type-text-long) figure.align-right {
   margin-left: 1.5rem;
   margin-bottom: 1rem;
   float: right;
-  max-width: 50%;            /* Adjust percentage or px max-width as needed */
+  max-width: 50%;
 }
 
 /* Centered images */
-.node__content figure.align-center,
-.field--type-text-with-summary figure.align-center,
-.field--type-text-long figure.align-center {
+:is(.node__content, .field--type-text-with-summary, .field--type-text-long) figure.align-center {
   margin-top: 1rem;
   margin-bottom: 1rem;
   margin-left: auto;
   margin-right: auto;
 }
 
+@media (max-width: 770px) {
+
+  :is(.node__content, .field--type-text-with-summary, .field--type-text-long) figure :is(.media--view-mode-image-medium,
+    .media--view-mode-image-large) {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  :is(.node__content, .field--type-text-with-summary, .field--type-text-long) figure {
+    width: 100%;
+  }
+
+  :is(.node__content, .field--type-text-with-summary, .field--type-text-long) figure:is(.align-left, .align-right) {
+    float: none;
+    max-width: 100%;
+    margin-inline: 0;
+  }
+
+  :is(.node__content, .field--type-text-with-summary, .field--type-text-long) figure :is(.media--view-mode-image-small,
+    .media--view-mode-image-medium,
+    .media--view-mode-image-large) {
+    width: 100%;
+  }
+
+  :is(.node__content, .field--type-text-with-summary, .field--type-text-long) figure :is(.media--view-mode-image-small,
+    .media--view-mode-image-medium,
+    .media--view-mode-image-large) img {
+    width: 100%;
+  }
+}
