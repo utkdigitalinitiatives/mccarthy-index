@@ -381,7 +381,12 @@ a:active {
   max-width: 1200px;
 }
 
-
+.view-id-search .search-view__summary {
+  color: var(--utk-logo--smokey);
+  margin: 0 1rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
 
 /* Base figure reset & shrink-wrap fix */
 :is(.node__content, .field--type-text-with-summary, .field--type-text-long) figure {
