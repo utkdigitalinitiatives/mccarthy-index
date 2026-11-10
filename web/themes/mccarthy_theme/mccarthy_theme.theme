@@ -28,7 +28,7 @@ function mccarthy_theme_form_views_exposed_form_alter(array &$form, FormStateInt
     $fields['#title'] = t('Search within');
     $fields['#options'] = array_intersect_key([
       'title' => t('Title'),
-      'field_creators' => t('Author / Creators'),
+      'field_creators' => t('Authors'),
     ], $fields['#options']);
     $fields['#description'] = t('Select fields to narrow your search. Leave both unchecked to search all fields.');
     $fields['#element_validate'][] = 'mccarthy_theme_validate_search_fields';

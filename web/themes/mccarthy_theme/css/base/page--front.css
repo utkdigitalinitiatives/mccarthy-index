@@ -159,7 +159,33 @@
 }
 
 .front-hero__search-actions .form-actions {
+  display: flex;
+  align-items: center;
   margin: 0;
+}
+
+.front-hero__search-actions input[type="submit"],
+.front-hero__search-actions button[type="submit"] {
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: transparent;
+  background: var(--utk-logo--orange, #ff8200) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M12 5l7 7-7 7'/%3E%3C/svg%3E") no-repeat center / 1.25rem 1.25rem;
+  cursor: pointer;
+}
+
+.front-hero__search-actions input[type="submit"]:hover,
+.front-hero__search-actions button[type="submit"]:hover {
+  background-color: var(--utk-orange, #e57200);
+}
+
+.front-hero__search-actions input[type="submit"]:focus-visible,
+.front-hero__search-actions button[type="submit"]:focus-visible {
+  outline: 2px solid var(--utk-logo--orange, #ff8200);
+  outline-offset: 3px;
 }
 
 .front-hero__advanced-search {
@@ -169,7 +195,11 @@
 
 .front-hero__advanced-search > summary {
   width: fit-content;
-  padding: 0.5rem;
+  max-width: calc(100% - 2rem);
+  padding: 0.5rem 1rem;
+  border: 1px solid rgb(0 0 0 / 0.12);
+  border-radius: 9999px;
+  background-color: var(--utk-logo--white, #ffffff);
   font-weight: 600;
 }
 
