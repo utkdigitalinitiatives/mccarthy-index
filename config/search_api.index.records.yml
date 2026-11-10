@@ -115,7 +115,7 @@ field_settings:
     label: Creators
     datasource_id: 'entity:node'
     property_path: field_creators
-    type: text
+    type: 'solr_text_custom:edge'
     dependencies:
       config:
         - field.storage.node.field_creators
@@ -235,7 +235,7 @@ field_settings:
     label: Title
     datasource_id: 'entity:node'
     property_path: title
-    type: text
+    type: 'solr_text_custom:edge'
     boost: 1.5
     dependencies:
       module:
@@ -406,7 +406,7 @@ processor_settings:
     spaces: ''
     ignored: ._-
     overlap_cjk: 1
-    minimum_word_size: '3'
+    minimum_word_size: '2'
 tracker_settings:
   default:
     indexing_order: fifo

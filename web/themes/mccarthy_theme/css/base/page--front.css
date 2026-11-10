@@ -10,8 +10,10 @@
 }
 
 .front-hero-region {
+  --front-hero-background-height: clamp(24rem, 36vw, 32rem);
   position: relative;
   isolation: isolate;
+  min-height: var(--front-hero-background-height);
 }
 
 .front-hero-region::before {
@@ -21,7 +23,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: clamp(24rem, 36vw, 32rem);
+  height: var(--front-hero-background-height);
   background-image:
     linear-gradient(to bottom, rgba(255, 255, 255, 0) 55%, var(--utk-logo--white) 100%),
     url("../../images/mccarthy-bg.webp");
@@ -105,7 +107,7 @@
 .front-hero__search-field-container input[type="text"],
 .front-hero__search-field-container input[type="search"] {
   width: 100%;
-  padding: 1rem 1.25rem 1rem 3.25rem;
+  padding: 1rem 4.25rem 1rem 3.25rem;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 9999px;
   color: var(--utk-logo--smokey, #222222);
@@ -154,7 +156,91 @@
 }
 
 .front-hero__search-actions {
-  display: none;
+  position: absolute;
+  top: calc(50% + 0.125rem);
+  right: 0.35rem;
+  z-index: 2;
+  transform: translateY(-50%);
+}
+
+.front-hero__search-actions .form-actions {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.front-hero__search-actions input[type="submit"],
+.front-hero__search-actions button[type="submit"] {
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: transparent;
+  background: var(--utk-logo--orange, #ff8200) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M12 5l7 7-7 7'/%3E%3C/svg%3E") no-repeat center / 1.25rem 1.25rem;
+  cursor: pointer;
+}
+
+.front-hero__search-actions input[type="submit"]:hover,
+.front-hero__search-actions button[type="submit"]:hover {
+  background-color: var(--utk-orange, #e57200);
+}
+
+.front-hero__search-actions input[type="submit"]:focus-visible,
+.front-hero__search-actions button[type="submit"]:focus-visible {
+  outline: 2px solid var(--utk-logo--orange, #ff8200);
+  outline-offset: 3px;
+}
+
+.front-hero__advanced-search {
+  margin: 0.75rem 0 0;
+  border: 0;
+}
+
+.front-hero__advanced-search > summary {
+  width: fit-content;
+  max-width: calc(100% - 2rem);
+  padding: 0.5rem 1rem;
+  border: 1px solid rgb(0 0 0 / 0.12);
+  border-radius: 9999px;
+  background-color: var(--utk-logo--white, #ffffff);
+  font-weight: 600;
+}
+
+.front-hero__advanced-search > summary:focus-visible {
+  outline: 2px solid var(--utk-orange, #ff8200);
+  outline-offset: 2px;
+}
+
+.front-hero__advanced-search-options {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  background-color: #fff;
+}
+
+.front-hero__advanced-search-options .form-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .front-hero__advanced-search[open] .front-hero__advanced-search-options {
+    animation: heroSearchExpand 0.25s ease-out;
+  }
+}
+
+@keyframes heroSearchExpand {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .front-hero__search-form .ajax-progress-throbber {

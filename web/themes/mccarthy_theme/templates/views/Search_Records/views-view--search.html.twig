@@ -32,7 +32,11 @@
   </div>
   </div>
   <div class="view-content px-3">
-    {{ rows }}
+    {% if rows %}
+      {{ rows }}
+    {% else %}
+      <p>{{ 'No records match your search.'|t }}</p>
+    {% endif %}
   </div>
 
   {% if pager %}
