@@ -4,6 +4,20 @@
  * Custom Views exposed form template for the hero search block.
  */
 #}
+{% set form_attributes = form['#attributes']|default({}) %}
+{% if form['#action'] is defined %}
+  {% set form_attributes = form_attributes|merge({'action': form['#action']}) %}
+{% endif %}
+{% if form['#method'] is defined %}
+  {% set form_attributes = form_attributes|merge({'method': form['#method']}) %}
+{% endif %}
+{% if form['#id'] is defined %}
+  {% set form_attributes = form_attributes|merge({'id': form['#id']}) %}
+{% endif %}
+{% if form_attributes['accept-charset'] is not defined %}
+  {% set form_attributes = form_attributes|merge({'accept-charset': 'UTF-8'}) %}
+{% endif %}
+<form{{ create_attribute(form_attributes) }}>
 <div class="front-hero__search-wrapper">
   <div class="front-hero__search-form">
     
@@ -62,3 +76,4 @@
 
   </div>
 </div>
+</form>
