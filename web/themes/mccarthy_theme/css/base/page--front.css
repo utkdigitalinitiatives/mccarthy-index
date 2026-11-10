@@ -105,7 +105,7 @@
 .front-hero__search-field-container input[type="text"],
 .front-hero__search-field-container input[type="search"] {
   width: 100%;
-  padding: 1rem 1.25rem 1rem 3.25rem;
+  padding: 1rem 4.25rem 1rem 3.25rem;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 9999px;
   color: var(--utk-logo--smokey, #222222);
@@ -154,8 +154,11 @@
 }
 
 .front-hero__search-actions {
-  flex-shrink: 0;
-  margin-left: 0.5rem;
+  position: absolute;
+  top: calc(50% + 0.125rem);
+  right: 0.35rem;
+  z-index: 2;
+  transform: translateY(-50%);
 }
 
 .front-hero__search-actions .form-actions {
