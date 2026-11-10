@@ -4,10 +4,8 @@
  * Custom Views exposed form template for the hero search block.
  */
 #}
-{% set placeholder_text = 'Search the database for books...'|t %}
-
 <div class="front-hero__search-wrapper">
-  <form{{ attributes.addClass('front-hero__search-form') }}>
+  <div class="front-hero__search-form">
     
     {# Required Drupal hidden tokens for AJAX routing #}
     {{ form.form_build_id }}
@@ -29,9 +27,9 @@
 
       {# Render text input #}
       {% if form.keys %}
-        {{ form.keys|merge({'#attributes': {'placeholder': placeholder_text}}) }}
+        {{ form.keys }}
       {% elseif form.search_api_fulltext %}
-        {{ form.search_api_fulltext|merge({'#attributes': {'placeholder': placeholder_text}}) }}
+        {{ form.search_api_fulltext }}
       {% endif %}
 
       {# Submit action button #}
@@ -42,8 +40,17 @@
       {% endif %}
     </div>
 
+    {% if form.search_api_fulltext_searched_fields %}
+      <details class="front-hero__advanced-search"{% if form.search_api_fulltext_searched_fields['#value']|filter(value => value)|length %} open{% endif %}>
+        <summary>{{ 'Advanced search'|t }}</summary>
+        <div class="front-hero__advanced-search-options">
+          {{ form.search_api_fulltext_searched_fields }}
+        </div>
+      </details>
+    {% endif %}
+
     {# Render remaining exposed elements cleanly #}
-    {% set reserved_keys = ['form_build_id', 'form_token', 'form_id', 'q', 'keys', 'search_api_fulltext', 'actions'] %}
+    {% set reserved_keys = ['form_build_id', 'form_token', 'form_id', 'q', 'keys', 'search_api_fulltext', 'search_api_fulltext_searched_fields', 'actions'] %}
     
     {% for key in form|keys %}
       {% if key not in reserved_keys and key|first != '#' %}
@@ -53,5 +60,5 @@
       {% endif %}
     {% endfor %}
 
-  </form>
+  </div>
 </div>

@@ -21,6 +21,7 @@
         "drupal/core-project-message": "^11.4",
         "drupal/core-recipe-unpack": "^11.4",
         "drupal/core-recommended": "^11.4",
+        "drupal/facets": "^3.0",
         "drupal/feeds": "^3.2",
         "drupal/feeds_ex": "^1.0@beta",
         "drupal/feeds_tamper": "^2.0@RC",
