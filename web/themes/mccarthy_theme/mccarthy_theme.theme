@@ -1,22 +1,74 @@
 <?php
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element\Checkboxes;
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter() for views_exposed_form.
  */
 function mccarthy_theme_form_views_exposed_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
-  // target search view
-  if (isset($form['#id']) && str_contains($form['#id'], 'views-exposed-form-search-block-1')) {
-    
-    // Add the use-ajax class directly to the submit button
-    if (isset($form['actions']['submit'])) {
-      $form['actions']['submit']['#attributes']['class'][] = 'use-ajax';
-    }
-
-    // Set custom placeholder text
-    if (isset($form['keys'])) {
-      $form['keys']['#attributes']['placeholder'] = t('Search the collection...');
-    }
+  $view = $form_state->get('view');
+  if (!$view || $view->id() !== 'search') {
+    return;
   }
+
+  if (isset($form['search_api_fulltext'])) {
+    // The search template displays keyword errors below the input.
+    $form['#disable_inline_form_errors'] = FALSE;
+    $form['search_api_fulltext']['#error_no_message'] = TRUE;
+    $form['search_api_fulltext']['#title'] = t('Search the database');
+    $form['search_api_fulltext']['#title_display'] = 'invisible';
+    $form['search_api_fulltext']['#attributes']['placeholder'] = t('Search the database for books...');
+    $form['search_api_fulltext']['#element_validate'][] = 'mccarthy_theme_validate_search_keywords';
+  }
+
+  if (isset($form['actions']['submit'])) {
+    $form['actions']['submit']['#value'] = t('Search');
+  }
+
+  if (isset($form['search_api_fulltext_searched_fields'])) {
+    $fields = &$form['search_api_fulltext_searched_fields'];
+    $fields['#type'] = 'checkboxes';
+    $fields['#title'] = t('Search within');
+    $fields['#options'] = array_intersect_key([
+      'title' => t('Title'),
+      'field_creators' => t('Authors'),
+    ], $fields['#options']);
+    $fields['#description'] = t('Select fields to narrow your search. Leave both unchecked to search all fields.');
+    $fields['#element_validate'][] = 'mccarthy_theme_validate_search_fields';
+    unset($fields['#multiple'], $fields['#size']);
+  }
+}
+
+/**
+ * Prevents discarded keywords from becoming an unfiltered search.
+ */
+function mccarthy_theme_validate_search_keywords(array &$element, FormStateInterface $form_state, array &$complete_form) {
+  $input = trim($element['#value']);
+  if ($input === '') {
+    return;
+  }
+
+  $view = $form_state->get('view');
+  $index = $view->getQuery()->getIndex();
+  $query = $index->query()->keys($input);
+  $index->preprocessSearchQuery($query);
+  $keys = $query->getKeys();
+  $has_keywords = FALSE;
+  array_walk_recursive($keys, static function ($value, $key) use (&$has_keywords) {
+    if (is_int($key) && $value !== '') {
+      $has_keywords = TRUE;
+    }
+  });
+  if (!$has_keywords) {
+    $form_state->setError($element, t('Enter at least one searchable word of two or more characters. Common words and punctuation are ignored.'));
+  }
+}
+
+/**
+ * Removes unchecked values before Search API reads the selected fields.
+ */
+function mccarthy_theme_validate_search_fields(array &$element, FormStateInterface $form_state, array &$complete_form) {
+  $checked = Checkboxes::getCheckedCheckboxes($element['#value']);
+  $form_state->setValueForElement($element, array_combine($checked, $checked));
 }
